@@ -7,10 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: { 'min': '480px' },
+        md: { 'min': '768px', },
+        lg: { 'min': '1024px' },
+        xl: { 'min': '1440px' },
+      },
+      colors: {
+        "primary": '#0D47A1',
+        "secondary": '#1976D2',
+        "third": '#7BC9FF',
+        grad1: 'rgb(13,71,161)',
+        grad2: 'rgb(66,165,245)',
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'primary-gradient': 'linear-gradient(90deg, rgba(13,71,161,1) 0%, rgba(66,165,245,1) 99%)',
       },
     },
   },
