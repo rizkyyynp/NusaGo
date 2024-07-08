@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function useAuth() {
     const authenticate = async (url, body) => {
@@ -13,7 +14,7 @@ export default function useAuth() {
                 }
             );
             if (response.status === 200) {
-                document.cookie = `token=${response.data.token}; path=/;`;
+                Cookies.set('token', response.data.token);
             }
             return response;
         } catch (error) {
@@ -23,17 +24,21 @@ export default function useAuth() {
 
     const userLog = async (url, callback) => {
         try {
+            const token = Cookies.get("token");
+            if (!token) {
+                throw new Error("No token found");
+            }
             const response = await axios.get(
                 `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/${url}`,
                 {
                     headers: {
                         apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 }
             );
             if (url === "logout") {
-                document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+                Cookies.remove('token');
                 callback(response);
             } else {
                 callback(response.data.data);
