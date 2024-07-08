@@ -1,12 +1,9 @@
-import Hero from '@/components/Hero/Hero';
-import Navbar from '@/components/Navigation/Navbar';
+import Layout from "@/layouts/Layout";
+
 
 export default function Home() {
   return (
-    <>
-      {/* <Navbar /> */}
-      <Navbar />
-      <Hero />
-    </>
+    <Layout>ad
+    </Layout>
   );
 }
