@@ -87,10 +87,6 @@ export default function Navbar() {
                                     </>
                                 )}
                             </li>
-                            <Link href={'/'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-home text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
-                            </Link>
                             <Link href={'/promo'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-tags text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
@@ -98,6 +94,10 @@ export default function Navbar() {
                             <Link href={'/activity'} className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
+                            </Link>
+                            <Link href={'/category'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <i className="fas fa-location-dot text-2xl text-zinc-100"></i>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Category</span>
                             </Link>
                             {isAdmin && (
                                 <li className="relative">
@@ -164,8 +164,9 @@ export default function Navbar() {
                     <div>
                         <nav className="flex gap-5">
                             <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Home</Link>
-                            <Link href="/activity" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Activity</Link>
-                            <Link href="/promo" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
+                            <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Activity</Link>
+                            <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
+                            <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Category</Link>
                             {isAdmin && (
                                 <div className="relative">
                                     <button

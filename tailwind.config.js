@@ -18,7 +18,6 @@ module.exports = {
         "primary": '#0D47A1',
         "secondary": '#1976D2',
         "third": '#7BC9FF',
-        "fourth": '#FDFFE2',
         grad1: 'rgb(13,71,161)',
         grad2: 'rgb(66,165,245)',
       },
