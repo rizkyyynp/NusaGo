@@ -29,8 +29,8 @@ export default function CardPromo({ initialItems }) {
             <div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                     {visibleItems.map((item, index) => (
-                       
-                        <div  className="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <Link href={`/promo/${item.id}`} key={index}>
+                        <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                             <div className="overflow-hidden">
                                 <img
                                     src={item.imageUrl}
@@ -44,12 +44,10 @@ export default function CardPromo({ initialItems }) {
                                     <h3 className="text-lg font-semibold text-zinc-800">{item.title}</h3>
                                     <p className="text-zinc-600">Rp {formatPrice(item.promo_discount_price)}</p>
                                 </div>
-                                <Link href={`/promo/${item.id}`} key={item.id}>
-                                <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Detail</button>
-                                </Link>
                             </div>
                         </div>
-                        
+                        </Link>
+
                     ))}
                 </div>
 

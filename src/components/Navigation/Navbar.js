@@ -62,31 +62,32 @@ export default function Navbar() {
                             </button>
                         </div>
                         <ul className="mt-2 space-y-1">
-                            <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                {isLoggedIn ? (
-                                    <>
-                                        {profile.profilePictureUrl ? (
-                                            <Image
-                                                src={profile.profilePictureUrl}
-                                                alt="Profile Picture"
-                                                width={32}
-                                                height={32}
-                                                className="rounded-full"
-                                            />
-                                        ) : (
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                        )}
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Link href={'/login'} className="flex items-center">
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
+                            
+                                <li >
+                                    {isLoggedIn ? (
+                                        <Link href={'/profile'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                            {profile.profilePictureUrl ? (
+                                                <Image
+                                                    src={profile.profilePictureUrl}
+                                                    alt="Profile Picture"
+                                                    width={32}
+                                                    height={32}
+                                                    className="rounded-full"
+                                                />
+                                            ) : (
+                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                            )}
+                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
                                         </Link>
-                                    </>
-                                )}
-                            </li>
+                                    ) : (
+                                        <>
+                                            <Link href={'/login'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
+                                            </Link>
+                                        </>
+                                    )}
+                                </li>
                             <Link href={'/'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-home text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
@@ -222,7 +223,9 @@ export default function Navbar() {
                                 {isProfileOpen && (
                                     <ul className="absolute -right-4 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10">
                                         <li>
-                                            <Link href="/" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Profile</Link>
+                                            <Link href="/profile" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">
+                                                <p>Profile</p>
+                                            </Link>
                                         </li>
                                         <li>
                                             <button
