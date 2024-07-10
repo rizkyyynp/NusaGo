@@ -52,7 +52,7 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
         <div>
             <div className="flex justify-center mb-4">
                 <select
-                    className="border border-input rounded p-2 mr-2"
+                    className="border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 bg-secondary text-zinc-100"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
@@ -78,17 +78,17 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
                                     />
                                     <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                         <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                        <span className="text-base font-bold">{item.rating}</span>
+                                        <span className="text-base font-bold font-hind">{item.rating}</span>
                                     </div>
                                 </div>
                                 <div className="p-4 flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-lg font-semibold text-primary">{item.title}</h3>
-                                        <p className="text-primary"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
+                                        <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="line-through text-zinc-600">Rp {formatPrice(item.price)}</p>
-                                        <p className="text-zinc-800 font-bold">Rp {formatPrice(item.price_discount)}</p>
+                                        <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
+                                        <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
                                     </div>
                                 </div>
                             </div>

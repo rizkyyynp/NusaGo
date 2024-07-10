@@ -26,14 +26,14 @@ export default function Promo() {
             <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
                 <div className="flex items-center mb-4">
                     <i className="fas fa-tags text-zinc-100 mr-2 text-lg"></i>
-                    <h2 className="text-2xl font-bold text-zinc-100">Special Promo For You!</h2>
+                    <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Special Promo For You!</h2>
                 </div>
-                <p className="text-zinc-100 mb-6">Exclusive Offer Just for You! Don't Miss Out!</p>
+                <p className="text-zinc-100 mb-6 font-hind">Exclusive Offer Just for You! Don't Miss Out!</p>
                 <CardPromoSingle
                     currentPage={currentPage}
                     setPageCount={setMaxPage}
                 />
-                <div className="mt-6 mx-auto flex justify-center items-center">
+                <div className="mt-6 mx-auto flex justify-center items-center font-nunito">
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1}

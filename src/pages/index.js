@@ -13,7 +13,7 @@ export default function Home({initialPromos, initialCategories, initialActivitie
     <Hero />
       <section className="py-12 ">
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-3xl font-bold text-primary mb-8">Why Choose NusaGo?</h2>
+          <h2 className="text-center text-3xl font-bold text-primary mb-8 font-podkova">Why Choose NusaGo?</h2>
           <Reason />
         </div>
       </section>

@@ -133,7 +133,7 @@ export default function Profile() {
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">
                             <i className="far fa-user text-2xl font-bold text-center text-primary mr-2"></i>
-                            <h2 className="text-2xl font-bold text-center text-primary">Profile Information</h2>
+                            <h2 className="text-2xl font-bold text-center text-primary font-podkova">Profile Information</h2>
                         </div>
                         <button
                             type="button"
@@ -157,20 +157,20 @@ export default function Profile() {
                                 <i className="fas fa-user text-2xl text-zinc-100"></i>
                             )}
                         </div>
-                        <h3 className="mb-2 text-xl font-bold text-primary">{profile.name}</h3>
+                        <h3 className="mb-2 text-xl font-bold text-primary font-hind">{profile.name}</h3>
                     </div>
                     <div className="space-y-4">
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-zinc-700">Email</label>
-                            <input type="text" value={profile.email} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer" readOnly />
+                            <label className="block mb-1 text-sm font-medium text-primary font-hind">Email</label>
+                            <input type="text" value={profile.email} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" readOnly />
                         </div>
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-zinc-700">Role</label>
-                            <input type="text" value={profile.role} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer" readOnly />
+                            <label className="block mb-1 text-sm font-medium text-primary font-hind">Role</label>
+                            <input type="text" value={profile.role} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" readOnly />
                         </div>
                         <div>
-                            <label className="block mb-1 text-sm font-medium text-zinc-700">Phone Number</label>
-                            <input type="text" value={profile.phoneNumber} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer" readOnly />
+                            <label className="block mb-1 text-sm font-medium text-primary font-hind">Phone Number</label>
+                            <input type="text" value={profile.phoneNumber} className="w-full px-3 py-2 border border-zinc-300 rounded cursor-pointer font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" readOnly />
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@ export default function Profile() {
                         <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center justify-center">
                                 <i className="fas fa-pen-to-square text-2xl font-bold text-center text-primary mr-2"></i>
-                                <h2 className="text-2xl font-bold text-center text-primary">Profile Information</h2>
+                                <h2 className="text-2xl font-bold text-center text-primary font-podkova">Profile Information</h2>
                             </div>
                             <button type="button" className="text-zinc-500 hover:text-zinc-800" onClick={handleCloseClick}>
                                 <i className="fas fa-times"></i>
@@ -205,22 +205,22 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="name" className="block mb-1 text-sm font-medium text-zinc-700">Name</label>
-                                <input type="text" id="name" name="name" defaultValue={profile.name} className="w-full px-3 py-2 border border-zinc-300 rounded" />
+                                <label htmlFor="name" className="block mb-1 text-sm font-medium text-primary font-hind">Name</label>
+                                <input type="text" id="name" name="name" defaultValue={profile.name} className="w-full px-3 py-2 border border-zinc-300 rounded font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" />
                             </div>
                             <div>
-                                <label htmlFor="email" className="block mb-1 text-sm font-medium text-zinc-700">Email</label>
-                                <input type="email" id="email" name="email" defaultValue={profile.email} className="w-full px-3 py-2 border border-zinc-300 rounded" />
+                                <label htmlFor="email" className="block mb-1 text-sm font-medium text-primary font-hind">Email</label>
+                                <input type="email" id="email" name="email" defaultValue={profile.email} className="w-full px-3 py-2 border border-zinc-300 rounded font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" />
                             </div>
                             <div>
-                                <label htmlFor="phoneNumber" className="block mb-1 text-sm font-medium text-zinc-700">Phone Number</label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" defaultValue={profile.phoneNumber} className="w-full px-3 py-2 border border-zinc-300 rounded" />
+                                <label htmlFor="phoneNumber" className="block mb-1 text-sm font-medium text-primary font-hind">Phone Number</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" defaultValue={profile.phoneNumber} className="w-full px-3 py-2 border border-zinc-300 rounded font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" />
                             </div>
                             <div>
-                                <label htmlFor="profilePictureUrl" className="block mb-1 text-sm font-medium text-zinc-700">Profile Picture</label>
-                                <input type="file" id="profilePictureUrl" name="profilePictureUrl" className="w-full px-3 py-2 border border-zinc-300 rounded" onChange={handleUpload} />
+                                <label htmlFor="profilePictureUrl" className="block mb-1 text-sm font-medium text-primary font-hind">Profile Picture</label>
+                                <input type="file" id="profilePictureUrl" name="profilePictureUrl" className="w-full px-3 py-2 border border-zinc-300 rounded font-nunito focus:outline-none focus:ring-primary focus:border-primary text-primary" onChange={handleUpload} />
                             </div>
-                            <button type="submit" className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Update</button>
+                            <button type="submit" className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 font-nunito">Update</button>
                         </div>
                     </form>
                 </div>

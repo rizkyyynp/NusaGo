@@ -14,6 +14,13 @@ module.exports = {
         lg: { 'min': '1024px' },
         xl: { 'min': '1440px' },
       },
+      fontFamily: {
+        sans: ['Montserrat', 'ui-sans-serif', 'system-ui'],
+        hind: ['Hind Siliguri', 'sans-serif'],
+        nunito: ['Nunito Sans', 'sans-serif'],
+        cormorant: ['Cormorant Garamond', 'serif'],
+        podkova: ['Podkova', 'serif'],
+      },
       colors: {
         "primary": '#0D47A1',
         "secondary": '#1976D2',

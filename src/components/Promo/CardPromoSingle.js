@@ -40,8 +40,8 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
                         </div>
                         <div className="p-4 flex justify-between items-center">
                             <div>
-                                <h3 className="text-lg font-semibold text-zinc-800">{item.title}</h3>
-                                <p className="text-zinc-600">Rp {formatPrice(item.promo_discount_price)}</p>
+                                <h3 className="text-lg font-semibold text-zinc-800 font-hind">{item.title}</h3>
+                                <p className="text-zinc-600 font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                             </div>
                         </div>
                     </div>

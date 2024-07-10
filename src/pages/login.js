@@ -16,14 +16,14 @@ export default function Login() {
                     <div className="text-center mb-6">
                         <div className="flex items-center justify-center">
                             <Image src={NusaIcon} alt="NusaGo Logo" className="w-10 h-10" />
-                            <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-primary-gradient">NusaGo | <span className='text-2xl font-bold text-transparent bg-clip-text bg-primary-gradient'>Login</span></h1>
+                            <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo | <span className='text-2xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova'>Login</span></h1>
                         </div>
                     </div>
 
                     <LoginForm />
 
                     <div className="text-center mt-4">
-                        <p className="text-sm text-zinc-600">Don't have an account? <Link href="/register" className="text-primary hover:underline font-bold">Sign up</Link></p>
+                        <p className="text-sm text-zinc-600 font-nunito">Don't have an account? <Link href="/register" className="text-primary hover:underline font-bold font-nunito">Sign up</Link></p>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-primary font-hind">Email</label>
                 <input
                     type="email"
                     id="email"
@@ -50,12 +50,12 @@ export default function LoginForm() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Input Your Email"
-                    className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary"
+                    className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary font-nunito"
                     required
                 />
             </div>
             <div>
-                <label htmlFor="password" className="block text-sm font-medium text-primary">Password</label>
+                <label htmlFor="password" className="block text-sm font-medium text-primary font-hind">Password</label>
                 <input
                     type="password"
                     id="password"
@@ -63,12 +63,12 @@ export default function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Input Your Password"
-                    className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary"
+                    className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary font-nunito"
                     required
                 />
             </div>
             <div>
-                <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-zinc-100 py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105">
+                <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-zinc-100 py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 font-sans">
                     Login
                 </button>
             </div>

@@ -55,13 +55,13 @@ export default function Navbar() {
                         <div className="flex items-center justify-between p-2">
                             <div className={`${isSidebarOpen ? 'block' : 'hidden'} text-lg font-bold text-black flex items-center`}>
                                 <Image src={NusaIcon} alt="NusaGo Logo" width={24} height={24} />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} text-xl font-bold text-transparent bg-clip-text bg-primary-gradient`}>NusaGo</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova`}>NusaGo</span>
                             </div>
                             <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-black">
                                 <i className={`${isSidebarOpen ? 'fas fa-minimize' : 'fas fa-maximize'} text-2xl text-primary`}></i>
                             </button>
                         </div>
-                        <ul className="mt-2 space-y-1">
+                        <ul className="mt-2 space-y-1 font-hind">
                             
                                 <li >
                                     {isLoggedIn ? (
@@ -135,7 +135,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                     <div>
-                        <ul className="mb-2 space-y-2">
+                        <ul className="mb-2 space-y-2 font-hind">
                             {isLoggedIn ? (
                                 <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                     <button onClick={handleLogout} className="flex items-center w-full">
@@ -160,10 +160,10 @@ export default function Navbar() {
                 <header className="flex items-center justify-around h-15  fixed w-full shadow-md z-100 transition-all duration-300 bg-zinc-100">
                     <div className="flex items-center gap-1">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
-                        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient">NusaGo</h1>
+                        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
                     </div>
                     <div>
-                        <nav className="flex gap-5">
+                        <nav className="flex gap-5 font-nunito">
                             <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Home</Link>
                             <Link href="/activity" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Activity</Link>
                             <Link href="/promo" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
@@ -201,7 +201,7 @@ export default function Navbar() {
 
                     <div className="flex items-center">
                         {isLoggedIn ? (
-                            <div className="relative">
+                            <div className="relative font-nunito">
                                 <button
                                     onClick={handleProfileToggle}
                                     className="relative flex items-center text-primary font-bold"

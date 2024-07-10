@@ -24,9 +24,9 @@ export default function CardActivity({initialItems}) {
         <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
             <div className="flex items-center mb-4">
                 <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
-                <h2 className="text-2xl font-bold text-zinc-100">Discover Diverse Activities</h2>
+                <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
             </div>
-            <p className="text-zinc-100 mb-6">Explore a Variety of Activities Waiting to Be Discovered</p>
+            <p className="text-zinc-100 mb-6 font-hind">Explore a Variety of Activities Waiting to Be Discovered</p>
             <div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                     {visibleItems.map((item, index) => (
@@ -41,17 +41,17 @@ export default function CardActivity({initialItems}) {
                                     />
                                     <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                         <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                        <span className="text-base font-bold">{item.rating}</span>
+                                        <span className="text-base font-bold font-hind">{item.rating}</span>
                                     </div>
                                 </div>
                                 <div className="p-4 flex justify-between items-center">
                                     <div>
-                                        <h3 className="text-lg font-semibold text-primary">{item.title}</h3>
-                                        <p className="text-primary"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
+                                        <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="line-through text-zinc-600">Rp {formatPrice(item.price)}</p>
-                                        <p className="text-zinc-800 font-bold">Rp {formatPrice(item.price_discount)}</p>
+                                        <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
+                                        <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
                                     </div>
                                 </div>
                             </div>

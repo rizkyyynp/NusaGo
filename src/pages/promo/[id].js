@@ -33,10 +33,6 @@ export default function PromoDetail({ promo }) {
         <Layout>
         <Hero />
             <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
-                <div className="flex items-center mb-4">
-                    <i className="fas fa-tags text-zinc-100 mr-2 text-lg"></i>
-                    <h2 className="text-2xl font-bold text-zinc-100">Promo Detail</h2>
-                </div>
                 <div>
                     <div className="bg-primary rounded-lg max-w-7xl mx-auto p-4 ">
                         <div className="flex flex-col md:flex-row ">
@@ -44,16 +40,16 @@ export default function PromoDetail({ promo }) {
                                 <img src={promo.imageUrl} alt={promo.title} className="w-full h-auto rounded-lg" />
                             </div>
                             <div className="md:w-1/2 md:pl-6 mt-4 md:mt-10">
-                                <h2 className="text-2xl font-bold mb-2 text-fourth">{promo.title}</h2>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Description :</span> {promo.description}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Terms Condition :</span> {promo.terms_condition}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Promo Code :</span> {promo.promo_code}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Discount Price :</span> Rp {formatPrice(promo.promo_discount_price)}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Minimum Claim Price :</span> Rp {formatPrice(promo.minimum_claim_price)}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Created At :</span> {formatDate(promo.createdAt)}</p>
-                                <p className="mb-2 text-fourth"><span className="font-semibold">Last Update :</span> {formatDate(promo.updatedAt)}</p>
+                                <h2 className="text-2xl font-bold mb-2 text-fourth font-podkova">{promo.title}</h2>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Description :</span> {promo.description}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Terms Condition :</span> {promo.terms_condition}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Promo Code :</span> {promo.promo_code}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Discount Price :</span> Rp {formatPrice(promo.promo_discount_price)}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Minimum Claim Price :</span> Rp {formatPrice(promo.minimum_claim_price)}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Created At :</span> {formatDate(promo.createdAt)}</p>
+                                <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Last Update :</span> {formatDate(promo.updatedAt)}</p>
                                 <Link href="/promo">
-                                <button className="bg-secondary  hover:bg-secondary/80 mt-4 py-2 px-4 rounded-lg text-fourth font-semibold">Back</button>
+                                <button className="bg-secondary  hover:bg-secondary/80 mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito">Back</button>
                                 </Link>
                             </div>
                         </div>

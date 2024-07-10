@@ -9,9 +9,9 @@ export default function Footer() {
                 <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
                     <div className="flex items-center space-x-2">
                         <Image src={NusaIcon} alt="NusaGo logo" width={40} height={40} />
-                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-primary-gradient">NusaGo</span>
+                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</span>
                     </div>
-                    <nav className="flex space-x-6 text-lg">
+                    <nav className="flex space-x-6 text-lg font-nunito">
                         <Link href="/" className="relative inline-block text-primary font-semibold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Home</Link>
                         <Link href="/activity" className="relative inline-block text-primary font-semibold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Activity</Link>
                         <Link href="/promo" className="relative inline-block text-primary font-semibold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
@@ -29,7 +29,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <hr className="my-4 border-blue-600" />
-                <p className="text-center text-sm text-blue-600">Copyright © 2024 NusaGo Templates | All Rights Reserved</p>
+                <p className="text-center text-sm text-blue-600 font-nunito">Copyright © 2024 NusaGo Templates | All Rights Reserved</p>
             </div>
         </footer>
     );

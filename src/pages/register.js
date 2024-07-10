@@ -14,11 +14,11 @@ export default function Register() {
                 <div className="text-center mb-6">
                     <div className="flex items-center justify-center">
                         <Image src={NusaIcon} alt="NusaGo Logo" className="w-10 h-10" />
-                        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-primary-gradient">NusaGo | Register</h1>
+                        <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo | Register</h1>
                     </div>
                 </div>
                 <RegisterForm />
-                <p className="text-center mt-4 text-gray-600">Already have an account? <Link href="/login" className="text-blue-600 font-bold hover:underline">Login</Link></p>
+                <p className="text-center mt-4 text-gray-600 font-nunito">Already have an account? <Link href="/login" className="text-blue-600 font-bold hover:underline font-nunito">Login</Link></p>
             </div>
         </div>
     );

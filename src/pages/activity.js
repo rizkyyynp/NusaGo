@@ -26,13 +26,13 @@ export default function Activity() {
             <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
                 <div className="flex items-center mb-4">
                     <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
-                    <h2 className="text-2xl font-bold text-zinc-100">Discover Diverse Activities</h2>
+                    <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
                 </div>
-                <p className="text-zinc-100 mb-6">Explore a Variety of Activities Waiting to Be Discovered</p>
+                <p className="text-zinc-100 mb-6 font-hind">Explore a Variety of Activities Waiting to Be Discovered</p>
                 <div>
                     <CardActivitySingle currentPage={currentPage} setPageCount={setMaxPage} setItems={setItems} />
                 </div>
-                <div className="mt-6 mx-auto flex justify-center items-center">
+                <div className="mt-6 mx-auto flex justify-center items-center font-nunito">
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1 || items.length === 0}

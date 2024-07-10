@@ -55,8 +55,8 @@ const Hero = () => {
                                 <img src={slide.imageUrl} alt={slide.legend} className="w-full h-full object-cover" />
                                 <div className="absolute inset-0 bg-primary bg-opacity-40 flex items-center justify-center">
                                     <div className="text-center text-white  pl-16 pr-2 lg:px-16">
-                                        <h1 className="text-3xl md:text-5xl font-bold mb-4">Your Guide to Indonesian Treasures</h1>
-                                        <button className="bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-3 rounded-lg border-2 border-white">Discover More</button>
+                                        <h1 className="text-3xl md:text-5xl font-bold mb-4 font-hind">Your Guide to Indonesian Treasures</h1>
+                                        <button className="bg-primary text-zinc-100 hover:bg-primary/80 px-6 py-3 rounded-lg border-2 border-white font-nunito">Discover More</button>
                                     </div>
                                 </div>
                             </div>
