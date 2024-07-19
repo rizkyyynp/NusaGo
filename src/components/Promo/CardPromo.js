@@ -1,22 +1,47 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function CardPromo({ initialItems }) {
     const [items, setItems] = useState(initialItems);
-    const [visibleItems, setVisibleItems] = useState(initialItems.slice(0, 3));
-    const [showAll, setShowAll] = useState(false);
-
-    const handleToggle = () => {
-        if (showAll) {
-            setVisibleItems(items.slice(0, 3));
-        } else {
-            setVisibleItems(items);
-        }
-        setShowAll(!showAll);
-    };
 
     const formatPrice = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
+    
+
+    const settings = {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 1000,
+        cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
 
     return (
@@ -27,34 +52,29 @@ export default function CardPromo({ initialItems }) {
             </div>
             <p className="text-zinc-100 mb-6 font-hind">Exclusive Offer Just for You! Don't Miss Out!</p>
             <div>
-                <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
-                    {visibleItems.map((item, index) => (
-                        <Link href={`/promo/${item.id}`} key={index}>
-                        <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-                            <div className="overflow-hidden">
-                                <img
-                                    src={item.imageUrl}
-                                    alt={item.title}
-                                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                    aria-hidden="true"
-                                />
-                            </div>
-                            <div className="p-4 flex justify-between items-center">
-                                <div>
-                                    <h3 className="text-lg font-semibold text-zinc-800 font-hind">{item.title}</h3>
-                                    <p className="text-zinc-600 font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
+                <div className="mt-8 slider-container">
+                    <Slider {...settings}>
+                        {items.map((item, index) => (
+                            <Link href={`/promo/${item.id}`} key={index} className='px-2'>
+                                <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                                    <div className="overflow-hidden">
+                                        <img
+                                            src={item.imageUrl}
+                                            alt={item.title}
+                                            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                                            aria-hidden="true"
+                                        />
+                                    </div>
+                                    <div className="p-4 flex justify-between items-center">
+                                        <div>
+                                            <h3 className="lg:text-lg font-semibold text-zinc-800 font-hind text-md">{item.title}</h3>
+                                            <p className="text-zinc-600 font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        </Link>
-
-                    ))}
-                </div>
-
-                <div className="mt-8 text-center">
-                    <button onClick={handleToggle} className="bg-zinc-100 text-primary py-2 px-4 rounded-full hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100 transition-all duration-100 ease-in-out font-podkova">
-                        {showAll ? "Minimize" : "See All"} →
-                    </button>
+                            </Link>
+                        ))}
+                    </Slider>
                 </div>
             </div>
         </section>

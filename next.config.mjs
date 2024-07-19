@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['travel-journal-api-bootcamp.do.dibimbing.id'],
+    domains: [
+      'travel-journal-api-bootcamp.do.dibimbing.id',
+      'images.unsplash.com',
+      'localhost',
+    ],
   },
 };
 

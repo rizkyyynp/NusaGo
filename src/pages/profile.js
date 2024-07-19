@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import Cookies from "js-cookie";
 import useAuth from "@/hooks/useAuth";
-import Image from "next/image";
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import useImageUpload from "@/hooks/useImageUpload";
@@ -146,12 +145,10 @@ export default function Profile() {
                     <div className="flex flex-col items-center">
                         <div className="w-24 h-24 mb-4 overflow-hidden bg-zinc-200 rounded-full">
                             {profile.profilePictureUrl ? (
-                                <Image
+                                <img
                                     src={profile.profilePictureUrl}
                                     alt="Profile Picture"
-                                    width={96}
-                                    height={96}
-                                    className="rounded-full"
+                                    className="rounded-full w-24 h-24"
                                 />
                             ) : (
                                 <i className="fas fa-user text-2xl text-zinc-100"></i>
@@ -192,12 +189,10 @@ export default function Profile() {
                             <div className="flex items-center justify-center">
                                 <div className="w-24 h-24  overflow-hidden bg-zinc-200 rounded-full">
                                     {profile.profilePictureUrl ? (
-                                        <Image
+                                        <img
                                             src={profile.profilePictureUrl}
                                             alt="Profile Picture"
-                                            width={96}
-                                            height={96}
-                                            className="rounded-full"
+                                            className="rounded-full w-24 h-24"
                                         />
                                     ) : (
                                         <i className="fas fa-user text-2xl text-zinc-100"></i>

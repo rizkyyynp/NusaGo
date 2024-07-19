@@ -6,14 +6,12 @@ import Cookies from 'js-cookie';
 import NusaIcon from "../../assets/images/nusago.png";
 import useAuth from "@/hooks/useAuth";
 
-export default function Navbar() {
+export default function NavbarAdmin() {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [profile, setProfile] = useState({ name: "", profilePictureUrl: "" });
-    const [isAdmin, setIsAdmin] = useState(false);
     const router = useRouter();
     const { userLog } = useAuth();
 
@@ -31,6 +29,9 @@ export default function Navbar() {
         }
     }, []);
 
+    const handleDashboardToggle = () => {
+        setIsDashboardOpen(!isDashboardOpen);
+    };
 
     const handleProfileToggle = () => {
         setIsProfileOpen(!isProfileOpen);
@@ -76,71 +77,54 @@ export default function Navbar() {
 
                         <ul className="mt-2 space-y-1 font-hind">
 
-                            <li >
-                                {isLoggedIn ? (
-                                    <Link href={'/profile'} className="flex items-center  bg-secondary rounded hover:bg-primary">
-                                        {profile.profilePictureUrl ? (
-                                            <img
-                                                src={profile.profilePictureUrl || "/default-profile.png"}
-                                                alt="Profile Picture"
-                                                className=" w-10 h-10"
-                                            />
-                                        ) : (
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                        )}
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
-                                    </Link>
-                                ) : (
-                                    <>
-                                        <Link href={'/login'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
-                                        </Link>
-                                    </>
-                                )}
+                            <li>
+                                <Link href={'/profile'} className="flex items-center  bg-secondary rounded hover:bg-primary">
+                                    {profile.profilePictureUrl ? (
+                                        <img
+                                            src={profile.profilePictureUrl || "/default-profile.png"}
+                                            alt="Profile Picture"
+                                            className=" w-10 h-10"
+                                        />
+                                    ) : (
+                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                    )}
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
+                                </Link>
                             </li>
                             <Link href={'/'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-home text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
                             </Link>
-                            <Link href={'/promo'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                            <Link href={'/dashUser'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>User</span>
+                            </Link>
+                            <Link href={'/dashPromo'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-tags text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
                             </Link>
-                            <Link href={'/activity'} className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                            <Link href={'/dashActivity'} className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
                                 <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
                             </Link>
-                            {isAdmin && (
-                                <li className="relative">
-                                    <Link href={'dashboard'}>
-                                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
-                                            <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
-                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
-                                        </button>
-                                    </Link>
-
-                                </li>
-                            )}
+                            <Link href={'/dashCategory'} className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                                <i className="fas fa-list text-2xl text-zinc-100"></i>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Category</span>
+                            </Link>
+                            <Link href={'/dashBanner'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <i className="far fa-image text-2xl text-zinc-100"></i>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Banner</span>
+                            </Link>
                         </ul>
                     </div>
                     <div>
                         <ul className="mb-2 space-y-2 font-hind">
-                            {isLoggedIn ? (
-                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <button onClick={handleLogout} className="flex items-center w-full">
-                                        <i className="fas fa-door-open text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
-                                    </button>
-                                </li>
-                            ) : (
-                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <Link href="/login" className="flex items-center w-full">
-                                        <i className="fas fa-lock text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login</span>
-                                    </Link>
-                                </li>
-                            )}
+                            <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <button onClick={handleLogout} className="flex items-center w-full">
+                                    <i className="fas fa-door-open text-2xl text-zinc-100"></i>
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -155,19 +139,33 @@ export default function Navbar() {
                     <div>
                         <nav className="flex gap-5 font-nunito">
                             <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Home</Link>
-                            <Link href="/activity" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Activity</Link>
-                            <Link href="/promo" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
-                            {isAdmin && (
                                 <div className="relative">
-                                    <Link href={'dashboard'}>
-                                        <button
-                                            className="relative inline-block text-primary font-bold text-lg transition-all duration-300 max-md:mt-5 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0 items-center">
-                                            Dashboard
-                                        </button>
-                                    </Link>
-
+                                    <button
+                                        onClick={handleDashboardToggle}
+                                        className="relative inline-block text-primary font-bold text-lg transition-all duration-300 max-md:mt-5 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0 items-center"
+                                    >
+                                        Dashboard <i className="fas fa-caret-down ml-2"></i>
+                                    </button>
+                                    {isDashboardOpen && (
+                                        <ul className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex ">
+                                            <li>
+                                                <Link href="/dashUser" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">User</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/dashActivity" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Activity</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/dashBanner" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Banner</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/dashCategory" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Category</Link>
+                                            </li>
+                                            <li>
+                                                <Link href="/dashPromo" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Promo</Link>
+                                            </li>
+                                        </ul>
+                                    )}
                                 </div>
-                            )}
                         </nav>
                     </div>
 
