@@ -10,7 +10,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function PromoList() {
-    const { promos, maxPage } = useFetchPromo(); // Ambil maxPage dari useFetchBanner
+    const { promos, maxPage,refetch } = useFetchPromo(); // Ambil maxPage dari useFetchBanner
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
@@ -38,7 +38,7 @@ export default function PromoList() {
                     </Link>
 
                 </div>
-                <CardPromo promos={promos.slice(startIndex, endIndex)} />
+                <CardPromo promos={promos.slice(startIndex, endIndex)} refetch={refetch} />
                 <div className="flex justify-center items-center mt-4">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}

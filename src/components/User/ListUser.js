@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import { useRouter } from 'next/router';
+import useFetchUser from '@/hooks/useFetchUser';
 
-export default function ListUser({ users }) {
+export default function ListUser({ users, refetch }) { // Accept refetch as a prop
     const [selectedUser, setSelectedUser] = useState(null);
     const { updateProfile } = useProfileUpdate();
-    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +39,8 @@ export default function ListUser({ users }) {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    router.reload();
+                    refetch(); // Call the refetch function after successful update
+                    setSelectedUser(null); // Close the modal
                 });
             }
         } catch (error) {
@@ -88,7 +89,6 @@ export default function ListUser({ users }) {
                 </div>
             ))}
 
-            {/* Modal for updating role */}
             {selectedUser && (
                 <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg">

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData'; // Import useDeleteData hook
 
-export default function CardBanner({ banners }) {
+export default function CardBanner({ banners, refetch }) {
     const [selectedBanner, setSelectedBanner] = useState(null);
     const { updateProfile } = useProfileUpdate();
     const router = useRouter();
@@ -74,7 +74,8 @@ export default function CardBanner({ banners }) {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    router.reload();
+                    refetch(); // Call the refetch function after successful update
+                    setSelectedBanner(null); // Close the modal
                 });
             }
         } catch (error) {
@@ -109,7 +110,7 @@ export default function CardBanner({ banners }) {
                             timer: 1500,
                             showConfirmButton: false
                         }).then(() => {
-                            router.reload();
+                            refetch(); // Call the refetch function after successful delete
                         });
                     }
                 } catch (error) {

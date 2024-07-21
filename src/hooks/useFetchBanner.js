@@ -6,7 +6,7 @@ const useFetchBanner = () => {
     const [banners, setBanners] = useState([]);
     const [maxPage, setMaxPage] = useState(1); // Tambahkan maxPage di sini
 
-    useEffect(() => {
+    
         const fetchBanners = async () => {
             try {
                 const token = Cookies.get('token'); // Ambil token dari cookies
@@ -27,11 +27,11 @@ const useFetchBanner = () => {
                 setMaxPage(1);
             }
         };
-
+        useEffect(() => {
         fetchBanners();
     }, []);
 
-    return { banners, maxPage }; // Kembalikan maxPage di sini
+    return { banners, maxPage, refetch: fetchBanners }; // Kembalikan maxPage di sini
 };
 
 export default useFetchBanner;

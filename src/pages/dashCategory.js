@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import LayoutAdmin from "@/layouts/LayoutAdmin";
-import CardBanner from '@/components/DashboardBanner/cardBanner';
 import CardCategory from '@/components/Dashboard/cardCategory';
 import { checkAuthAdmin } from '../utils/adminAuth';
 import useFetchCategory from '@/hooks/useFetchCategory';
@@ -11,7 +10,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function CategoryList() {
-    const { category, maxPage } = useFetchCategory();
+    const { category, maxPage, refetch } = useFetchCategory();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
@@ -39,7 +38,7 @@ export default function CategoryList() {
                     </Link>
 
                 </div>
-                <CardCategory category={category.slice(startIndex, endIndex)} />
+                <CardCategory category={category.slice(startIndex, endIndex)} refetch={refetch} />
                 <div className="flex justify-center items-center mt-4">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}

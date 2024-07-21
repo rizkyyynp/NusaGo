@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchActivities, fetchCategories, fetchActivitiesByCategory } from '@/lib/api';
 import Link from 'next/link';
 
-export default function CardActivitySingle({ currentPage, setPageCount }) {
-    const [items, setItems] = useState([]);
+export default function CardActivitySingle({ currentPage, setPageCount, setItems, items }) {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const itemsPerPage = 3;
@@ -14,15 +13,8 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
             setCategories(categoryData);
         }
 
-        async function loadActivities() {
-            const data = await fetchActivities();
-            setItems(data);
-            setPageCount(Math.ceil(data.length / itemsPerPage));
-        }
-
         loadCategories();
-        loadActivities();
-    }, [setPageCount]);
+    }, []);
 
     useEffect(() => {
         async function loadActivitiesByCategory() {
@@ -37,7 +29,7 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
         }
 
         loadActivitiesByCategory();
-    }, [selectedCategory, setPageCount]);
+    }, [selectedCategory, setItems, setPageCount]);
 
     const formatPrice = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -81,7 +73,7 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
                                         <span className="text-base font-bold font-hind">{item.rating}</span>
                                     </div>
                                 </div>
-                                <div className="p-4 flex justify-between items-center">
+                                <div className="p-1 flex justify-between items-center">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
                                         <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
@@ -95,7 +87,7 @@ export default function CardActivitySingle({ currentPage, setPageCount }) {
                         </Link>
                     ))
                 ) : (
-                        <p className="text-center text-zinc-100">No activities found for the selected category.</p>
+                    <p className="text-center text-zinc-100">No activities found for the selected category.</p>
                 )}
             </div>
         </div>

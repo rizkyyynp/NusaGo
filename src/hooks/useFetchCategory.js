@@ -6,7 +6,7 @@ const useFetchCategory = () => {
     const [category, setCategory] = useState([]);
     const [maxPage, setMaxPage] = useState(1); // Tambahkan maxPage di sini
 
-    useEffect(() => {
+    
         const fetchCategory = async () => {
             try {
                 const token = Cookies.get('token'); // Ambil token dari cookies
@@ -27,11 +27,11 @@ const useFetchCategory = () => {
                 setMaxPage(1);
             }
         };
-
+        useEffect(() => {
         fetchCategory();
     }, []);
 
-    return { category, maxPage }; // Kembalikan maxPage di sini
+    return { category, maxPage, refetch: fetchCategory }; // Kembalikan maxPage di sini
 };
 
 export default useFetchCategory;

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useCreateData from "@/hooks/useCreateData";
+import { fetchCategories } from '@/lib/api';
 
 export async function getServerSideProps(context) {
     return checkAuthAdmin(context);

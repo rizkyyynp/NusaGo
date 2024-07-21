@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData'; // Import useDeleteData hook
 
-export default function CardCategory({ category }) {
+export default function CardCategory({ category, refetch }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const {updateData} = useUpdateData();
     const router = useRouter();
@@ -74,7 +74,8 @@ export default function CardCategory({ category }) {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    router.reload();
+                    refetch();
+                    setSelectedCategory(null);
                 });
             }
         } catch (error) {
@@ -109,7 +110,7 @@ export default function CardCategory({ category }) {
                             timer: 1500,
                             showConfirmButton: false
                         }).then(() => {
-                            router.reload();
+                            refetch();
                         });
                     }
                 } catch (error) {

@@ -44,7 +44,7 @@ export default function CardActivity({initialItems}) {
                                         <span className="text-base font-bold font-hind">{item.rating}</span>
                                     </div>
                                 </div>
-                                <div className="p-4 flex justify-between items-center">
+                                <div className="p-1 flex justify-between items-center">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
                                         <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>

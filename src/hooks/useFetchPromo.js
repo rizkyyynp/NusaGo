@@ -6,7 +6,7 @@ const useFetchPromo = () => {
     const [promos, setPromos] = useState([]);
     const [maxPage, setMaxPage] = useState(1); // Tambahkan maxPage di sini
 
-    useEffect(() => {
+    
         const fetchPromo = async () => {
             try {
                 const token = Cookies.get('token'); // Ambil token dari cookies
@@ -27,11 +27,11 @@ const useFetchPromo = () => {
                 setMaxPage(1);
             }
         };
-
+        useEffect(() => {
         fetchPromo();
     }, []);
 
-    return { promos, maxPage }; // Kembalikan maxPage di sini
+    return { promos, maxPage, refetch: fetchPromo }; // Kembalikan maxPage di sini
 };
 
 export default useFetchPromo;

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData';
 
-export default function CardPromo({ promos }) {
+export default function CardPromo({ promos, refetch }) {
     const [selectedPromo, setSelectedPromo] = useState(null);
     const { updateData } = useUpdateData();
     const router = useRouter();
@@ -79,7 +79,8 @@ export default function CardPromo({ promos }) {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    router.reload();
+                    refetch();
+                    setSelectedPromo(null);
                 });
             }
         } catch (error) {
@@ -114,7 +115,7 @@ export default function CardPromo({ promos }) {
                             timer: 1500,
                             showConfirmButton: false
                         }).then(() => {
-                            router.reload();
+                            refetch();
                         });
                     }
                 } catch (error) {

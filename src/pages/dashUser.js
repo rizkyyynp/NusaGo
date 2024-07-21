@@ -1,3 +1,4 @@
+// pages/dashUser.js
 import { useEffect, useState } from 'react';
 import LayoutAdmin from "@/layouts/LayoutAdmin";
 import ListUser from '@/components/User/ListUser';
@@ -9,7 +10,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function UserList() {
-    const { users, maxPage } = useFetchUser(); // Ambil maxPage dari useFetchUser
+    const { users, maxPage, refetch } = useFetchUser();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
 
@@ -52,7 +53,7 @@ export default function UserList() {
                         placeholder="Search users by name..."
                     />
                 </div>
-                <ListUser users={filteredUsers.slice(startIndex, endIndex)} />
+                <ListUser users={filteredUsers.slice(startIndex, endIndex)} refetch={refetch} />
                 <div className="flex justify-center items-center mt-4">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}

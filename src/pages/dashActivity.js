@@ -1,9 +1,9 @@
-import CardActivitySingle from "@/components/Activity/CardActivitySingle";
-import Layout from "@/layouts/Layout";
-import Hero from "@/components/Hero/Hero";
+import CardActivity from "@/components/Dashboard/cardActivity";
+import LayoutAdmin from "@/layouts/LayoutAdmin";
+import Link from "next/link";
 import { useState } from 'react';
 
-export default function Activity() {
+export default function dashActivity() {
     const [currentPage, setCurrentPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
     const [items, setItems] = useState([]);
@@ -21,24 +21,27 @@ export default function Activity() {
     };
 
     const areButtonsDisabled = items.length === 0;
-
     return (
-        <Layout>
-            <Hero />
-            <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
-                <div className="flex items-center mb-4">
-                    <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
-                    <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
+        <LayoutAdmin>
+            <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 bg-third">
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                        <img src="https://openui.fly.dev/openui/24x24.svg?text=👤" alt="profile-icon" className="w-6 h-6" />
+                        <h1 className="text-2xl font-bold text-primary">dashActivity</h1>
+                    </div>
+                    <Link href="/createActivity">
+                        <button className="flex items-center space-x-2 px-4 py-2 border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground">
+                            <img src="https://openui.fly.dev/openui/24x24.svg?text=➕" alt="create-icon" className="w-4 h-4" />
+                            <span>Create</span>
+                        </button>
+                    </Link>
                 </div>
-                <p className="text-zinc-100 mb-6 font-hind">Explore a Variety of Activities Waiting to Be Discovered</p>
-                <div>
-                    <CardActivitySingle 
-                        currentPage={currentPage} 
-                        setPageCount={setMaxPage} 
-                        setItems={setItems} 
-                        items={items} // Pass items to CardActivitySingle
-                    />
-                </div>
+                <CardActivity
+                    currentPage={currentPage}
+                    setPageCount={setMaxPage}
+                    setItems={setItems}
+                    items={items} // Pass items to CardActivitySingle
+                />
                 <div className="mt-6 mx-auto flex justify-center items-center font-nunito">
                     <button
                         onClick={prevPage}
@@ -57,6 +60,6 @@ export default function Activity() {
                     </button>
                 </div>
             </section>
-        </Layout>
-    );
+        </LayoutAdmin>
+    )
 }
