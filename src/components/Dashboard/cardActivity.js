@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchActivities, fetchCategories, fetchActivitiesByCategory} from '@/lib/api';
+import { fetchActivities, fetchCategories, fetchActivitiesByCategory } from '@/lib/api';
 import useImageUpload from "@/hooks/useImageUpload";
 import useUpdateData from '@/hooks/useUpdateData';
 import useDeleteData from '@/hooks/useDeleteData';
@@ -54,7 +54,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
         loadActivities();
     }, [selectedCategory, currentPage]);
 
-    
+
     const formatPrice = (price) => {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
@@ -66,7 +66,14 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                 title: 'Upload Failed',
                 text: 'File must be an image',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return false;
         }
@@ -82,7 +89,14 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                 title: 'Upload Failed',
                 text: 'Failed to upload image, check the size/format of the image and try again',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log(error);
         }
@@ -128,7 +142,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const activityData = {
             title: formData.title,
             imageUrls: formData.imageUrls,
@@ -144,22 +158,29 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
             address: formData.address,
             location_maps: formData.location_maps
         };
-    
+
         // Validation check for all required fields
-        if (!activityData.title || !activityData.imageUrls || !activityData.description|| !activityData.price || !activityData.price_discount || !activityData.categoryId || !activityData.city || !activityData.province || !activityData.rating || !activityData.total_reviews || !activityData.facilities || !activityData.address || !activityData.location_maps) {
+        if (!activityData.title || !activityData.imageUrls || !activityData.description || !activityData.price || !activityData.price_discount || !activityData.categoryId || !activityData.city || !activityData.province || !activityData.rating || !activityData.total_reviews || !activityData.facilities || !activityData.address || !activityData.location_maps) {
             Swal.fire({
                 icon: 'error',
                 title: 'Update Failed',
                 text: 'Please fill all required fields',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
-    
+
         handleUpdate(activityData);
     };
-    
+
 
     const handleUpdate = async (data) => {
         try {
@@ -168,9 +189,16 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Success',
-                    text: 'You have successfully updated your activity',
+                    text: 'Update Activity Successfully',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
                 }).then(() => {
                     setIsModalOpen(false);
                     setCurrentStep(1);
@@ -183,7 +211,14 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                 title: 'Update Failed',
                 text: error.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };
@@ -207,7 +242,14 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                             title: 'Deleted!',
                             text: 'Your Activity has been deleted.',
                             timer: 1500,
-                            showConfirmButton: false
+                            showConfirmButton: false,
+                            toast: true,
+                            position: 'top-end',
+                            timerProgressBar: true,
+                            customClass: {
+                                timerProgressBar: 'custom-timer-progress-bar',
+                                title: 'title-success',
+                            },
                         }).then(() => {
                             loadActivities();
                         });
@@ -218,7 +260,14 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                         title: 'Delete Failed',
                         text: error.response?.data.message || 'Something went wrong',
                         timer: 1500,
-                        showConfirmButton: false
+                        showConfirmButton: false,
+                        toast: true,
+                        position: 'top-end',
+                        timerProgressBar: true,
+                        customClass: {
+                            timerProgressBar: 'custom-timer-progress-bar-failed',
+                            title: 'title-failed',
+                        },
                     });
                 }
             }
@@ -228,15 +277,15 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
 
     return (
         <div>
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center lg:justify-end mb-4">
                 <select
-                    className="border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 bg-secondary text-zinc-100"
+                    className="border-2 border-input rounded p-2  font-podkova border-zinc-100 bg-secondary text-zinc-100"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
-                    <option value="all">All Categories</option>
+                    <option value="all" className='bg-zinc-100 text-primary'>All Categories</option>
                     {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
+                        <option key={category.id} value={category.id} className='bg-zinc-100 text-primary'>
                             {category.name}
                         </option>
                     ))}
@@ -255,11 +304,11 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                 />
                                 <div className="absolute top-2 flex items-center justify-between w-full px-2">
                                     <div className="flex space-x-2">
-                                        <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => handleEditClick(item)}>
-                                            <img src="https://openui.fly.dev/openui/24x24.svg?text=✏️" alt="edit-icon" />
+                                        <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
+                                        <i class="fas fa-pencil text-xl text-zinc-100"></i>
                                         </button>
-                                        <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => handleDelete(item.id)}>
-                                            <img src="https://openui.fly.dev/openui/24x24.svg?text=🗑️" alt="delete-icon" />
+                                        <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                                        <i class="fas fa-trash text-xl text-zinc-100"></i>
                                         </button>
                                     </div>
                                     <div className="flex items-center space-x-1 bg-white rounded-full p-1">
@@ -286,8 +335,8 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
             </div>
 
             {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 pt-1 lg:pt-20 pl-16 pr-2 lg:px-0">
-                    <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md overflow-auto">
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-100  lg:pt-4 pl-16 pr-2 lg:px-0  h-screen overflow-y-auto ">
+                    <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md ">
                         <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center justify-center">
                                 <i className="far fa-user text-2xl font-bold text-center text-primary mr-2"></i>
@@ -306,22 +355,22 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                 <>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700">Title</label>
+                                            <label className="block text-sm font-medium text-primary">Title</label>
                                             <input
                                                 type="text"
                                                 name="title"
                                                 value={formData.title}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700">Category</label>
+                                            <label className="block text-sm font-medium text-primary">Category</label>
                                             <select
                                                 name="categoryId"
                                                 value={formData.categoryId}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             >
                                                 {categories.map((category) => (
                                                     <option key={category.id} value={category.id}>
@@ -332,33 +381,33 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                         </div>
                                     </div>
                                     <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Description</label>
+                                        <label className="block text-sm font-medium text-primary">Description</label>
                                         <textarea
                                             name="description"
                                             value={formData.description}
                                             onChange={handleInputChange}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                         />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700">Price</label>
+                                            <label className="block text-sm font-medium text-primary">Price</label>
                                             <input
                                                 type="number"
                                                 name="price"
                                                 value={formData.price}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700">Discounted Price</label>
+                                            <label className="block text-sm font-medium text-primary">Discounted Price</label>
                                             <input
                                                 type="number"
                                                 name="price_discount"
                                                 value={formData.price_discount}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             />
                                         </div>
                                     </div>
@@ -366,96 +415,106 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                             )}
                             {currentStep === 2 && (
                                 <>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <input type="file" name="imageUrls" id="imageUrls" onChange={handleUpload} className="w-full p-2 border rounded-md font-nunito" placeholder="Upload Profile Picture" />
-                                        {formData.imageUrls ? (
+                                    <div className='scrollable-form'>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <input type="file" name="imageUrls" id="imageUrls" onChange={handleUpload} className="w-full p-2 border rounded-md font-nunito" placeholder="Upload Profile Picture" />
+                                            {formData.imageUrls ? (
+                                                <div>
+                                                    <img
+                                                        src={formData.imageUrls}
+                                                        alt="imageUrls"
+                                                        width={100}
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                            )}
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                             <div>
-                                                <img
-                                                    src={formData.imageUrls}
-                                                    alt="imageUrls"
-                                                    width={100}
+                                                <label className="block text-sm font-medium text-primary">City</label>
+                                                <input
+                                                    type="text"
+                                                    name="city"
+                                                    value={formData.city}
+                                                    onChange={handleInputChange}
+                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                                 />
                                             </div>
-                                        ) : (
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                        )}
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">City</label>
+                                            <div>
+                                                <label className="block text-sm font-medium text-primary">Province</label>
+                                                <input
+                                                    type="text"
+                                                    name="province"
+                                                    value={formData.province}
+                                                    onChange={handleInputChange}
+                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
+                                                />
+                                            </div>
+
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <label className="block text-sm font-medium text-primary">Rating</label>
+                                                <input
+                                                    type="number"
+                                                    name="rating"
+                                                    value={formData.rating}
+                                                    onChange={handleInputChange}
+                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-primary">Total Reviews</label>
+                                                <input
+                                                    type="number"
+                                                    name="total_reviews"
+                                                    value={formData.total_reviews}
+                                                    onChange={handleInputChange}
+                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="mb-4">
+                                            <label className="block text-sm font-medium text-primary">Facilities</label>
                                             <input
                                                 type="text"
-                                                name="city"
-                                                value={formData.city}
+                                                name="facilities"
+                                                value={formData.facilities}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Province</label>
-                                            <input
-                                                type="text"
-                                                name="province"
-                                                value={formData.province}
-                                                onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            />
-                                        </div>
-                                        
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Rating</label>
-                                            <input
-                                                type="number"
-                                                name="rating"
-                                                value={formData.rating}
-                                                onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700">Total Reviews</label>
-                                            <input
-                                                type="number"
-                                                name="total_reviews"
-                                                value={formData.total_reviews}
-                                                onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Facilities</label>
-                                        <input
-                                            type="text"
-                                            name="facilities"
-                                            value={formData.facilities}
-                                            onChange={handleInputChange}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                            <label className="block text-sm font-medium text-gray-700">Address</label>
+                                        <div className="mb-4">
+                                            <label className="block text-sm font-medium text-primary">Address</label>
                                             <textarea
                                                 name="address"
                                                 value={formData.address}
                                                 onChange={handleInputChange}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                                             />
                                         </div>
-                                    <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-700">Location Maps</label>
-                                        <textarea
-                                            name="location_maps"
-                                            value={formData.location_maps}
-                                            onChange={handleInputChange}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                        />
+                                        <div className="mb-4">
+                                            <label className="block text-sm font-medium text-primary">Location Maps</label>
+                                            <textarea
+                                                name="location_maps"
+                                                value={formData.location_maps}
+                                                onChange={handleInputChange}
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
+                                            />
+                                            <div className="w-10">
+                                                {formData?.location_maps && (
+                                                    <div
+                                                        dangerouslySetInnerHTML={{ __html: formData.location_maps }}
+                                                        className="rounded-b-xl object-cover w-4 h-4 "
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}
-                            <div className="flex justify-between">
+                            <div className="flex justify-between mt-2 ">
                                 {currentStep === 2 && (
                                     <button
                                         type="button"

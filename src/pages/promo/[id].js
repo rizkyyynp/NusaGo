@@ -36,7 +36,7 @@ export default function PromoDetail({ promo }) {
                 <div>
                     <div className="bg-primary rounded-lg max-w-7xl mx-auto p-4 ">
                         <div className="flex flex-col md:flex-row ">
-                            <div className="md:w-1/2">
+                            <div className="md:w-1/2 justify-center items-center flex">
                                 <img src={promo.imageUrl} alt={promo.title} className="w-full h-auto rounded-lg" />
                             </div>
                             <div className="md:w-1/2 md:pl-6 mt-4 md:mt-10">

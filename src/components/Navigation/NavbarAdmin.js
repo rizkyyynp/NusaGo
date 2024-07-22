@@ -47,16 +47,16 @@ export default function NavbarAdmin() {
     return (
         <div>
             {/* SideBar */}
-            <div className="lg:hidden flex z-100 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} bg-zinc-300 h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out`}>
+            <div className="lg:hidden flex z-100 fixed ">
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out blurSidebar`}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {/* Bagian untuk tampilan minimize */}
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-zinc-100 rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-maximize text-lg text-primary z-100 p-2 rounded-lg"></i>
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                        <i className="fas fa-maximize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
                             )}
@@ -68,8 +68,8 @@ export default function NavbarAdmin() {
                                     <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
                                         NusaGo
                                     </span>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-zinc-100 rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-minimize text-lg text-primary z-100 p-2 rounded-lg"></i>
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                        <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
                             )}
@@ -152,16 +152,16 @@ export default function NavbarAdmin() {
                                                 <Link href="/dashUser" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">User</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashActivity" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Activity</Link>
+                                                <Link href="/dashPromo" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Promo</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashBanner" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Banner</Link>
+                                                <Link href="/dashActivity" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Activity</Link>
                                             </li>
                                             <li>
                                                 <Link href="/dashCategory" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Category</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashPromo" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Promo</Link>
+                                                <Link href="/dashBanner" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Banner</Link>
                                             </li>
                                         </ul>
                                     )}

@@ -50,6 +50,8 @@ module.exports = {
       boxShadow: {
         'BS1': '0px 0px 20px rgba(0, 0, 0, 0.01)',
         'BS2': '-20px 20px 40px #69abd9, 20px -20px 40px #8de7ff;',
+        'BS3': '7px 7px 5px #125393,7px -7px 5px #2199ff;',
+        'BS4': '-5px 5px 10px #176bbf,5px -5px 10px #1b81e5;',
       },
       zIndex: {
         '100': '100',
@@ -68,6 +70,8 @@ module.exports = {
       },
       borderRadius: {
         '24.75': '99px',
+        '20px': "20px",
+        '30px': "30px",
       },
     },
   },

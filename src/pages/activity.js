@@ -28,9 +28,9 @@ export default function Activity() {
             <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
                 <div className="flex items-center mb-4">
                     <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
-                    <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
+                    <h2 className="text-xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
                 </div>
-                <p className="text-zinc-100 mb-6 font-hind">Explore a Variety of Activities Waiting to Be Discovered</p>
+                <p className="text-zinc-100 mb-6 font-hind text-lg">Explore a Variety of Activities Waiting to Be Discovered</p>
                 <div>
                     <CardActivitySingle 
                         currentPage={currentPage} 
@@ -43,7 +43,7 @@ export default function Activity() {
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1 || areButtonsDisabled}
-                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 || areButtonsDisabled ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 || areButtonsDisabled ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Previous
                     </button>
@@ -51,7 +51,7 @@ export default function Activity() {
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage || areButtonsDisabled}
-                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage || areButtonsDisabled ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage || areButtonsDisabled ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Next
                     </button>

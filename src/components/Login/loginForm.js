@@ -23,6 +23,11 @@ export default function LoginForm() {
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
+                customClass: {
+                timerProgressBar: 'custom-timer-progress-bar',
+                title: 'title-success',
+            },
+                
             });
             router.push('/');
         } else {
@@ -35,6 +40,10 @@ export default function LoginForm() {
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
+                customClass: {
+                timerProgressBar: 'custom-timer-progress-bar-failed',
+                title: 'title-failed',
+            },
             });
         }
     };

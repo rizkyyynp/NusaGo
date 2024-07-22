@@ -2,11 +2,17 @@ import CardActivity from "@/components/Dashboard/cardActivity";
 import LayoutAdmin from "@/layouts/LayoutAdmin";
 import Link from "next/link";
 import { useState } from 'react';
+import { checkAuthAdmin } from '../utils/adminAuth';
+
+export async function getServerSideProps(context) {
+    return checkAuthAdmin(context);
+}
 
 export default function dashActivity() {
     const [currentPage, setCurrentPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
     const [items, setItems] = useState([]);
+    
 
     const nextPage = () => {
         if (currentPage < maxPage) {
@@ -23,15 +29,15 @@ export default function dashActivity() {
     const areButtonsDisabled = items.length === 0;
     return (
         <LayoutAdmin>
-            <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 bg-third">
-                <div className="flex items-center justify-between mb-4">
+            <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 bg-secondary">
+                <div className="flex flex-col items-center mb-2 lg:flex-row lg:justify-between">
                     <div className="flex items-center space-x-2">
-                        <img src="https://openui.fly.dev/openui/24x24.svg?text=👤" alt="profile-icon" className="w-6 h-6" />
-                        <h1 className="text-2xl font-bold text-primary">dashActivity</h1>
+                        <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
+                        <h1 className="text-2xl font-bold text-zinc-100">List Activity</h1>
                     </div>
                     <Link href="/createActivity">
-                        <button className="flex items-center space-x-2 px-4 py-2 border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground">
-                            <img src="https://openui.fly.dev/openui/24x24.svg?text=➕" alt="create-icon" className="w-4 h-4" />
+                        <button className="flex items-center space-x-2 px-4 py-2 text-primary rounded bg-zinc-100 transition-all duration-100 ease-in-out hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100 group ">
+                        <i className="fas fa-plus text-primary mr-2 text-lg group-hover:text-zinc-100 "></i>
                             <span>Create</span>
                         </button>
                     </Link>
@@ -46,7 +52,7 @@ export default function dashActivity() {
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1 || areButtonsDisabled}
-                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 || areButtonsDisabled ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 || areButtonsDisabled ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Previous
                     </button>
@@ -54,7 +60,7 @@ export default function dashActivity() {
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage || areButtonsDisabled}
-                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage || areButtonsDisabled ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage || areButtonsDisabled ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Next
                     </button>

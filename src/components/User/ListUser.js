@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
-import { useRouter } from 'next/router';
 import useFetchUser from '@/hooks/useFetchUser';
+import userDefault from '@/assets/images/user.png';
 
 export default function ListUser({ users, refetch }) { // Accept refetch as a prop
     const [selectedUser, setSelectedUser] = useState(null);
@@ -19,7 +19,14 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
                     title: 'Update Profile Failed',
                     text: 'Please fill all the fields',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
                 });
                 return;
             }
@@ -35,9 +42,16 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Success',
-                    text: 'You have successfully updated your profile',
+                    text: 'Update Profile Successfully',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
                 }).then(() => {
                     refetch(); // Call the refetch function after successful update
                     setSelectedUser(null); // Close the modal
@@ -49,7 +63,14 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
                 title: 'Update Failed',
                 text: error.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };
@@ -57,7 +78,7 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {users.map((item, index) => (
-                <div className="bg-white rounded-lg shadow-md overflow-hidden relative" key={index}>
+                <div className="bg-white rounded-lg shadow-BS4 overflow-hidden relative" key={index}>
                     <div className="p-4 flex justify-center items-center">
                         {item.profilePictureUrl ? (
                             <img
@@ -66,22 +87,24 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
                                 className="rounded-full w-24 h-24"
                             />
                         ) : (
-                            <i className="fas fa-user text-2xl text-gray-300"></i>
+                            <div className="rounded-full w-24 h-24 bg-gray-300 flex items-center justify-center">
+                                <i className="fas fa-user text-6xl text-primary"></i>
+                            </div>
                         )}
                     </div>
                     <div className="bg-primary text-primary-foreground p-4">
-                        <h1 className="text-xl font-semibold text-gray-800">{item.name}</h1>
-                        <p className="flex items-center text-gray-700 font-nunito text-sm lg:text-lg">
+                        <h1 className="text-xl font-semibold text-zinc-100">{item.name}</h1>
+                        <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
                             <i className="far fa-envelope mr-2 text-xl"></i>{item.email}
                         </p>
-                        <p className="flex items-center text-gray-700 font-nunito text-sm lg:text-lg">
+                        <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
                             <i className="fas fa-phone mr-2 text-xl"></i>{item.phoneNumber}
                         </p>
-                        <p className="flex items-center text-gray-700 font-nunito text-sm lg:text-lg">
+                        <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
                             <i className="far fa-circle-user text-xl mr-2"></i>{item.role}
                         </p>
                         <div className='flex items-center justify-center mt-4'>
-                            <button className='text-gray-700' onClick={() => setSelectedUser(item)}>
+                            <button className='text-zinc-100' onClick={() => setSelectedUser(item)}>
                                 <i className="fas fa-pen-to-square text-white mr-2 text-xl"></i>Update Role
                             </button>
                         </div>

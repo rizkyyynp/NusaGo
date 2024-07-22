@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollable-form {
+    max-height: 450px;
+    /* Atur tinggi maksimum sesuai kebutuhan */
+    overflow-y: auto;
+    /* Menambahkan scroll jika konten melebihi tinggi */
+}
+
+.custom-timer-progress-bar {
+    background-color: #0D47A1 !important;
+}
+
+.custom-timer-progress-bar-failed {
+    background-color: red !important;
+}
+
+.title-success {
+    color: #0D47A1 !important;
+}
+
+.title-failed {
+    color: red !important;
+}
+
+.blurSidebar {
+    background: rgba( 248, 248, 255, 0.6 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur(7px);
+    border-radius: 10px;
+}

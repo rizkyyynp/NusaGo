@@ -7,7 +7,7 @@ import useDeleteData from '@/hooks/useDeleteData'; // Import useDeleteData hook
 
 export default function CardCategory({ category, refetch }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const {updateData} = useUpdateData();
+    const { updateData } = useUpdateData();
     const router = useRouter();
     const { uploadImage } = useImageUpload();
     const { deleteData } = useDeleteData(); // Destructure deleteData from useDeleteData hook
@@ -20,7 +20,14 @@ export default function CardCategory({ category, refetch }) {
                 title: 'Upload Failed',
                 text: 'File must be an image',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return false;
         }
@@ -36,7 +43,14 @@ export default function CardCategory({ category, refetch }) {
                 title: 'Upload Failed',
                 text: 'Failed to upload image, check the size/format of the image and try again',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log(error);
         }
@@ -55,7 +69,14 @@ export default function CardCategory({ category, refetch }) {
                 title: 'Update Category Failed',
                 text: 'Please fill all the fields',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
@@ -70,9 +91,16 @@ export default function CardCategory({ category, refetch }) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Success',
-                    text: 'You have successfully updated your category',
+                    text: 'Update Category Successfully',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
                 }).then(() => {
                     refetch();
                     setSelectedCategory(null);
@@ -84,7 +112,14 @@ export default function CardCategory({ category, refetch }) {
                 title: 'Update Failed',
                 text: error.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };
@@ -108,7 +143,14 @@ export default function CardCategory({ category, refetch }) {
                             title: 'Deleted!',
                             text: 'Your Category has been deleted.',
                             timer: 1500,
-                            showConfirmButton: false
+                            showConfirmButton: false,
+                            toast: true,
+                            position: 'top-end',
+                            timerProgressBar: true,
+                            customClass: {
+                                timerProgressBar: 'custom-timer-progress-bar',
+                                title: 'title-success',
+                            },
                         }).then(() => {
                             refetch();
                         });
@@ -119,11 +161,23 @@ export default function CardCategory({ category, refetch }) {
                         title: 'Delete Failed',
                         text: error.response?.data.message || 'Something went wrong',
                         timer: 1500,
-                        showConfirmButton: false
+                        showConfirmButton: false,
+                        toast: true,
+                        position: 'top-end',
+                        timerProgressBar: true,
+                        customClass: {
+                            timerProgressBar: 'custom-timer-progress-bar-failed',
+                            title: 'title-failed',
+                        },
                     });
                 }
             }
         });
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        return new Date(dateString).toLocaleDateString('en-GB', options);
     };
 
     return (
@@ -141,25 +195,25 @@ export default function CardCategory({ category, refetch }) {
                             <i className="fas fa-user text-2xl text-gray-300"></i>
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
-                            <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => setSelectedCategory(item)}>
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=✏️" alt="edit-icon" />
+                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => setSelectedCategory(item)}>
+                                <i class="fas fa-pencil text-xl text-zinc-100"></i>
                             </button>
-                            <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => handleDelete(item.id)}>
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=🗑️" alt="delete-icon" />
+                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                                <i class="fas fa-trash text-xl text-zinc-100"></i>
                             </button>
                         </div>
                     </div>
 
                     <div className="bg-primary text-primary-foreground p-4">
-                        <h2 className="text-xl font-semibold text-gray-800">{item.name}</h2>
+                    <h3 className="text-lg font-semibold text-zinc-100">{item.name}</h3>
                         <div className="mt-2">
                             <div className="flex items-center space-x-2">
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=📅" alt="created-at-icon" className="w-4 h-4" />
-                                <span>Created at: {item.createdAt}</span>
+                                <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <span className='text-zinc-100'>Created at: {formatDate(item.createdAt)}</span>
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=📅" alt="updated-at-icon" className="w-4 h-4" />
-                                <span>Updated at: {item.updatedAt}</span>
+                                <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <span className='text-zinc-100'>Updated at: {formatDate(item.updatedAt)}</span>
                             </div>
                         </div>
                     </div>

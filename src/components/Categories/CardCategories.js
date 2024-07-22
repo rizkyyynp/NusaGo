@@ -17,15 +17,15 @@ export default function CardCategories({ initialItems }) {
 
     return (
         <section className="bg-zinc-100 py-8 pl-16 pr-2 lg:px-8">
-            <div className="flex items-center mb-2">
+            <div className="flex items-center mb-4">
                 <i className="fas fa-location-dot text-primary mr-2 text-lg"></i>
-                <h2 className="text-2xl font-bold text-primary font-podkova">Our Categories</h2>
+                <h2 className="text-xl lg:text-3xl font-bold text-primary font-podkova">Our Categories</h2>
             </div>
             <p className="text-primary mb-6 font-hind">Find your perfect escape</p>
             <div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                     {visibleItems.map((item, index) => (
-                        <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
+                        <div key={index} className="bg-white rounded-lg overflow-hidden shadow-BS3">
                             <div className="overflow-hidden">
                                 <img
                                     src={item.imageUrl}

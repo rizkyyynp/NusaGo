@@ -41,7 +41,14 @@ export default function CreateCategory() {
                 title: 'Upload Failed',
                 text: 'Failed to upload image, check the size/format of the image and try again',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log(error);
         }
@@ -55,7 +62,14 @@ export default function CreateCategory() {
                 title: 'Create Data Success',
                 text: 'You have successfully added a new category',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar',
+                    title: 'title-success',
+                },
             }).then(() => {
                 router.push('/dashCategory');
             });
@@ -65,7 +79,14 @@ export default function CreateCategory() {
                 title: 'Add Data Failed',
                 text: res.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };
@@ -84,7 +105,14 @@ export default function CreateCategory() {
                     title: 'Add Data Failed',
                     text: 'Please fill all the fields',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
                 });
                 return;
             }
@@ -94,9 +122,16 @@ export default function CreateCategory() {
             Swal.fire({
                 icon: 'error',
                 title: 'Add Data Failed',
-                text: 'Please upload your banner picture',
+                text: 'Please upload your category picture',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
@@ -106,7 +141,7 @@ export default function CreateCategory() {
 
     return (
         <LayoutAdmin>
-            <div className="  flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0">
+            <div className="  flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0 h-screen">
                 <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">

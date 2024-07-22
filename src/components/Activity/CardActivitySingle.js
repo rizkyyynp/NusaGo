@@ -42,15 +42,15 @@ export default function CardActivitySingle({ currentPage, setPageCount, setItems
 
     return (
         <div>
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center lg:justify-start mb-4">
                 <select
                     className="border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 bg-secondary text-zinc-100"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
-                    <option value="all">All Categories</option>
+                    <option value="all" className='bg-zinc-100 text-primary'>All Categories</option>
                     {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
+                        <option key={category.id} value={category.id} className='bg-zinc-100 text-primary'>
                             {category.name}
                         </option>
                     ))}
@@ -60,7 +60,7 @@ export default function CardActivitySingle({ currentPage, setPageCount, setItems
                 {paginateItems(items).length > 0 ? (
                     paginateItems(items).map((item, index) => (
                         <Link href={`/activity/${item.id}`} key={index}>
-                            <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-lg cursor-pointer">
+                            <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
                                 <div className="relative">
                                     <img
                                         src={item.imageUrls}
@@ -70,15 +70,15 @@ export default function CardActivitySingle({ currentPage, setPageCount, setItems
                                     />
                                     <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                         <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                        <span className="text-base font-bold font-hind">{item.rating}</span>
+                                        <span className="text-base font-semibold font-hind text-primary">{item.rating}</span>
                                     </div>
                                 </div>
-                                <div className="p-1 flex justify-between items-center">
+                                <div className="px-3 py-2 flex flex-col justify-start">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
                                         <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
                                     </div>
-                                    <div className="text-right">
+                                    <div>
                                         <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
                                         <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
                                     </div>

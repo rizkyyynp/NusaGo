@@ -41,11 +41,11 @@ export default function ActivityDetail({ activity }) {
                                 />
                                 <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                     <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                    <span className="text-base font-bold">{activity.rating}</span>
+                                    <span className="text-base font-semibold text-primary">{activity.rating}</span>
                                 </div>
                             </div>
                             <div className="p-4">
-                                <h2 className="text-xl font-bold text-fourth mb-4 font-hind">{activity.title}</h2>
+                                <h2 className="text-2xl font-bold text-fourth mb-4 font-hind">{activity.title}</h2>
                                 <p className="text-fourth mb-4 font-nunito">{activity.description}</p>
                                 <div className='flex items-center mb-4'>
                                     <i className="fas fa-location-dot text-zinc-100 mr-2 text-lg"></i>
@@ -65,7 +65,7 @@ export default function ActivityDetail({ activity }) {
 
                         <div className="bg-primary rounded-lg shadow-lg overflow-hidden w-full md:w-1/2">
                             <div className="p-4 flex justify-center">
-                                <h2 className="text-xl font-bold text-fourth font-podkova">Map</h2>
+                                <h2 className="text-2xl font-bold text-fourth font-podkova">Map</h2>
                             </div>
                             <div className="w-full h-full mt-2 overflow-hidden rounded-b-xl">
                                 <div dangerouslySetInnerHTML={{ __html: activity.location_maps }} className="rounded-b-xl object-cover" />

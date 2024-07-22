@@ -44,7 +44,14 @@ export default function CreateActivity() {
                     title: 'Upload Failed',
                     text: 'File must be an image',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
                 });
                 continue;
             }
@@ -60,7 +67,14 @@ export default function CreateActivity() {
                     title: 'Upload Failed',
                     text: 'Failed to upload image, check the size/format of the image and try again',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
                 });
                 console.log(error);
             }
@@ -77,10 +91,16 @@ export default function CreateActivity() {
             if (res.status === 200) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Create Data Success',
-                    text: 'You have successfully added a new activity',
+                    title: 'Create Activity Success',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
                 }).then(() => {
                     router.push('/dashActivity');
                 });
@@ -91,7 +111,14 @@ export default function CreateActivity() {
                 title: 'Add Data Failed',
                 text: error.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log('Error Response:', error.response?.data);
         }
@@ -122,7 +149,14 @@ export default function CreateActivity() {
                     title: 'Add Data Failed',
                     text: 'Please fill all the fields',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
                 });
                 return;
             }
@@ -132,9 +166,16 @@ export default function CreateActivity() {
             Swal.fire({
                 icon: 'error',
                 title: 'Add Data Failed',
-                text: 'Please upload your banner picture',
+                text: 'Please upload your activity picture',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
@@ -145,19 +186,19 @@ export default function CreateActivity() {
     return (
         <LayoutAdmin>
             <div className="max-w-4xl mx-auto p-6 bg-card text-card-foreground rounded-lg border border-border py-10 lg:my-24 pl-16 pr-2 lg:px-0">
-                <h2 className="text-2xl font-bold text-center mb-6">Update Activity</h2>
+                <h2 className="text-2xl font-bold text-center mb-6 text-primary">Create Activity</h2>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2" onSubmit={handleSubmit}>
                     <div className="flex flex-col space-y-4">
                         <label className="block">
-                            <span className="text-muted-foreground">Title</span>
+                            <span className="text-primary">Title</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Title" name="title" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Category</span>
+                            <span className="text-primary">Category</span>
                             <select
                                 name="categoryId"
                                 value={formData.categoryId}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                             >
                                 {categories.map((category) => (
                                     <option key={category.id} value={category.id}>
@@ -167,21 +208,21 @@ export default function CreateActivity() {
                             </select>
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Description</span>
-                            <textarea className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Description" name="description"></textarea>
+                            <span className="text-primary">Description</span>
+                            <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Description" name="description"></textarea>
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Price</span>
-                            <input type="number" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Price" name="price" />
+                            <span className="text-primary">Price</span>
+                            <input type="number" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Price" name="price" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Price Discount</span>
-                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Price Discount" name="price_discount" />
+                            <span className="text-primary">Price Discount</span>
+                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Price Discount" name="price_discount" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Rating</span>
+                            <span className="text-primary">Rating</span>
                             <select
-                                name="rating" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                name="rating" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                             >
                                 <option value="1">
                                     1
@@ -201,12 +242,12 @@ export default function CreateActivity() {
                             </select>
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Total Review</span>
-                            <input type="number" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Total Review" name="total_reviews" />
+                            <span className="text-primary">Total Review</span>
+                            <input type="number" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Total Review" name="total_reviews" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Facilities</span>
-                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Facilities" name="facilities" />
+                            <span className="text-primary">Facilities</span>
+                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Facilities" name="facilities" />
                         </label>
                     </div>
                     <div className="flex flex-col space-y-4">
@@ -221,24 +262,24 @@ export default function CreateActivity() {
                             )}
                         </div>
                         <label className="block">
-                            <span className="text-muted-foreground">Image Files</span>
+                            <span className="text-primary">Image Files</span>
                             <input type="file" className="mt-1 block w-full border border-border rounded-md p-2" name="imageUrls" placeholder="Upload Profile Picture" onChange={handleUpload} />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Address</span>
-                            <textarea className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Address" name="address"></textarea>
+                            <span className="text-primary">Address</span>
+                            <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Address" name="address"></textarea>
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">City</span>
-                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="City" name="city" />
+                            <span className="text-primary">City</span>
+                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="City" name="city" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Province</span>
-                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Province" name="province" />
+                            <span className="text-primary">Province</span>
+                            <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Province" name="province" />
                         </label>
                         <label className="block">
-                            <span className="text-muted-foreground">Maps</span>
-                            <textarea className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Maps" name="location_maps" onChange={(e) => setLocationMaps(e.target.value)}></textarea>
+                            <span className="text-primary">Maps</span>
+                            <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Maps" name="location_maps" onChange={(e) => setLocationMaps(e.target.value)}></textarea>
                         </label>
                     </div>
                     <div className="col-span-1 md:col-span-2 flex justify-center space-x-4 mt-6 w-full px-10 lg:px-0">
@@ -250,9 +291,9 @@ export default function CreateActivity() {
                         )}
                     </div>
                     <div className="col-span-1 md:col-span-2 flex justify-center space-x-4 mt-6">
-                        <button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-md">Update</button>
+                        <button type="submit" className="bg-primary text-zinc-100 hover:bg-primary/80 px-4 py-2 rounded-md">Create</button>
                         <Link href={"/dashActivity"}>
-                        <button type="button" className="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2 rounded-md">Back</button>
+                        <button type="button" className="bg-red-600 text-zinc-100 hover:bg-red-600/80 px-4 py-2 rounded-md">Back</button>
                         </Link>
                         
                     </div>

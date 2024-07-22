@@ -18,7 +18,14 @@ export default function RegisterForm() {
                 title: 'Upload Failed',
                 text: 'File must be an image',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-right',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return false;
         }
@@ -34,7 +41,14 @@ export default function RegisterForm() {
                 title: 'Upload Failed',
                 text: 'Failed to upload image, check the size/format of the image and try again',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-right',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log(error);
         }
@@ -47,8 +61,15 @@ export default function RegisterForm() {
                 icon: 'success',
                 title: 'Register Success',
                 text: 'You have successfully registered',
-                timer: 1500,
-                showConfirmButton: false
+                timer: 2000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar',
+                    title: 'title-success',
+                },
             }).then(() => {
                 router.push('/login');
             });
@@ -57,8 +78,15 @@ export default function RegisterForm() {
                 icon: 'error',
                 title: 'Register Failed',
                 text: res.response?.data.message || 'Something went wrong',
-                timer: 1500,
-                showConfirmButton: false
+                timer: 2000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     }
@@ -92,7 +120,14 @@ export default function RegisterForm() {
                 title: 'Register Failed',
                 text: 'Password does not match',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
@@ -102,7 +137,14 @@ export default function RegisterForm() {
                 title: 'Register Failed',
                 text: 'Please upload your profile picture',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }

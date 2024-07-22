@@ -48,7 +48,7 @@ export default function CardPromo({ initialItems }) {
         <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
             <div className="flex items-center mb-4">
                 <i className="fas fa-tags text-zinc-100 mr-2 text-lg"></i>
-                <h2 className="text-2xl font-bold text-zinc-100 font-podkova">Special Promo For You!</h2>
+                <h2 className="text-xl lg:text-3xl font-bold text-zinc-100 font-podkova">Special Promo For You!</h2>
             </div>
             <p className="text-zinc-100 mb-6 font-hind">Exclusive Offer Just for You! Don't Miss Out!</p>
             <div>
@@ -67,8 +67,8 @@ export default function CardPromo({ initialItems }) {
                                     </div>
                                     <div className="p-4 flex justify-between items-center">
                                         <div>
-                                            <h3 className="lg:text-lg font-semibold text-zinc-800 font-hind text-md">{item.title}</h3>
-                                            <p className="text-zinc-600 font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
+                                            <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
+                                            <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                                         </div>
                                     </div>
                                 </div>

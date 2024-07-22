@@ -28,12 +28,12 @@ export default function BannerList() {
             <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center space-x-2">
-                        <img src="https://openui.fly.dev/openui/24x24.svg?text=👤" alt="profile-icon" class="w-6 h-6" />
-                        <h1 class="text-2xl font-bold text-primary">Data</h1>
+                        <i className="far fa-image text-2xl text-primary"></i>
+                        <h1 class="text-2xl font-bold text-primary">List Banner</h1>
                     </div>
                     <Link href="/createBanner">
-                        <button class="flex items-center space-x-2 px-4 py-2 border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground">
-                            <img src="https://openui.fly.dev/openui/24x24.svg?text=➕" alt="create-icon" class="w-4 h-4" />
+                    <button className="flex items-center space-x-2 px-4 py-2 text-primary rounded bg-zinc-100 transition-all duration-100 ease-in-out hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100 group ">
+                            <i className="fas fa-plus text-primary mr-2 text-lg group-hover:text-zinc-100 "></i>
                             <span>Create</span>
                         </button>
                     </Link>
@@ -44,15 +44,15 @@ export default function BannerList() {
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-zinc-100">{currentPage}</p>
+                    <p className="mx-4 text-primary">{currentPage}</p>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === maxPage}
-                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage ? 'cursor-not-allowed bg-gray-800 text-zinc-50 border-2 border-zinc-100' : 'hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100'}`}
+                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
                     >
                         Next
                     </button>

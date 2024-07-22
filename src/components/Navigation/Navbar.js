@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import NusaIcon from "../../assets/images/nusago.png";
 import useAuth from "@/hooks/useAuth";
+import defaultProfile from "../../assets/images/profile.png";
 
 export default function Navbar() {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
@@ -47,15 +48,15 @@ export default function Navbar() {
         <div>
             {/* SideBar */}
             <div className="lg:hidden flex z-100 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} bg-zinc-300 h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out`}>
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} blurSidebar h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out `}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {/* Bagian untuk tampilan minimize */}
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-zinc-100 rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-maximize text-lg text-primary z-100 p-2 rounded-lg"></i>
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                        <i className="fas fa-maximize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
                             )}
@@ -67,8 +68,8 @@ export default function Navbar() {
                                     <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
                                         NusaGo
                                     </span>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-zinc-100 rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-minimize text-lg text-primary z-100 p-2 rounded-lg"></i>
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                        <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
                             )}
@@ -113,7 +114,7 @@ export default function Navbar() {
                             </Link>
                             {isAdmin && (
                                 <li className="relative">
-                                    <Link href={'dashboard'}>
+                                    <Link href={'/dashUser'}>
                                         <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
                                             <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
                                             <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
@@ -148,7 +149,7 @@ export default function Navbar() {
             {/* Navbar Desktop */}
             <div className="hidden lg:flex">
                 <header className="flex items-center justify-around h-15  fixed w-full shadow-md z-100 transition-all duration-300 bg-zinc-100">
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 cursor-pointer">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
                     </div>
@@ -159,7 +160,7 @@ export default function Navbar() {
                             <Link href="/promo" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Promo</Link>
                             {isAdmin && (
                                 <div className="relative">
-                                    <Link href={'dashboard'}>
+                                    <Link href={'/dashUser'}>
                                         <button
                                             className="relative inline-block text-primary font-bold text-lg transition-all duration-300 max-md:mt-5 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0 items-center">
                                             Dashboard
@@ -185,7 +186,7 @@ export default function Navbar() {
                                             className="rounded-full w-8 h-8"
                                         />
                                     ) : (
-                                        <i className="fas fa-user text-2xl text-primary"></i>
+                                        <img src={defaultProfile} alt="Profile Picture" className="rounded-full w-8 h-8" />
                                     )}
                                     <span className="ml-1 font-bold text-primary">{profile.name}</span>
                                     <i className="fas fa-caret-down ml-2"></i>

@@ -4,6 +4,7 @@ import useUpdateData from '@/hooks/useUpdateData';
 import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData';
+import imageDefault from '../../assets/images/image.png';
 
 export default function CardPromo({ promos, refetch }) {
     const [selectedPromo, setSelectedPromo] = useState(null);
@@ -20,7 +21,14 @@ export default function CardPromo({ promos, refetch }) {
                 title: 'Upload Failed',
                 text: 'File must be an image',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return false;
         }
@@ -36,7 +44,14 @@ export default function CardPromo({ promos, refetch }) {
                 title: 'Upload Failed',
                 text: 'Failed to upload image, check the size/format of the image and try again',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             console.log(error);
         }
@@ -60,7 +75,14 @@ export default function CardPromo({ promos, refetch }) {
                 title: 'Update Promo Failed',
                 text: 'Please fill all the fields',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
             return;
         }
@@ -75,9 +97,16 @@ export default function CardPromo({ promos, refetch }) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Update Success',
-                    text: 'You have successfully updated your Promo Data',
+                    text: 'Update Promo Successfully',
                     timer: 1500,
-                    showConfirmButton: false
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
                 }).then(() => {
                     refetch();
                     setSelectedPromo(null);
@@ -89,7 +118,14 @@ export default function CardPromo({ promos, refetch }) {
                 title: 'Update Failed',
                 text: error.response?.data.message || 'Something went wrong',
                 timer: 1500,
-                showConfirmButton: false
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };
@@ -113,7 +149,14 @@ export default function CardPromo({ promos, refetch }) {
                             title: 'Deleted!',
                             text: 'Your Promo has been deleted.',
                             timer: 1500,
-                            showConfirmButton: false
+                            showConfirmButton: false,
+                            toast: true,
+                            position: 'top-end',
+                            timerProgressBar: true,
+                            customClass: {
+                                timerProgressBar: 'custom-timer-progress-bar',
+                                title: 'title-success',
+                            },
                         }).then(() => {
                             refetch();
                         });
@@ -124,11 +167,23 @@ export default function CardPromo({ promos, refetch }) {
                         title: 'Delete Failed',
                         text: error.response?.data.message || 'Something went wrong',
                         timer: 1500,
-                        showConfirmButton: false
+                        showConfirmButton: false,
+                        toast: true,
+                        position: 'top-end',
+                        timerProgressBar: true,
+                        customClass: {
+                            timerProgressBar: 'custom-timer-progress-bar-failed',
+                            title: 'title-failed',
+                        },
                     });
                 }
             }
         });
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        return new Date(dateString).toLocaleDateString('en-GB', options);
     };
 
     return (
@@ -146,25 +201,25 @@ export default function CardPromo({ promos, refetch }) {
                             <i className="fas fa-user text-2xl text-gray-300"></i>
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
-                            <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => setSelectedPromo(item)} >
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=✏️" alt="edit-icon" />
+                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => setSelectedPromo(item)} >
+                            <i class="fas fa-pencil text-xl text-zinc-100"></i>
                             </button>
-                            <button className="bg-primary text-primary-foreground p-2 rounded-full" onClick={() => handleDelete(item.id)}>
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=🗑️" alt="delete-icon" />
+                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                            <i class="fas fa-trash text-xl text-zinc-100"></i>
                             </button>
                         </div>
                     </div>
 
                     <div className="bg-primary text-primary-foreground p-4">
-                        <h2 className="text-xl font-semibold text-gray-800">{item.title}</h2>
+                        <h3 className="text-lg font-semibold text-zinc-100">{item.title}</h3>
                         <div className="mt-2">
                             <div className="flex items-center space-x-2">
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=📅" alt="created-at-icon" className="w-4 h-4" />
-                                <span>Created at: {item.createdAt}</span>
+                            <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <span className='text-zinc-100'>Created at: {formatDate(item.createdAt)}</span>
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
-                                <img src="https://openui.fly.dev/openui/24x24.svg?text=📅" alt="updated-at-icon" className="w-4 h-4" />
-                                <span>Updated at: {item.updatedAt}</span>
+                            <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <span className='text-zinc-100'>Updated at: {formatDate(item.updatedAt)}</span>
                             </div>
                         </div>
                     </div>
@@ -183,40 +238,43 @@ export default function CardPromo({ promos, refetch }) {
                                     className="w-150 h-400"
                                 />
                             ) : (
-                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                <img
+                                    src={imageDefault}
+                                    alt="Banner Picture"
+                                    className="w-150 h-400"/>
                             )}
                             <div>
-                                <label htmlFor="imageUrl" className="block font-semibold">Image File</label>
+                                <label htmlFor="imageUrl" className="block font-semibold text-primary">Image File</label>
                                 <input type="file" id="imageUrl" name='imageUrl' className="w-full border border-primary rounded-lg p-2" onChange={handleUpload} />
                             </div>
                         </div>
                         <div className="space-y-4">
                             <div>
-                                <label htmlFor="title" className="block font-semibold">Title</label>
-                                <input type="text" id="title" name='title' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.title} />
+                                <label htmlFor="title" className="block font-semibold text-primary">Title</label>
+                                <input type="text" id="title" name='title' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.title} />
                             </div>
                             <div>
-                                <label htmlFor="description" className="block font-semibold">Description</label>
-                                <textarea type="text" id="description" name='description' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.description} />
+                                <label htmlFor="description" className="block font-semibold text-primary">Description</label>
+                                <textarea type="text" id="description" name='description' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.description} />
                             </div>
                             <div>
-                                <label htmlFor="terms_condition" className="block font-semibold">Terms & Conditions</label>
-                                <input type="text" id="terms_condition" name='terms_condition' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.terms_condition} />
+                                <label htmlFor="terms_condition" className="block font-semibold text-primary">Terms & Conditions</label>
+                                <input type="text" id="terms_condition" name='terms_condition' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.terms_condition} />
                             </div>
                             <div>
-                                <label htmlFor="promo_code" className="block font-semibold">Promo Code</label>
-                                <input type="text" id="promo_code" name='promo_code' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.promo_code} />
+                                <label htmlFor="promo_code" className="block font-semibold text-primary">Promo Code</label>
+                                <input type="text" id="promo_code" name='promo_code' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.promo_code} />
                             </div>
                             <div>
-                                <label htmlFor="minimum_claim_price" className="block font-semibold">Minimum Claim Price</label>
-                                <input type="number" id="minimum_claim_price" name='minimum_claim_price' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.minimum_claim_price} />
+                                <label htmlFor="minimum_claim_price" className="block font-semibold text-primary">Minimum Claim Price</label>
+                                <input type="number" id="minimum_claim_price" name='minimum_claim_price' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.minimum_claim_price} />
                             </div>
                             <div>
-                                <label htmlFor="promo_discount_price" className="block font-semibold">Promo Discount Price</label>
-                                <input type="number" id="promo_discount_price" name='promo_discount_price' className="w-full border border-primary rounded-lg p-2" defaultValue={selectedPromo.promo_discount_price} />
+                                <label htmlFor="promo_discount_price" className="block font-semibold text-primary">Promo Discount Price</label>
+                                <input type="number" id="promo_discount_price" name='promo_discount_price' className="w-full border border-primary rounded-lg p-2 text-primary" defaultValue={selectedPromo.promo_discount_price} />
                             </div>
                             <div className="flex justify-center items-center w-full space-x-4 mt-4">
-                                <button type="submit" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg">Update</button>
+                                <button type="submit" className="bg-primary text-zinc-100 px-4 py-2 rounded-lg">Update</button>
                                 <button type="button" className="border border-primary text-primary px-4 py-2 rounded-lg" onClick={() => setSelectedPromo(null)}>Cancel</button>
                             </div>
 
