@@ -2,32 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.scrollable-form {
+    max-height: 450px;
+    /* Atur tinggi maksimum sesuai kebutuhan */
+    overflow-y: auto;
+    /* Menambahkan scroll jika konten melebihi tinggi */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.custom-timer-progress-bar {
+    background-color: #0D47A1 !important;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.custom-timer-progress-bar-failed {
+    background-color: red !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.title-success {
+    color: #0D47A1 !important;
+}
+
+.title-failed {
+    color: red !important;
+}
+
+.blurSidebar {
+    background: rgba( 248, 248, 255, 0.6 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur(7px);
+    border-radius: 10px;
 }
