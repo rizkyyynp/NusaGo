@@ -113,7 +113,7 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
             ))}
 
             {selectedUser && (
-                <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+                <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50 pl-16 pr-2 lg:py-0">
                     <div className="bg-white p-8 rounded-lg shadow-lg">
                         <h2 className="text-lg font-semibold mb-4">Update Role for {selectedUser.name}</h2>
                         <form onSubmit={handleSubmit}>
