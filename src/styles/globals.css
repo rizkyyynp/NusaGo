@@ -26,17 +26,27 @@
 }
 
 .blurSidebar {
-    background: rgba( 248, 248, 255, 0.6 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: rgba(248, 248, 255, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(7px);
     border-radius: 10px;
 }
 
-.blurSidebar2{
-    background: rgba( 15, 23, 42, 0.35 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 4px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+.blurSidebar2 {
+    background: rgba(15, 23, 42, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+ul.slick-dots{
+    bottom: -50px;
+}
+.dark .slick-dots li button:before {
+    color: #7BC9FF !important;
+}
+
+.slick-dots li.slick-active button:before {
+    color: white !important;
+}

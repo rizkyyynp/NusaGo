@@ -41,7 +41,8 @@ export default function CardPromo({ initialItems }) {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    dots:false
                 }
             }
         ],
@@ -55,7 +56,7 @@ export default function CardPromo({ initialItems }) {
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
             </div>
             <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Exclusive Offer Just for You! Don't Miss Out!</p>
-            <div>
+            <div className='min-[601px]: mb-10'>
                 <div className="mt-8 slider-container">
                     <Slider {...settings}>
                         {items.map((item, index) => (
