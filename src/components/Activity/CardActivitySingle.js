@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchActivities, fetchCategories, fetchActivitiesByCategory } from '@/lib/api';
 import Link from 'next/link';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function CardActivitySingle({ currentPage, setPageCount, setItems, items }) {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const itemsPerPage = 3;
@@ -44,7 +47,7 @@ export default function CardActivitySingle({ currentPage, setPageCount, setItems
         <div>
             <div className="flex justify-center lg:justify-start mb-4">
                 <select
-                    className="border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 bg-secondary text-zinc-100"
+                    className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100  text-zinc-100`}
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >

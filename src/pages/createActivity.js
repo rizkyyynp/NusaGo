@@ -7,6 +7,8 @@ import useCreateData from "@/hooks/useCreateData";
 import { checkAuthAdmin } from '../utils/adminAuth';
 import { fetchCategories } from '@/lib/api';
 import Link from "next/link";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 export async function getServerSideProps(context) {
@@ -14,6 +16,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function CreateActivity() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [imageUrls, setImageUrls] = useState(null);
     const [locationMaps, setLocationMaps] = useState("");
     const { uploadImage } = useImageUpload();
@@ -185,16 +188,16 @@ export default function CreateActivity() {
 
     return (
         <LayoutAdmin>
-            <div className="max-w-4xl mx-auto p-6 bg-card text-card-foreground rounded-lg border border-border py-10 lg:my-24 pl-16 pr-2 lg:px-0">
+            <div className={`max-w-4xl mx-auto p-6 rounded-lg border py-10 lg:my-24 pl-16 pr-2 lg:px-0 ${darkMode ? 'bg-dark1 shadow-BS3' : 'bg-zinc-100'}`}>
                 <h2 className="text-2xl font-bold text-center mb-6 text-primary">Create Activity</h2>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2" onSubmit={handleSubmit}>
                     <div className="flex flex-col space-y-4">
                         <label className="block">
-                            <span className="text-primary">Title</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Title</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2" placeholder="Title" name="title" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Category</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Category</span>
                             <select
                                 name="categoryId"
                                 value={formData.categoryId}
@@ -208,19 +211,19 @@ export default function CreateActivity() {
                             </select>
                         </label>
                         <label className="block">
-                            <span className="text-primary">Description</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Description</span>
                             <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Description" name="description"></textarea>
                         </label>
                         <label className="block">
-                            <span className="text-primary">Price</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Price</span>
                             <input type="number" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Price" name="price" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Price Discount</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Price Discount</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Price Discount" name="price_discount" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Rating</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Rating</span>
                             <select
                                 name="rating" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                             >
@@ -242,11 +245,11 @@ export default function CreateActivity() {
                             </select>
                         </label>
                         <label className="block">
-                            <span className="text-primary">Total Review</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Total Review</span>
                             <input type="number" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Total Review" name="total_reviews" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Facilities</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Facilities</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Facilities" name="facilities" />
                         </label>
                     </div>
@@ -262,23 +265,23 @@ export default function CreateActivity() {
                             )}
                         </div>
                         <label className="block">
-                            <span className="text-primary">Image Files</span>
-                            <input type="file" className="mt-1 block w-full border border-border rounded-md p-2" name="imageUrls" placeholder="Upload Profile Picture" onChange={handleUpload} />
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Image Files</span>
+                            <input type="file" className={`mt-1 block w-full border border-border rounded-md p-2 ${darkMode ? 'text-secondary' : 'text-primary'} `}name="imageUrls" placeholder="Upload Profile Picture" onChange={handleUpload} />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Address</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Address</span>
                             <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Address" name="address"></textarea>
                         </label>
                         <label className="block">
-                            <span className="text-primary">City</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>City</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="City" name="city" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Province</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Province</span>
                             <input type="text" className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Province" name="province" />
                         </label>
                         <label className="block">
-                            <span className="text-primary">Maps</span>
+                            <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Maps</span>
                             <textarea className="mt-1 block w-full border border-border rounded-md p-2 focus:outline-none focus:ring-primary focus:border-primary text-primary" placeholder="Maps" name="location_maps" onChange={(e) => setLocationMaps(e.target.value)}></textarea>
                         </label>
                     </div>

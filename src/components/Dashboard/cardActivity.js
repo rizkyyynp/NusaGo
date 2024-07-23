@@ -4,7 +4,11 @@ import useImageUpload from "@/hooks/useImageUpload";
 import useUpdateData from '@/hooks/useUpdateData';
 import useDeleteData from '@/hooks/useDeleteData';
 import Swal from 'sweetalert2';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 export default function CardActivity({ currentPage, setPageCount, setItems, items }) {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -279,7 +283,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
         <div>
             <div className="flex justify-center lg:justify-end mb-4">
                 <select
-                    className="border-2 border-input rounded p-2  font-podkova border-zinc-100 bg-secondary text-zinc-100"
+                    className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 font-podkova border-zinc-100  text-zinc-100`}
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                 >
@@ -294,7 +298,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
             <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                 {paginateItems(items).length > 0 ? (
                     paginateItems(items).map((item, index) => (
-                        <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-lg cursor-pointer" key={index}>
+                        <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer" key={index}>
                             <div className="relative">
                                 <img
                                     src={item.imageUrls}
@@ -313,7 +317,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                     </div>
                                     <div className="flex items-center space-x-1 bg-white rounded-full p-1">
                                         <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                        <span className="text-base font-bold font-hind">{item.rating}</span>
+                                        <span className="text-base font-semibold text-primary font-hind">{item.rating}</span>
                                     </div>
                                 </div>
                             </div>

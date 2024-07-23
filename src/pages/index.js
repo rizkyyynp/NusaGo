@@ -5,15 +5,18 @@ import Reason from "@/components/Reason/Reason";
 import Layout from "@/layouts/Layout";
 import Hero from "@/components/Hero/Hero";
 import { fetchPromos, fetchCategories, fetchActivities } from "@/lib/api";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 export default function Home({initialPromos, initialCategories, initialActivities}) {
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
   return (
     <Layout>
     <Hero />
-      <section className="py-12 ">
-        <div className="container mx-auto px-4">
-          <h2 className="text-center text-2xl lg:text-3xl font-bold text-primary mb-8 font-podkova pl-16 pr-2 lg:px-0">Why Choose NusaGo?</h2>
+      <section className={`${darkMode ? 'bg-dark1' : 'bg-zinc-100'} py-12}`}>
+        <div className="container mx-auto px-4 py-4">
+          <h2 className={`${darkMode ? 'text-secondary' : 'text-primary'} text-center text-2xl lg:text-3xl font-bold  mb-8 font-podkova pl-16 pr-2 lg:px-0`}>Why Choose NusaGo?</h2>
           <Reason />
         </div>
       </section>

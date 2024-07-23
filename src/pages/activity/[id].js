@@ -2,7 +2,11 @@ import Layout from '@/layouts/Layout';
 import Link from 'next/link';
 import { fetchActivityById } from '@/lib/api';
 import Hero from '@/components/Hero/Hero';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 export default function ActivityDetail({ activity }) {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const formatPrice = (price) => {
         if (typeof price === 'number') {
             return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -28,10 +32,10 @@ export default function ActivityDetail({ activity }) {
     return (
         <Layout>
         <Hero />
-            <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
+            <section className={`${darkMode ? 'bg-dark1' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
                 <div>
                     <div className="flex flex-col md:flex-row gap-4 p-4">
-                        <div className="bg-primary rounded-lg shadow-lg overflow-hidden w-full md:w-1/2">
+                        <div className={`${darkMode ? 'bg-secondary shadow-BS3 ' : 'bg-primary shadow-lg '} rounded-lg  overflow-hidden w-full md:w-1/2`}>
                             <div className="relative">
                                 <img
                                     src={activity.imageUrls}
@@ -63,7 +67,7 @@ export default function ActivityDetail({ activity }) {
                             </div>
                         </div>
 
-                        <div className="bg-primary rounded-lg shadow-lg overflow-hidden w-full md:w-1/2">
+                        <div className={`${darkMode ? 'bg-secondary shadow-BS3' : 'bg-primary shadow-lg'} rounded-lg overflow-hidden w-full md:w-1/2`}>
                             <div className="p-4 flex justify-center">
                                 <h2 className="text-2xl font-bold text-fourth font-podkova">Map</h2>
                             </div>
@@ -74,7 +78,7 @@ export default function ActivityDetail({ activity }) {
                     </div>
                 </div>
                 <Link href="/activity" className="flex justify-center">
-                    <button className="bg-primary hover:bg-primary/80 mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito">Back</button>
+                    <button className={`${darkMode ? 'bg-secondary/80 hover:bg-secondary' : 'bg-primary hover:bg-primary/80'}  mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito}`}>Back</button>
                 </Link>
             </section>
         </Layout>

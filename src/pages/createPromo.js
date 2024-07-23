@@ -6,12 +6,15 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useCreateData from "@/hooks/useCreateData";
 import Link from "next/link";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export async function getServerSideProps(context) {
     return checkAuthAdmin(context);
 }
 
 export default function CreatePromo() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [imageUrl, setImageUrl] = useState(null);
     const { uploadImage } = useImageUpload();
     const { createData } = useCreateData();
@@ -157,7 +160,7 @@ export default function CreatePromo() {
     return (
         <LayoutAdmin>
             <div className="flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0">
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-9/12 p-2 bg-white rounded-lg shadow-md max-h-screen h-3/4 overflow-y-auto">
+                <form onSubmit={handleSubmit} className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white shadow-md'} grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-9/12 p-2 rounded-lg  max-h-screen h-3/4 overflow-y-auto`}>
                     <div className="space-y-4 mt-3">
                         {imageUrl && (
                             <img

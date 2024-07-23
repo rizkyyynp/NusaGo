@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import useGetData from '@/hooks/useGetData';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 const Hero = () => {
     const [slides, setSlides] = useState([]);
@@ -11,6 +12,7 @@ const Hero = () => {
     const { getData } = useGetData();
     const carouselRef = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
 
     useEffect(() => {
         const fetchSlides = async () => {
@@ -56,7 +58,7 @@ const Hero = () => {
                         {slides.map((slide) => (
                             <div key={slide.id} className="relative h-3/4 lg:h-screen ">
                                 <img src={slide.imageUrl} alt={slide.legend} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-primary bg-opacity-40 flex items-center justify-center">
+                                <div className={`absolute inset-0 ${darkMode ? 'bg-dark1 bg-opacity-60' : 'bg-primary'} bg-opacity-40 flex items-center justify-center`}>
                                     <div className="text-center text-white  pl-16 pr-2 lg:px-16">
                                         <h1 className="text-lg md:text-5xl font-bold mb-4 font-hind">Your Guide to Indonesian Treasures</h1>
                                         <Link href={'/activity'}>

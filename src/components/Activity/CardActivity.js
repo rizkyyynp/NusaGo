@@ -1,7 +1,10 @@
 import { useState } from "react";
 import Link from "next/link";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function CardActivity({initialItems}) {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [items, setItems] = useState(initialItems);
     const [visibleItems, setVisibleItems] = useState(initialItems.slice(0, 3));
     const [showAll, setShowAll] = useState(false);
@@ -21,12 +24,12 @@ export default function CardActivity({initialItems}) {
     };
 
     return (
-        <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
+        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
-                <i className="fas fa-plane-departure text-zinc-100 mr-2 text-lg"></i>
-                <h2 className="text-xl lg:text-3xl font-bold text-zinc-100 font-podkova">Discover Diverse Activities</h2>
+                <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>
+                <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
             </div>
-            <p className="text-zinc-100 mb-6 font-hind">Explore a Variety of Activities Waiting to Be Discovered</p>
+            <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
             <div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                     {visibleItems.map((item, index) => (
@@ -60,7 +63,7 @@ export default function CardActivity({initialItems}) {
                 </div>
                 {!hideButton && (
                     <div className="mt-8 text-center">
-                        <button onClick={handleToggle} className="bg-zinc-100 text-primary py-2 px-4 rounded-full hover:bg-secondary hover:border-2 hover:border-third hover:text-zinc-100 transition-all duration-100 ease-in-out">
+                        <button onClick={handleToggle} className={`${darkMode ? 'hover:bg-dark1' : 'hover:bg-secondary'} bg-zinc-100 text-primary border-2 border-secondary py-2 px-4 rounded-full  hover:border-2 hover:border-third hover:text-zinc-100 transition-all duration-100 ease-in-out font-podkova `}>
                             {showAll ? "Minimize" : "See All"} →
                         </button>
                     </div>

@@ -4,12 +4,15 @@ import CardPromo from '@/components/Dashboard/cardPromo';
 import { checkAuthAdmin } from '../utils/adminAuth';
 import Link from 'next/link';
 import useFetchPromo from '@/hooks/useFetchPromo';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export async function getServerSideProps(context) {
     return checkAuthAdmin(context);
 }
 
 export default function PromoList() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const { promos, maxPage, refetch } = useFetchPromo(); // Ambil maxPage dari useFetchBanner
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
@@ -24,33 +27,39 @@ export default function PromoList() {
 
     return (
         <LayoutAdmin>
-            <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6">
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6`}>
                 <div class="flex flex-col justify-center items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4">
                     <div class="flex items-center space-x-2">
-                        <i className="fas fa-tags text-2xl text-primary"></i>
-                        <h1 class="text-2xl font-bold text-primary">List Promo</h1>
+                        <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-tags  mr-2 text-lg`}></i>
+                        <h2  className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Promo</h2>
                     </div>
-                    <Link href="/createPromo">
-                        <button className="flex items-center space-x-2 px-4 py-2 text-primary rounded bg-zinc-100 transition-all duration-100 ease-in-out hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100 group ">
-                            <i className="fas fa-plus text-primary mr-2 text-lg group-hover:text-zinc-100 "></i>
+                    <Link href="/createPromo">  
+                        <button className={`flex items-center space-x-2 px-4 py-2  rounded  transition-all duration-100 ease-in-out  border-2 border-primary  hover:border-third hover:text-zinc-100 group ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}`}>
+                            <i className={`fas fa-plus  mr-2 text-lg group-hover:text-zinc-100 ${darkMode ? 'text-zinc-100' : 'text-primary'}`}></i>
                             <span>Create</span>
                         </button>
                     </Link>
                 </div>
                 <CardPromo promos={promos.slice(startIndex, endIndex)} refetch={refetch} />
                 <div className="flex justify-center items-center mt-4">
-                    <button
+                <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
+                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
+                        ${currentPage === 1 ? 
+                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-primary">{currentPage}</p>
+                    <p className={`${darkMode ? 'text-secondary' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === maxPage}
-                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
+                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
+                        ${currentPage === maxPage ? 
+                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Next
                     </button>

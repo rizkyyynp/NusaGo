@@ -1,15 +1,17 @@
-// pages/dashUser.js
 import { useEffect, useState } from 'react';
 import LayoutAdmin from "@/layouts/LayoutAdmin";
 import ListUser from '@/components/User/ListUser';
 import { checkAuthAdmin } from '../utils/adminAuth';
 import useFetchUser from '@/hooks/useFetchUser';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export async function getServerSideProps(context) {
     return checkAuthAdmin(context);
 }
 
 export default function UserList() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const { users, maxPage, refetch } = useFetchUser();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
@@ -42,11 +44,11 @@ export default function UserList() {
 
     return (
         <LayoutAdmin>
-            <section className="lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6">
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6`}>
                 <div className="flex flex-col items-end md:items-center md:flex-row md:justify-between mb-6 ">
                     <div className='flex items-center mb-2 md:mb-0'>
-                        <i className="fas fa-user-tie mr-2 text-2xl text-primary"></i>
-                        <h1 className="text-2xl font-bold text-primary">List Users</h1>
+                        <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-user-tie  mr-2 text-lg`}></i>
+                        <h2  className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Users</h2>
                     </div>
                     <div>
                         <input
@@ -59,19 +61,25 @@ export default function UserList() {
                     </div>
                 </div>
                 <ListUser users={filteredUsers.slice(startIndex, endIndex)} refetch={refetch} />
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex justify-center items-center mt-8">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className={`bg-zinc-100 text-primary py-2 px-4 rounded-full transition-all duration-100 ease-in-out ${currentPage === 1 ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
+                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
+                        ${currentPage === 1 ? 
+                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-primary">{currentPage}</p>
+                    <p className={`${darkMode ? 'text-secondary' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === maxPage || isNextDisabled }
-                        className={`bg-zinc-100 text-primary py-2 px-6 rounded-full transition-all duration-100 ease-in-out ${currentPage === maxPage ? 'cursor-not-allowed  text-primary border-2 border-primary' : 'hover:bg-secondary border-2 border-primary  hover:border-third hover:text-zinc-100'}`}
+                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
+                        ${currentPage === maxPage ? 
+                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Next
                     </button>

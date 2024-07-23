@@ -180,9 +180,9 @@ export default function CardBanner({ banners, refetch }) {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-y-10">
             {banners.map((item, index) => (
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden" key={index}>
+                <div className="bg-white rounded-lg shadow-BS3 overflow-hidden" key={index}>
                     <div className="relative">
                         {item.imageUrl ? (
                             <img
@@ -194,10 +194,10 @@ export default function CardBanner({ banners, refetch }) {
                             <i className="fas fa-user text-2xl text-gray-300"></i>
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
-                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => setSelectedBanner(item)}>
+                            <button className="bg-primary w-10 h-10 rounded-full" onClick={() => setSelectedBanner(item)}>
                                 <i class="fas fa-pencil text-xl text-zinc-100"></i>
                             </button>
-                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                            <button className="bg-primary w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
                                 <i class="fas fa-trash text-xl text-zinc-100"></i>
                             </button>
                         </div>

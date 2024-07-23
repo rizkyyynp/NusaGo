@@ -6,8 +6,11 @@ import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import useImageUpload from "@/hooks/useImageUpload";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Profile() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [profile, setProfile] = useState({ name: "", profilePictureUrl: "", phoneNumber: "", email: "", role: "" });
     const [isEditing, setIsEditing] = useState(false);
@@ -127,7 +130,7 @@ export default function Profile() {
 
     return (
         <Layout>
-            <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-100 pt-20 pb-20 pl-16 pr-2 lg:px-0 lg:pt-28">
+            <div className={`flex flex-col items-center justify-center min-h-screen  pt-20 pb-20 pl-16 pr-2 lg:px-0 lg:pt-28 ${darkMode ? 'bg-dark1' : 'bg-zinc-100'}`}>
                 <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">

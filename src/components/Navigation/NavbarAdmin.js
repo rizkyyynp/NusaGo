@@ -5,8 +5,13 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import NusaIcon from "../../assets/images/nusago.png";
 import useAuth from "@/hooks/useAuth";
+import ToggleSwitch from "../Toggle/ToggleSwitch";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import defaultProfile from "../../assets/images/profile.png";
 
 export default function NavbarAdmin() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,7 +53,7 @@ export default function NavbarAdmin() {
         <div>
             {/* SideBar */}
             <div className="lg:hidden flex z-100 fixed ">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out blurSidebar`}>
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out `}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {/* Bagian untuk tampilan minimize */}
@@ -68,6 +73,9 @@ export default function NavbarAdmin() {
                                     <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
                                         NusaGo
                                     </span>
+                                    <div className="ml-8">
+                                    <ToggleSwitch />
+                                    </div>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
                                         <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
@@ -131,37 +139,37 @@ export default function NavbarAdmin() {
             </div>
             {/* Navbar Desktop */}
             <div className="hidden lg:flex">
-                <header className="flex items-center justify-around h-15  fixed w-full shadow-md z-100 transition-all duration-300 bg-zinc-100">
+                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-around h-15 fixed w-full shadow-md z-100 transition-all duration-300`}>
                     <div className="flex items-center gap-1">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
                     </div>
                     <div>
                         <nav className="flex gap-5 font-nunito">
-                            <Link href="/" className="relative inline-block text-primary font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">Home</Link>
+                            <Link href="/" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Home</Link>
                                 <div className="relative">
                                     <button
                                         onClick={handleDashboardToggle}
-                                        className="relative inline-block text-primary font-bold text-lg transition-all duration-300 max-md:mt-5 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:after:left-0 items-center"
+                                        className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}
                                     >
                                         Dashboard <i className="fas fa-caret-down ml-2"></i>
                                     </button>
                                     {isDashboardOpen && (
-                                        <ul className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex ">
+                                        <ul className={`${darkMode ? 'bg-dark1' : 'bg-zinc-100'} absolute left-0 mt-2 w-40 shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex`}>
                                             <li>
-                                                <Link href="/dashUser" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">User</Link>
+                                                <Link href="/dashUser" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>User</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashPromo" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Promo</Link>
+                                                <Link href="/dashPromo" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Promo</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashActivity" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Activity</Link>
+                                                <Link href="/dashActivity" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Activity</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashCategory" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Category</Link>
+                                                <Link href="/dashCategory" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Category</Link>
                                             </li>
                                             <li>
-                                                <Link href="/dashBanner" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">Banner</Link>
+                                                <Link href="/dashBanner" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Banner</Link>
                                             </li>
                                         </ul>
                                     )}
@@ -170,6 +178,7 @@ export default function NavbarAdmin() {
                     </div>
 
                     <div className="flex items-center">
+                    <ToggleSwitch />
                         {isLoggedIn ? (
                             <div className="relative font-nunito">
                                 <button
@@ -183,22 +192,22 @@ export default function NavbarAdmin() {
                                             className="rounded-full w-8 h-8"
                                         />
                                     ) : (
-                                        <i className="fas fa-user text-2xl text-primary"></i>
+                                        <img src={defaultProfile} alt="Profile Picture" className="rounded-full w-8 h-8" />
                                     )}
-                                    <span className="ml-1 font-bold text-primary">{profile.name}</span>
-                                    <i className="fas fa-caret-down ml-2"></i>
+                                    <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
+                                    <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-caret-down ml-2`}></i>
                                 </button>
                                 {isProfileOpen && (
-                                    <ul className="absolute -right-4 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10">
+                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`}>
                                         <li>
-                                            <Link href="/profile" className="block px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold">
+                                            <Link href="/profile" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>
                                                 <p>Profile</p>
                                             </Link>
                                         </li>
                                         <li>
                                             <button
                                                 onClick={handleLogout}
-                                                className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 font-bold"
+                                                className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} w-full text-left block px-4 py-2 text-sm  font-bold`}
                                             >
                                                 Logout
                                             </button>

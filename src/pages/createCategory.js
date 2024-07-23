@@ -6,12 +6,15 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useCreateData from "@/hooks/useCreateData";
 import { fetchCategories } from '@/lib/api';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export async function getServerSideProps(context) {
     return checkAuthAdmin(context);
 }
 
 export default function CreateCategory() {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [imageUrl, setImageUrl] = useState(null);
     const { uploadImage } = useImageUpload();
     const { createData } = useCreateData();
@@ -141,7 +144,7 @@ export default function CreateCategory() {
 
     return (
         <LayoutAdmin>
-            <div className="  flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0 h-screen">
+            <div className={`flex items-center justify-center  z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0 h-screen ${darkMode ? 'bg-dark1 bg-opacity-80' : 'bg-black bg-opacity-50'}`}>
                 <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">

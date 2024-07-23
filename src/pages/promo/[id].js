@@ -3,8 +3,11 @@ import Layout from '@/layouts/Layout';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Hero from '@/components/Hero/Hero';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function PromoDetail({ promo }) {
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
     const router = useRouter();
     const formatPrice = (price) => {
         if (typeof price === 'number') {
@@ -31,10 +34,10 @@ export default function PromoDetail({ promo }) {
 
     return (
         <Layout>
-        <Hero />
-            <section className="bg-secondary py-8 pl-16 pr-2 lg:px-8">
+            <Hero />
+            <section className={`${darkMode ? 'bg-dark1' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
                 <div>
-                    <div className="bg-primary rounded-lg max-w-7xl mx-auto p-4 ">
+                    <div className={`${darkMode ? 'bg-secondary' : 'bg-primary'} rounded-lg max-w-7xl mx-auto p-4`}>
                         <div className="flex flex-col md:flex-row ">
                             <div className="md:w-1/2 justify-center items-center flex">
                                 <img src={promo.imageUrl} alt={promo.title} className="w-full h-auto rounded-lg" />
@@ -49,7 +52,7 @@ export default function PromoDetail({ promo }) {
                                 <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Created At :</span> {formatDate(promo.createdAt)}</p>
                                 <p className="mb-2 text-fourth font-nunito"><span className="font-semibold font-hind">Last Update :</span> {formatDate(promo.updatedAt)}</p>
                                 <Link href="/promo">
-                                <button className="bg-secondary  hover:bg-secondary/80 mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito">Back</button>
+                                    <button className={`${darkMode ? 'bg-dark1/80 hover:bg-dark1' : 'bg-secondary hover:bg-secondary/80'}  mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito ml-2}`}>Back</button>
                                 </Link>
                             </div>
                         </div>

@@ -183,7 +183,7 @@ export default function CardCategory({ category, refetch }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {category.map((item, index) => (
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden" key={index}>
+                <div className="bg-white rounded-lg shadow-BS3 overflow-hidden" key={index}>
                     <div className="relative">
                         {item.imageUrl ? (
                             <img
