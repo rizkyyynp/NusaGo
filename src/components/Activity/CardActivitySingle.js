@@ -76,12 +76,13 @@ export default function CardActivitySingle({ currentPage, setPageCount, setItems
                                         <span className="text-base font-semibold font-hind text-primary">{item.rating}</span>
                                     </div>
                                 </div>
-                                <div className="px-3 py-2 flex flex-col justify-start">
+                                <div className="p-1 flex justify-between items-end">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
                                     </div>
-                                    <div>
+                                    <div className="text-right">
                                         <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
                                         <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
                                     </div>

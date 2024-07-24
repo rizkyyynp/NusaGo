@@ -14,7 +14,7 @@ export default function CardPromo({ initialItems }) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
-    
+
 
     const settings = {
         dots: true,
@@ -42,11 +42,11 @@ export default function CardPromo({ initialItems }) {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    dots:false
+                    dots: false
                 }
             }
         ],
-        
+
     };
 
     return (
@@ -71,8 +71,9 @@ export default function CardPromo({ initialItems }) {
                                         />
                                     </div>
                                     <div className="p-4 flex justify-between items-center">
-                                        <div>
-                                            <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
+                                        <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
+                                        <div className='flex'>
+                                            <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-tags  mr-1 text-lg`}></i>
                                             <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                                         </div>
                                     </div>

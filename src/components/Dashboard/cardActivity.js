@@ -309,10 +309,10 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                 <div className="absolute top-2 flex items-center justify-between w-full px-2">
                                     <div className="flex space-x-2">
                                         <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
-                                        <i class="fas fa-pencil text-xl text-zinc-100"></i>
+                                            <i class="fas fa-pencil text-xl text-zinc-100"></i>
                                         </button>
                                         <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                        <i class="fas fa-trash text-xl text-zinc-100"></i>
+                                            <i class="fas fa-trash text-xl text-zinc-100"></i>
                                         </button>
                                     </div>
                                     <div className="flex items-center space-x-1 bg-white rounded-full p-1">
@@ -321,10 +321,11 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-1 flex justify-between items-center">
+                            <div className="p-1 flex justify-between items-end">
                                 <div>
                                     <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                    <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}, {item.province}</p>
+                                    <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
+                                    <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
                                 </div>
                                 <div className="text-right">
                                     <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>

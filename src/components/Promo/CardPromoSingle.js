@@ -27,7 +27,7 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
 
     return (
         <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
-            {paginateItems(items).map((item,index) => (
+            {paginateItems(items).map((item, index) => (
                 <Link href={`/promo/${item.id}`} key={index}>
                     <div className="bg-white rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
                         <div className="overflow-hidden">
@@ -39,8 +39,9 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
                             />
                         </div>
                         <div className="p-4 flex justify-between items-center">
-                            <div>
-                                <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
+                            <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
+                            <div className='flex'>
+                                <i className="text-primary fas fa-tags  mr-1 text-lg"></i>
                                 <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                             </div>
                         </div>
