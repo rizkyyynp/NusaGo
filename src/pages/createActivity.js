@@ -188,7 +188,7 @@ export default function CreateActivity() {
 
     return (
         <LayoutAdmin>
-            <div className={`max-w-4xl mx-auto p-6 rounded-lg border py-10 lg:my-24 pl-16 pr-2 lg:px-0 ${darkMode ? 'bg-dark1 shadow-BS3' : 'bg-zinc-100'}`}>
+            <div className={`max-w-4xl mx-auto p-6 rounded-lg border py-10 lg:my-24 pl-16 pr-2 lg:px-0 ${darkMode ? 'bg-dark1 shadow-BS3' : 'bg-zinc-100'} min-h-screen`}>
                 <h2 className="text-2xl font-bold text-center mb-6 text-primary">Create Activity</h2>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2" onSubmit={handleSubmit}>
                     <div className="flex flex-col space-y-4">

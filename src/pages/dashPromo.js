@@ -27,7 +27,7 @@ export default function PromoList() {
 
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
                 <div class="flex flex-col justify-center items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4">
                     <div class="flex items-center space-x-2">
                         <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-tags  mr-2 text-lg`}></i>

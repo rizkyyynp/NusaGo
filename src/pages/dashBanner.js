@@ -28,7 +28,7 @@ export default function BannerList() {
 
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
                 <div className="flex flex-col justify-center items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4">
                     <div className="flex items-center space-x-2">
                         <i className={`${darkMode ? 'text-secondary' : 'text-primary'} far fa-image  mr-2 text-2xl`}></i>

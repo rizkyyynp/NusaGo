@@ -8,7 +8,8 @@ import useAuth from "@/hooks/useAuth";
 import defaultProfile from "../../assets/images/profile.png";
 import ToggleSwitch from "../Toggle/ToggleSwitch";
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { disableDarkMode } from "@/redux/slices/darkModeSlice";
 
 export default function Navbar() {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
@@ -21,6 +22,7 @@ export default function Navbar() {
     const router = useRouter();
     const { userLog } = useAuth();
     const darkMode = useSelector((state) => state.darkMode.darkMode);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -44,6 +46,7 @@ export default function Navbar() {
     const handleLogout = () => {
         userLog('logout', () => {
             setIsLoggedIn(false);
+            dispatch(disableDarkMode());
             router.push('/login');
         });
     };
@@ -52,28 +55,25 @@ export default function Navbar() {
         <div>
             {/* SideBar */}
             <div className="lg:hidden flex z-100 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out `}>
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out`}>
                     <div>
                         <div className="flex items-center justify-between p-2">
-                            {/* Bagian untuk tampilan minimize */}
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
                                         <i className="fas fa-maximize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
                             )}
-
-                            {/* Bagian untuk tampilan maximize */}
                             {isSidebarOpen && (
-                                <div className="text-lg font-bold  flex items-center">
+                                <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={24} height={24} />
                                     <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
                                         NusaGo
                                     </span>
                                     <div className="ml-8">
-                                    <ToggleSwitch />
+                                        <ToggleSwitch />
                                     </div>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
                                         <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
@@ -83,51 +83,49 @@ export default function Navbar() {
                         </div>
 
                         <ul className="mt-2 space-y-1 font-hind">
-
-                            <li >
+                            <li>
                                 {isLoggedIn ? (
-                                    <Link href={'/profile'} className="flex items-center  bg-secondary rounded hover:bg-primary">
+                                    <Link href="/profile" title="Profile" className="flex items-center bg-secondary rounded hover:bg-primary">
                                         {profile.profilePictureUrl ? (
-                                            <img
-                                                src={profile.profilePictureUrl || "/default-profile.png"}
-                                                alt="Profile Picture"
-                                                className=" w-10 h-10"
-                                            />
+                                            <img src={profile.profilePictureUrl || "/default-profile.png"} alt="Profile Picture" className="w-10 h-10" />
                                         ) : (
                                             <i className="fas fa-user text-2xl text-zinc-100"></i>
                                         )}
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
                                     </Link>
                                 ) : (
-                                    <>
-                                        <Link href={'/login'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
-                                        </Link>
-                                    </>
+                                    <Link href="/login" title="Login" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
+                                    </Link>
                                 )}
                             </li>
-                            <Link href={'/'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-home text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
-                            </Link>
-                            <Link href={'/promo'} className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-tags text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
-                            </Link>
-                            <Link href={'/activity'} className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
-                            </Link>
+                            <li>
+                                <Link href="/" title="Home" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <i className="fas fa-home text-2xl text-zinc-100"></i>
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/promo" title="Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <i className="fas fa-tags text-2xl text-zinc-100"></i>
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/activity" title="Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                                    <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
+                                </Link>
+                            </li>
                             {isAdmin && (
                                 <li className="relative">
-                                    <Link href={'/dashUser'}>
-                                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
+                                    <Link href="/dashUser">
+                                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} title="Dashboard" className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
                                             <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
                                             <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
                                         </button>
                                     </Link>
-
                                 </li>
                             )}
                         </ul>
@@ -135,7 +133,7 @@ export default function Navbar() {
                     <div>
                         <ul className="mb-2 space-y-2 font-hind">
                             {isLoggedIn ? (
-                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary" title="Logout">
                                     <button onClick={handleLogout} className="flex items-center w-full">
                                         <i className="fas fa-door-open text-2xl text-zinc-100"></i>
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
@@ -143,7 +141,7 @@ export default function Navbar() {
                                 </li>
                             ) : (
                                 <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <Link href="/login" className="flex items-center w-full">
+                                    <Link href="/login" title="Login" className="flex items-center w-full">
                                         <i className="fas fa-lock text-2xl text-zinc-100"></i>
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login</span>
                                     </Link>
@@ -153,9 +151,11 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
+
+
             {/* Navbar Desktop */}
             <div className="hidden lg:flex">
-            <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-around h-15 fixed w-full shadow-md z-100 transition-all duration-300`}>
+                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-around h-15 fixed w-full shadow-md z-100 transition-all duration-300`}>
                     <div className="flex items-center gap-1 cursor-pointer">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
@@ -180,7 +180,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center">
-                            <ToggleSwitch />
+                        <ToggleSwitch />
                         {isLoggedIn ? (
                             <div className="relative font-nunito">
                                 <button

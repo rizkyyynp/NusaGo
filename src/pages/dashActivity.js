@@ -32,7 +32,7 @@ export default function dashActivity() {
     const areButtonsDisabled = items.length === 0;
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-primary'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 h-screen`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-primary'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
                 <div className="flex flex-col items-center mb-2 lg:flex-row lg:justify-between">
                     <div className="flex items-center space-x-2">
                         <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>

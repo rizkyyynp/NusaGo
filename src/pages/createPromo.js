@@ -159,7 +159,7 @@ export default function CreatePromo() {
 
     return (
         <LayoutAdmin>
-            <div className="flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0">
+            <div className="flex items-center justify-center bg-black bg-opacity-50 z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0 min-h-screen">
                 <form onSubmit={handleSubmit} className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white shadow-md'} grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-9/12 p-2 rounded-lg  max-h-screen h-3/4 overflow-y-auto`}>
                     <div className="space-y-4 mt-3">
                         {imageUrl && (

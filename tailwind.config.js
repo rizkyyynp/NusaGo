@@ -35,12 +35,14 @@ module.exports = {
         'primary-gradient': 'linear-gradient(90deg, rgba(13,71,161,1) 0%, rgba(66,165,245,1) 99%)',
       },
       width: {
+        '7.5': '30px',
         '11.25': '45px',
         '37.5': '150px',
         '100': '400px',
         '150': '600px',
       },
       height: {
+        '7.5': '30px',
         '15': '70px',
         '37.5': '150px',
         '75': '300px',

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const getInitialState = () => {
-    // Set default to light mode (false) on page load
     if (typeof window !== 'undefined') {
         localStorage.setItem('darkMode', 'false');
         return false;
