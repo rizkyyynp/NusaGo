@@ -31,8 +31,8 @@ export default function CardPromo({ initialItems }) {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                     infinite: true,
                     dots: true
                 }
@@ -70,12 +70,9 @@ export default function CardPromo({ initialItems }) {
                                             aria-hidden="true"
                                         />
                                     </div>
-                                    <div className="p-4 flex justify-between items-center">
+                                    <div className="py-4 px-1 flex justify-between items-center">
                                         <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
-                                        <div className='flex'>
-                                            <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-tags  mr-1 text-lg`}></i>
                                             <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
-                                        </div>
                                     </div>
                                 </div>
                             </Link>
