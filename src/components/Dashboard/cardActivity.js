@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-export default function CardActivity({ currentPage, setPageCount, setItems, items }) {
+export default function CardActivity({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -16,6 +16,8 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
     const { uploadImage } = useImageUpload();
     const { updateData } = useUpdateData();
     const { deleteData } = useDeleteData();
+    const [loading, setLoading] = useState(false);
+    const [showContent, setShowContent] = useState(true);
     const [formData, setFormData] = useState({
         id: '',
         title: '',
@@ -44,6 +46,8 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
     }, []);
 
     const loadActivities = async () => {
+        setLoading(true);
+        setShowContent(false); // Hide content during loading
         let data;
         if (selectedCategory === 'all') {
             data = await fetchActivities();
@@ -52,6 +56,10 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
         }
         setItems(data);
         setPageCount(Math.ceil(data.length / itemsPerPage));
+        setLoading(false);
+
+        // Delay showing content to reduce flicker
+        setTimeout(() => setShowContent(true), 500); // Adjust timeout duration if needed
     };
 
     useEffect(() => {
@@ -278,6 +286,11 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
         });
     };
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+        setCurrentPage(1); // Reset page when category changes
+    };
+
 
     return (
         <div>
@@ -285,7 +298,7 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                 <select
                     className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 font-podkova border-zinc-100  text-zinc-100`}
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    onChange={handleCategoryChange}
                 >
                     <option value="all" className='bg-zinc-100 text-primary'>All Categories</option>
                     {categories.map((category) => (
@@ -295,50 +308,56 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                     ))}
                 </select>
             </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
-                {paginateItems(items).length > 0 ? (
-                    paginateItems(items).map((item, index) => (
-                        <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer" key={index}>
-                            <div className="relative">
-                                <img
-                                    src={item.imageUrls}
-                                    alt={item.title}
-                                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                    aria-hidden="true"
-                                />
-                                <div className="absolute top-2 flex items-center justify-between w-full px-2">
-                                    <div className="flex space-x-2">
-                                        <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
-                                            <i class="fas fa-pencil text-xl text-zinc-100"></i>
-                                        </button>
-                                        <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                            <i class="fas fa-trash text-xl text-zinc-100"></i>
-                                        </button>
+            {loading ? (
+                <div className="flex justify-center items-center py-10">
+                    <div className="spinner"></div>
+                </div>
+            ) : (
+                <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+                    {paginateItems(items).length > 0 ? (
+                        paginateItems(items).map((item, index) => (
+                            <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer" key={index}>
+                                <div className="relative">
+                                    <img
+                                        src={item.imageUrls}
+                                        alt={item.title}
+                                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                                        aria-hidden="true"
+                                    />
+                                    <div className="absolute top-2 flex items-center justify-between w-full px-2">
+                                        <div className="flex space-x-2">
+                                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
+                                                <i class="fas fa-pencil text-xl text-zinc-100"></i>
+                                            </button>
+                                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                                                <i class="fas fa-trash text-xl text-zinc-100"></i>
+                                            </button>
+                                        </div>
+                                        <div className="flex items-center space-x-1 bg-white rounded-full p-1">
+                                            <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
+                                            <span className="text-base font-semibold text-primary font-hind">{item.rating}</span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center space-x-1 bg-white rounded-full p-1">
-                                        <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
-                                        <span className="text-base font-semibold text-primary font-hind">{item.rating}</span>
+                                </div>
+                                <div className="p-1 flex justify-between items-end">
+                                    <div>
+                                        <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
+                                        <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-1 flex justify-between items-end">
-                                <div>
-                                    <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                    <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
-                                    <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
-                                    <p className="text-primary font-bold font-nunito">Rp {formatPrice(item.price_discount)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p className="text-center text-zinc-100">No activities found for the selected category.</p>
-                )}
-            </div>
+                        ))
+                    ) : (
+                        <p className="text-center text-zinc-100">No activities found for the selected category.</p>
+                    )}
 
+                </div>
+            )}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-100  lg:pt-4 pl-16 pr-2 lg:px-0  h-screen overflow-y-auto ">
                     <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md ">
@@ -461,13 +480,25 @@ export default function CardActivity({ currentPage, setPageCount, setItems, item
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                             <div>
                                                 <label className="block text-sm font-medium text-primary">Rating</label>
-                                                <input
-                                                    type="number"
-                                                    name="rating"
-                                                    value={formData.rating}
-                                                    onChange={handleInputChange}
-                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
-                                                />
+                                                <select
+                                                    name="rating" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary" onChange={handleInputChange} value={formData.rating}
+                                                >
+                                                    <option value="1">
+                                                        1
+                                                    </option>
+                                                    <option value="2">
+                                                        2
+                                                    </option>
+                                                    <option value="3">
+                                                        3
+                                                    </option>
+                                                    <option value="4">
+                                                        4
+                                                    </option>
+                                                    <option value="5">
+                                                        5
+                                                    </option>
+                                                </select>
                                             </div>
                                             <div>
                                                 <label className="block text-sm font-medium text-primary">Total Reviews</label>

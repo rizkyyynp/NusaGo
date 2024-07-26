@@ -38,8 +38,9 @@ export default function Activity() {
                     <CardActivitySingle
                         currentPage={currentPage}
                         setPageCount={setMaxPage}
+                        setCurrentPage={setCurrentPage}
                         setItems={setItems}
-                        items={items} // Pass items to CardActivitySingle
+                        items={items}
                     />
                 </div>
                 <div className="mt-6 mx-auto flex justify-center items-center font-nunito">

@@ -114,7 +114,14 @@ export default function Profile() {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    router.reload();
+                    setProfile({
+                        ...profile,
+                        name: data.name,
+                        email: data.email,
+                        phoneNumber: data.phoneNumber,
+                        profilePictureUrl: data.profilePictureUrl || profile.profilePictureUrl
+                    })
+                    setIsEditing(false);
                 });
             }
         } catch (error) {

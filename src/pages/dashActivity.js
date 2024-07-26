@@ -47,6 +47,7 @@ export default function dashActivity() {
                 </div>
                 <CardActivity
                     currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                     setPageCount={setMaxPage}
                     setItems={setItems}
                     items={items} // Pass items to CardActivitySingle

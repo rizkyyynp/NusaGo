@@ -201,6 +201,7 @@ export default function CreateActivity() {
                             <select
                                 name="categoryId"
                                 value={formData.categoryId}
+                                onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-primary"
                             >
                                 {categories.map((category) => (
@@ -266,7 +267,7 @@ export default function CreateActivity() {
                         </div>
                         <label className="block">
                             <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Image Files</span>
-                            <input type="file" className={`mt-1 block w-full border border-border rounded-md p-2 ${darkMode ? 'text-secondary' : 'text-primary'} `}name="imageUrls" placeholder="Upload Profile Picture" onChange={handleUpload} />
+                            <input type="file" className={`mt-1 block w-full border border-border rounded-md p-2 ${darkMode ? 'text-secondary' : 'text-primary'} `} name="imageUrls" placeholder="Upload Profile Picture" onChange={handleUpload} />
                         </label>
                         <label className="block">
                             <span className={`${darkMode ? 'text-secondary' : 'text-primary'}`}>Address</span>
@@ -296,9 +297,9 @@ export default function CreateActivity() {
                     <div className="col-span-1 md:col-span-2 flex justify-center space-x-4 mt-6">
                         <button type="submit" className="bg-primary text-zinc-100 hover:bg-primary/80 px-4 py-2 rounded-md">Create</button>
                         <Link href={"/dashActivity"}>
-                        <button type="button" className="bg-red-600 text-zinc-100 hover:bg-red-600/80 px-4 py-2 rounded-md">Back</button>
+                            <button type="button" className="bg-red-600 text-zinc-100 hover:bg-red-600/80 px-4 py-2 rounded-md">Back</button>
                         </Link>
-                        
+
                     </div>
                 </form>
             </div>
