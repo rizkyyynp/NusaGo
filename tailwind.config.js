@@ -26,6 +26,7 @@ module.exports = {
         "secondary": '#1976D2',
         "third": '#7BC9FF',
         "fourth": '#FDFFE2',
+        "fifth": '#0D3D6E',
         "dark1": '#0f172a',
         "dark2": '#B9D6F2',
         grad1: 'rgb(13,71,161)',

@@ -20,13 +20,13 @@ export default function Footer() {
                         <Link href="/promo" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-semibold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Promo</Link>
                     </nav>
                     <div className="flex space-x-4">
-                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc">
+                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="instagram">
                             <i className="fa-brands fa-instagram text-xl"></i>
                         </Link>
-                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc">
+                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="linkedin">
                             <i className="fa-brands fa-linkedin text-lg"></i>
                         </Link>
-                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc">
+                        <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="facebook">
                             <i className="fa-brands fa-facebook text-lg"></i>
                         </Link>
                     </div>
