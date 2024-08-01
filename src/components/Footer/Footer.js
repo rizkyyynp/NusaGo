@@ -3,11 +3,13 @@ import Link from "next/link";
 import NusaIcon from "../../assets/images/nusago.png";
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     return (
-        <footer className={`${darkMode ?'bg-dark1' : "bg-zinc-100"} pl-16 pr-2 lg:pl-0 lg:pr-0 py-2 shadow-BS4`}>
+        <footer className={`${darkMode ? 'bg-dark1' : "bg-zinc-100"} pl-16 pr-2 lg:pl-0 lg:pr-0 py-2 shadow-BS4`}>
             <div className="mx-auto w-full px-5">
                 <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
                     <div className="flex items-center space-x-2">
@@ -21,13 +23,13 @@ export default function Footer() {
                     </nav>
                     <div className="flex space-x-4">
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="instagram">
-                            <i className="fa-brands fa-instagram text-xl"></i>
+                            <FontAwesomeIcon icon={faInstagram} className="text-xl" />
                         </Link>
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="linkedin">
-                            <i className="fa-brands fa-linkedin text-lg"></i>
+                            <FontAwesomeIcon icon={faLinkedin} className="text-lg" />
                         </Link>
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="facebook">
-                            <i className="fa-brands fa-facebook text-lg"></i>
+                        <FontAwesomeIcon icon={faFacebook} className="text-lg" />
                         </Link>
                     </div>
                 </div>
