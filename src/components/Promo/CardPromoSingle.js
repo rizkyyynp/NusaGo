@@ -33,16 +33,15 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
             {paginateItems(items).map((item, index) => (
                 <Link href={`/promo/${item.id}`} key={index}>
                     <div className="bg-white rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
-                        <div className="overflow-hidden h-48">
+                        <div className='overflow-hidden' style={{ width: '100%', height: '300px' }}>
                             <Image
                                 src={item.imageUrl}
                                 alt={item.title}
                                 className="transition-transform duration-300 hover:scale-110"
-                                width={500}
-                                height={192}
+                                layout='fill'
                                 objectFit='cover'
                                 quality={100}
-
+                                priority={true}
                             />
                         </div>
                         <div className="p-4 flex justify-between items-center">
