@@ -29,16 +29,16 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
     };
 
     return (
-        <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {paginateItems(items).map((item, index) => (
                 <Link href={`/promo/${item.id}`} key={index}>
                     <div className="bg-white rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
-                        <div className='overflow-hidden' style={{ width: '100%', height: '300px' }}>
+                        <div className=' relative overflow-hidden' style={{ width: '100%', height: '300px' }}>
                             <Image
                                 src={item.imageUrl}
                                 alt={item.title}
-                                className="transition-transform duration-300 hover:scale-110"
                                 layout='fill'
+                                className="transition-transform duration-300 hover:scale-110"
                                 objectFit='cover'
                                 quality={100}
                                 priority={true}
@@ -46,7 +46,7 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
                         </div>
                         <div className="p-4 flex justify-between items-center">
                             <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
-                            <div className='flex justify-center items-center'>
+                            <div className='flex items-center'>
                                 <FontAwesomeIcon icon={faTags} className="text-primary fas fa-tags  mr-1 text-lg" />
                                 <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                             </div>
