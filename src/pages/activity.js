@@ -2,7 +2,6 @@ import CardActivitySingle from "@/components/Activity/CardActivitySingle";
 import Layout from "@/layouts/Layout";
 import Hero from "@/components/Hero/Hero";
 import { useState } from 'react';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
@@ -30,9 +29,9 @@ export default function Activity() {
     return (
         <Layout>
             <Hero />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8 min-h-screen`}>
                 <div className="flex items-center mb-4">
-                    <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}/>
+                    <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`} />
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
                 </div>
                 <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
@@ -49,10 +48,9 @@ export default function Activity() {
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1 || areButtonsDisabled}
-                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        className={`py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
                         ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
-                        ${currentPage === 1 || areButtonsDisabled ? 
-                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
+                        ${currentPage === 1 || areButtonsDisabled ? 'cursor-not-allowed' : 'hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Previous
                     </button>
@@ -60,10 +58,9 @@ export default function Activity() {
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage || areButtonsDisabled}
-                        className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
+                        className={`py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
                         ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
-                        ${currentPage === maxPage || areButtonsDisabled ? 
-                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
+                        ${currentPage === maxPage || areButtonsDisabled ? 'cursor-not-allowed' : 'hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Next
                     </button>

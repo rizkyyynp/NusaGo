@@ -5,13 +5,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
 export default function CardActivitySingle({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     const [categories, setCategories] = useState([]);
+    const [showContent, setShowContent] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [loading, setLoading] = useState(false);
-    const [showContent, setShowContent] = useState(true);
     const itemsPerPage = 3;
 
     useEffect(() => {
@@ -33,12 +34,13 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
             } else {
                 data = await fetchActivitiesByCategory(selectedCategory);
             }
+            console.log('Fetched Activities:', data); // Logging data fetched
             setItems(data);
             setPageCount(Math.ceil(data.length / itemsPerPage));
             setLoading(false);
 
             // Delay showing content to reduce flicker
-            setTimeout(() => setShowContent(true), 5000); // Adjust timeout duration if needed
+            setTimeout(() => setShowContent(true), 5000);
         }
 
         loadActivities();
@@ -58,11 +60,15 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
         setCurrentPage(1); // Reset page when category changes
     };
 
+    const isValidImageUrl = (url) => {
+        return typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'));
+    };
+
     return (
         <div>
             <div className="flex justify-center lg:justify-start mb-4">
                 <select
-                    className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100  text-zinc-100`}
+                    className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 text-zinc-100`}
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
@@ -79,17 +85,30 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+                <div className="mt-8 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {paginateItems(items).length > 0 ? (
                         paginateItems(items).map((item, index) => (
                             <Link href={`/activity/${item.id}`} key={index}>
                                 <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
                                     <div className="relative">
-                                        <img
-                                            src={item.imageUrls}
-                                            alt={item.title}
-                                            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                        />
+                                        <div className='h-48 overflow-hidden'>
+                                            {isValidImageUrl(item.imageUrls[0]) ? (
+                                                <Image
+                                                    src={item.imageUrls[0]} // Menggunakan URL gambar pertama dari array
+                                                    alt={item.title}
+                                                    width={500}
+                                                    height={300}
+                                                    layout='responsive'
+                                                    className="transition-transform duration-300 hover:scale-110"
+                                                    objectFit='cover'
+                                                    quality={100}
+                                                />
+                                            ) : (
+                                                <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
+                                                    <span className="text-gray-500">Image not available</span>
+                                                </div>
+                                            )}
+                                        </div>
                                         <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                             <span className="text-yellow-500 text-xs">
                                                 <FontAwesomeIcon icon={faStar} />

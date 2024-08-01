@@ -13,32 +13,47 @@ const axiosInstance = axios.create({
 export async function fetchPromos() {
     try {
         const res = await axiosInstance.get('/promos');
+        console.log('Fetch Promos Response:', res.data); // Tambahkan logging respons
         return res.data.data;
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching promos:', error);
         return [];
     }
 }
+
 
 export async function fetchCategories() {
     try {
         const res = await axiosInstance.get('/categories');
+        console.log('Fetch Categories Response:', res.data); // Logging respons
         return res.data.data;
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching categories:', error);
         return [];
     }
 }
 
+
 export async function fetchActivities() {
     try {
         const res = await axiosInstance.get('/activities');
+        console.log('Fetch Activities Response:', res.data); // Logging respons
         return res.data.data;
     } catch (error) {
-        console.error(error);
+        if (error.response) {
+            // Server responded with a status other than 200 range
+            console.error('Server Error:', error.response.data);
+        } else if (error.request) {
+            // Request was made but no response received
+            console.error('Network Error:', error.request);
+        } else {
+            // Something else caused an error
+            console.error('Error:', error.message);
+        }
         return [];
     }
 }
+
 
 export async function fetchActivitiesByCategory(categoryId) {
     try {
