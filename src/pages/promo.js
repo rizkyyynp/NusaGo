@@ -28,7 +28,7 @@ export default function Promo() {
     return (
         <Layout>
             <Hero />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8 h-min-screen`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8 h-min-screen`}>
                 <div className="flex items-center mb-4">
                     <FontAwesomeIcon icon={faTags} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`} />
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
