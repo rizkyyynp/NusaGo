@@ -8,12 +8,12 @@ export default function Register() {
     return (
         <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-4">
             <div className="w-full md:w-1/2 p-4 flex items-center justify-center md:p-0">
-                <Image src={RegisterIllustration} alt="Sign up illustration" className="w-1/2 h-auto md:w-full" />
+                <Image src={RegisterIllustration} alt="Sign up illustration" width={500} height={500} className="w-1/2 h-auto md:w-full" />
             </div>
             <div className="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-lg">
                 <div className="text-center mb-6">
                     <div className="flex items-center justify-center">
-                        <Image src={NusaIcon} alt="NusaGo Logo" className="w-10 h-10" />
+                        <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo | Register</h1>
                     </div>
                 </div>

@@ -154,31 +154,32 @@ export default function RegisterForm() {
     return (
         <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="name" name="name" placeholder="Your Name" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito " />
-                <input type="email" id="email" name="email" placeholder="Your Email" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" />
+                <input type="text" id="name" name="name" placeholder="Your Name" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Name' />
+                <input type="email" id="email" name="email" placeholder="Your Email" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Email' />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="password" placeholder="Password" id="password" name="password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" />
-                <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" />
+                <input type="password" placeholder="Password" id="password" name="password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Password' />
+                <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Repeat Password' />
             </div>
-            <input type="text" placeholder="Phone Number" id="phone" name="phoneNumber" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" />
-            <select id="select-role" name="role" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito">
+            <input type="text" placeholder="Phone Number" id="phone" name="phoneNumber" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Phone Number' />
+            <select id="select-role" name="role" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Select Role'>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
             </select>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="w-full p-2 border rounded-md font-nunito" placeholder="Upload Profile Picture" />
+                <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="w-full p-2 border rounded-md font-nunito" placeholder="Upload Profile Picture" aria-label='Upload Profile Picture' />
                 {profilePictureUrl && (
                     <div>
                         <img
                             src={profilePictureUrl}
                             alt="profilePictureUrl"
                             width={100}
+                            height={100}
                         />
                     </div>
                 )}
             </div>
-            <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 font-sans">Register</button>
+            <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 font-sans" aria-label='Button Register'>Register</button>
         </form>
     );
 }
