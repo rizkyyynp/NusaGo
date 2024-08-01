@@ -15,6 +15,7 @@ export default function Register() {
                     width={500}
                     height={500}
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                 />
             </div>
             <div className="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-lg">

@@ -61,6 +61,7 @@ export default function LoginForm() {
                     placeholder="Input Your Email"
                     className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary font-nunito"
                     required
+                    aria-label='Your Email'
                 />
             </div>
             <div>
@@ -74,10 +75,11 @@ export default function LoginForm() {
                     placeholder="Input Your Password"
                     className="mt-1 block w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-primary placeholder-text-primary font-nunito"
                     required
+                    aria-label='Your Password'
                 />
             </div>
             <div>
-                <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-zinc-100 py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 font-sans">
+                <button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary text-zinc-100 py-2 px-4 rounded-md transition-all duration-500 ease-in-out transform hover:scale-105 font-sans" aria-label='Button Login'>
                     Login
                 </button>
             </div>
