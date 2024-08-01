@@ -4,6 +4,8 @@ import Layout from "@/layouts/Layout";
 import { useState } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Promo() {
@@ -25,10 +27,10 @@ export default function Promo() {
 
     return (
         <Layout>
-        <Hero />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
+            <Hero />
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8 h-min-screen`}>
                 <div className="flex items-center mb-4">
-                    <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-tags  mr-2 text-lg`}></i>
+                    <FontAwesomeIcon icon={faTags} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`} />
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
                 </div>
                 <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Exclusive Offer Just for You! Don't Miss Out!</p>
@@ -42,8 +44,8 @@ export default function Promo() {
                         disabled={currentPage === 1}
                         className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
                         ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
-                        ${currentPage === 1 ? 
-                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
+                        ${currentPage === 1 ?
+                                'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Previous
                     </button>
@@ -53,8 +55,8 @@ export default function Promo() {
                         disabled={currentPage === maxPage}
                         className={` py-2 px-4 rounded-full transition-all duration-100 ease-in-out border-2 border-primary
                         ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}
-                        ${currentPage === maxPage ? 
-                        'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
+                        ${currentPage === maxPage ?
+                                'cursor-not-allowed   ' : '  hover:border-third hover:text-zinc-100 hover:bg-secondary'}`}
                     >
                         Next
                     </button>
