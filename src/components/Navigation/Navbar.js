@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { disableDarkMode } from "@/redux/slices/darkModeSlice";
 
 export default function Navbar() {
-    const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -87,7 +86,7 @@ export default function Navbar() {
                                 {isLoggedIn ? (
                                     <Link href="/profile" title="Profile" className="flex items-center bg-secondary rounded hover:bg-primary">
                                         {profile.profilePictureUrl ? (
-                                            <img src={profile.profilePictureUrl || "/default-profile.png"} alt="Profile Picture" className="w-10 h-10" />
+                                            <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
                                         ) : (
                                             <i className="fas fa-user text-2xl text-zinc-100"></i>
                                         )}
@@ -186,21 +185,27 @@ export default function Navbar() {
                                 <button
                                     onClick={handleProfileToggle}
                                     className="relative flex items-center"
+                                    aria-controls="profile-menu"
                                 >
                                     {profile.profilePictureUrl ? (
-                                        <img
-                                            src={profile.profilePictureUrl || "/default-profile.png"}
+                                        <Image
+                                            src={profile.profilePictureUrl}
                                             alt="Profile Picture"
-                                            className="rounded-full w-8 h-8"
+                                            className="rounded-full"
+                                            width={40}
+                                            height={40}
                                         />
                                     ) : (
-                                        <img src={defaultProfile} alt="Profile Picture" className="rounded-full w-8 h-8" />
+                                        <Image src={defaultProfile} alt="Profile Picture" className="rounded-full"
+                                            width={40}
+                                            height={40}
+                                        />
                                     )}
                                     <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
                                     <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-caret-down ml-2`}></i>
                                 </button>
                                 {isProfileOpen && (
-                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`}>
+                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`} id="profile-menu">
                                         <li>
                                             <Link href="/profile" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>
                                                 <p>Profile</p>
