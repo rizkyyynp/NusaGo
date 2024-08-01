@@ -60,7 +60,7 @@ export default function Navbar() {
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Expand Sidebar">
                                         <i className="fas fa-maximize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
@@ -74,7 +74,7 @@ export default function Navbar() {
                                     <div className="ml-8">
                                         <ToggleSwitch />
                                     </div>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Minimize Sidebar">
                                         <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
                                     </button>
                                 </div>
@@ -119,11 +119,9 @@ export default function Navbar() {
                             </li>
                             {isAdmin && (
                                 <li className="relative">
-                                    <Link href="/dashUser">
-                                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} title="Dashboard" className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
+                                    <Link href="/dashUser" title="Dashboard" className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
                                             <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
                                             <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
-                                        </button>
                                     </Link>
                                 </li>
                             )}
@@ -133,7 +131,7 @@ export default function Navbar() {
                         <ul className="mb-2 space-y-2 font-hind">
                             {isLoggedIn ? (
                                 <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary" title="Logout">
-                                    <button onClick={handleLogout} className="flex items-center w-full">
+                                    <button onClick={handleLogout} className="flex items-center w-full" aria-label=" Button Logout">
                                         <i className="fas fa-door-open text-2xl text-zinc-100"></i>
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
                                     </button>
@@ -166,11 +164,8 @@ export default function Navbar() {
                             <Link href="/promo" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Promo</Link>
                             {isAdmin && (
                                 <div className="relative">
-                                    <Link href={'/dashUser'}>
-                                        <button
-                                            className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>
-                                            Dashboard
-                                        </button>
+                                    <Link href={'/dashUser'} className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>
+                                        Dashboard
                                     </Link>
 
                                 </div>
@@ -215,6 +210,7 @@ export default function Navbar() {
                                             <button
                                                 onClick={handleLogout}
                                                 className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} w-full text-left block px-4 py-2 text-sm  font-bold`}
+                                                aria-label="Button Logout"
                                             >
                                                 Logout
                                             </button>

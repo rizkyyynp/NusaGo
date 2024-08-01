@@ -29,12 +29,12 @@ export default function CardActivity({ initialItems }) {
                 <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
             </div>
-            <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
+            <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'} font-semibold`}>Explore a Variety of Activities Waiting to Be Discovered</p>
             <div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
                     {visibleItems.map((item, index) => (
                         <Link href={`/activity/${item.id}`} key={index}>
-                            <div className="bg-zinc-100 rounded-lg overflow-hidden  cursor-pointer shadow-BS3">
+                            <div className="bg-zinc-100 rounded-lg overflow-hidden  cursor-pointer shadow-lg">
                                 <div className="relative">
                                     <img
                                         src={item.imageUrls}
