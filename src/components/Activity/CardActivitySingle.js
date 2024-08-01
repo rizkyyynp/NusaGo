@@ -3,6 +3,8 @@ import { fetchActivities, fetchCategories, fetchActivitiesByCategory } from '@/l
 import Link from 'next/link';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 
 export default function CardActivitySingle({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -87,18 +89,22 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                                             src={item.imageUrls}
                                             alt={item.title}
                                             className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                            aria-hidden="true"
                                         />
                                         <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
-                                            <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
+                                            <span className="text-yellow-500 text-xs">
+                                                <FontAwesomeIcon icon={faStar} />
+                                            </span>
                                             <span className="text-base font-semibold font-hind text-primary">{item.rating}</span>
                                         </div>
                                     </div>
                                     <div className="p-1 flex justify-between items-end">
                                         <div>
                                             <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                            <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
-                                            <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
+                                            <p className="text-primary font-nunito">
+                                                <FontAwesomeIcon icon={faMapMarker} className='text-primary mr-1' />
+                                                {item.city}
+                                            </p>
+                                            <p className="text-primary font-nunito"><FontAwesomeIcon icon={faMapMarker} className='text-primary mr-1' />{item.province}</p>
                                         </div>
                                         <div className="text-right">
                                             <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>

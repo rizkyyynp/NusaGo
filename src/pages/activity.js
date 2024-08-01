@@ -4,6 +4,8 @@ import Hero from "@/components/Hero/Hero";
 import { useState } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 
 export default function Activity() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -28,9 +30,9 @@ export default function Activity() {
     return (
         <Layout>
             <Hero />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8`}>
                 <div className="flex items-center mb-4">
-                    <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>
+                    <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}/>
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
                 </div>
                 <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
