@@ -85,23 +85,22 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className="mt-8 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {paginateItems(items).length > 0 ? (
                         paginateItems(items).map((item, index) => (
                             <Link href={`/activity/${item.id}`} key={index}>
                                 <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
                                     <div className="relative">
-                                        <div className='h-48 overflow-hidden'>
+                                        <div className='overflow-hidden' style={{  width: '100%', height: '300px' }}>
                                             {isValidImageUrl(item.imageUrls[0]) ? (
                                                 <Image
                                                     src={item.imageUrls[0]} // Menggunakan URL gambar pertama dari array
                                                     alt={item.title}
-                                                    width={500}
-                                                    height={300}
-                                                    layout='responsive'
+                                                    layout='fill'
                                                     className="transition-transform duration-300 hover:scale-110"
                                                     objectFit='cover'
                                                     quality={100}
+                                                    priority={true}
                                                 />
                                             ) : (
                                                 <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
