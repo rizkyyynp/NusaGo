@@ -10,6 +10,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import defaultProfile from "../../assets/images/profile.png";
 import { disableDarkMode } from "@/redux/slices/darkModeSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMaximize, faMinimize, faUser, faHome, faTags, faPlaneDeparture, faList, faDoorOpen, faLock, faCaretDown  } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
 
 export default function NavbarAdmin() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -63,10 +66,10 @@ export default function NavbarAdmin() {
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Link href="/" className="w-7.5 h-7.5" title="Homepage">
-                                        <Image src={NusaIcon} alt="NusaGo Logo"  />
+                                        <Image src={NusaIcon} alt="NusaGo Logo" />
                                     </Link>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-maximize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
+                                        <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
                                     </button>
                                 </div>
                             )}
@@ -84,7 +87,7 @@ export default function NavbarAdmin() {
                                         <ToggleSwitch />
                                     </div>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
-                                        <i className="fas fa-minimize text-lg text-zinc-100 z-100 p-2 rounded-lg"></i>
+                                        <FontAwesomeIcon icon={faMinimize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
                                     </button>
                                 </div>
                             )}
@@ -100,30 +103,30 @@ export default function NavbarAdmin() {
                                             className=" w-10 h-10"
                                         />
                                     ) : (
-                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                        <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
                                     )}
                                     <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
                                 </Link>
                             </li>
                             <Link href={'/dashUser'} title="List User" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>User</span>
                             </Link>
-                            <Link href={'/dashPromo'} title="List Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-tags text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
-                            </Link>
-                            <Link href={'/dashActivity'} title="List Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
+                            <Link href={'/dashBanner'} title="List Banner" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <FontAwesomeIcon icon={faImage} className="text-2xl text-zinc-100" />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Banner</span>
                             </Link>
                             <Link href={'/dashCategory'} title="List Category" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                <i className="fas fa-list text-2xl text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faList} className="text-2xl text-zinc-100" />
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Category</span>
                             </Link>
-                            <Link href={'/dashBanner'} title="List Banner" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <i className="far fa-image text-2xl text-zinc-100"></i>
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Banner</span>
+                            <Link href={'/dashActivity'} title="List Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                                <FontAwesomeIcon icon={faPlaneDeparture} className="text-2xl text-zinc-100" />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
+                            </Link>
+                            <Link href={'/dashPromo'} title="List Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                <FontAwesomeIcon icon={faTags} className="text-2xl text-zinc-100" />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
                             </Link>
                         </ul>
                     </div>
@@ -131,7 +134,7 @@ export default function NavbarAdmin() {
                         <ul className="mb-2 space-y-2 font-hind">
                             <li title="Logout" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                 <button onClick={handleLogout} className="flex items-center w-full">
-                                    <i className="fas fa-door-open text-2xl text-zinc-100"></i>
+                                    <FontAwesomeIcon icon={faDoorOpen} className="text-2xl text-zinc-100" />
                                     <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
                                 </button>
                             </li>
@@ -154,7 +157,7 @@ export default function NavbarAdmin() {
                                     onClick={handleDashboardToggle}
                                     className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}
                                 >
-                                    Dashboard <i className="fas fa-caret-down ml-2"></i>
+                                    Dashboard <FontAwesomeIcon icon={faCaretDown} className="text-primary" />
                                 </button>
                                 {isDashboardOpen && (
                                     <ul className={`${darkMode ? 'bg-dark1' : 'bg-zinc-100'} absolute left-0 mt-2 w-40 shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex`}>
@@ -162,16 +165,16 @@ export default function NavbarAdmin() {
                                             <Link href="/dashUser" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>User</Link>
                                         </li>
                                         <li>
-                                            <Link href="/dashPromo" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Promo</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/dashActivity" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Activity</Link>
+                                            <Link href="/dashBanner" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Banner</Link>
                                         </li>
                                         <li>
                                             <Link href="/dashCategory" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Category</Link>
                                         </li>
                                         <li>
-                                            <Link href="/dashBanner" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Banner</Link>
+                                            <Link href="/dashActivity" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Activity</Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/dashPromo" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>Promo</Link>
                                         </li>
                                     </ul>
                                 )}
