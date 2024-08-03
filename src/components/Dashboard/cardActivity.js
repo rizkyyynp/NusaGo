@@ -6,6 +6,9 @@ import useDeleteData from '@/hooks/useDeleteData';
 import Swal from 'sweetalert2';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { faStar, faPencil, faTrash, faMapMarkerAlt, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 export default function CardActivity({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -327,14 +330,14 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                     <div className="absolute top-2 flex items-center justify-between w-full px-2">
                                         <div className="flex space-x-2">
                                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
-                                                <i class="fas fa-pencil text-xl text-zinc-100"></i>
+                                            <FontAwesomeIcon icon={faPencil} className="text-xl text-zinc-100" />
                                             </button>
                                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                                <i class="fas fa-trash text-xl text-zinc-100"></i>
+                                            <FontAwesomeIcon icon={faTrash} className="text-xl text-zinc-100" />
                                             </button>
                                         </div>
                                         <div className="flex items-center space-x-1 bg-white rounded-full p-1">
-                                            <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
+                                            <span className="text-yellow-500 text-xs"><FontAwesomeIcon icon={faStar} /></span>
                                             <span className="text-base font-semibold text-primary font-hind">{item.rating}</span>
                                         </div>
                                     </div>
@@ -342,8 +345,8 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                 <div className="p-1 flex justify-between items-end">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.city}</p>
-                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
+                                        <p className="text-primary font-nunito"><FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-1" />{item.city}</p>
+                                        <p className="text-primary font-nunito"><FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-1" />{item.province}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
@@ -371,7 +374,7 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                 className="text-zinc-100 bg-primary py-2 px-3 rounded-full focus:outline-none"
                                 onClick={handleCloseModal}
                             >
-                                <i className="fas fa-xmark"></i>
+                                <FontAwesomeIcon icon={faXmark}/>
                             </button>
                         </div>
                         <form onSubmit={handleSubmit}>

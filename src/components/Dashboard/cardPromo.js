@@ -5,6 +5,9 @@ import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData';
 import imageDefault from '../../assets/images/image.png';
+import { faStar, faPencil, faTrash, faMapMarkerAlt, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 export default function CardPromo({ promos, refetch }) {
     const [selectedPromo, setSelectedPromo] = useState(null);
@@ -202,10 +205,10 @@ export default function CardPromo({ promos, refetch }) {
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => setSelectedPromo(item)} >
-                            <i class="fas fa-pencil text-xl text-zinc-100"></i>
+                            <FontAwesomeIcon icon={faPencil} className="text-xl text-zinc-100" />
                             </button>
                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                            <i class="fas fa-trash text-xl text-zinc-100"></i>
+                            <FontAwesomeIcon icon={faTrash} className="text-xl text-zinc-100" />
                             </button>
                         </div>
                     </div>
@@ -214,11 +217,11 @@ export default function CardPromo({ promos, refetch }) {
                         <h3 className="text-lg font-semibold text-zinc-100">{item.title}</h3>
                         <div className="mt-2">
                             <div className="flex items-center space-x-2">
-                            <i class="far fa-calendar text-lg text-zinc-100"></i>
+                            <FontAwesomeIcon icon={faCalendar} className="text-lg text-zinc-100" />
                                 <span className='text-zinc-100'>Created at: {formatDate(item.createdAt)}</span>
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
-                            <i class="far fa-calendar text-lg text-zinc-100"></i>
+                            <FontAwesomeIcon icon={faCalendar} className="text-lg text-zinc-100" />
                                 <span className='text-zinc-100'>Updated at: {formatDate(item.updatedAt)}</span>
                             </div>
                         </div>

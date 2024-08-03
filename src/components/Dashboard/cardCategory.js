@@ -4,6 +4,9 @@ import useUpdateData from '@/hooks/useUpdateData';
 import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData'; // Import useDeleteData hook
+import { faUser, faPencil, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 export default function CardCategory({ category, refetch }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -192,27 +195,27 @@ export default function CardCategory({ category, refetch }) {
                                 className="w-full aspect-video"
                             />
                         ) : (
-                            <i className="fas fa-user text-2xl text-gray-300"></i>
+                            <FontAwesomeIcon icon={faUser} className="text-2xl text-gray-300" />
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => setSelectedCategory(item)}>
-                                <i class="fas fa-pencil text-xl text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faPencil} className="text-xl text-zinc-100" />
                             </button>
                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                <i class="fas fa-trash text-xl text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faTrash} className="text-xl text-zinc-100" />
                             </button>
                         </div>
                     </div>
 
                     <div className="bg-primary text-primary-foreground p-4">
-                    <h3 className="text-lg font-semibold text-zinc-100">{item.name}</h3>
+                        <h3 className="text-lg font-semibold text-zinc-100">{item.name}</h3>
                         <div className="mt-2">
                             <div className="flex items-center space-x-2">
-                                <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faCalendar} className="text-xl text-zinc-100" />
                                 <span className='text-zinc-100'>Created at: {formatDate(item.createdAt)}</span>
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
-                                <i class="far fa-calendar text-lg text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faCalendar} className="text-xl text-zinc-100" />
                                 <span className='text-zinc-100'>Updated at: {formatDate(item.updatedAt)}</span>
                             </div>
                         </div>
@@ -230,7 +233,7 @@ export default function CardCategory({ category, refetch }) {
                                 <h2 className="text-2xl font-bold text-center text-primary font-podkova">Edit Category</h2>
                             </div>
                             <button type="button" className="text-zinc-500 hover:text-zinc-800" onClick={() => setSelectedCategory(null)}>
-                                <i className="fas fa-times"></i>
+                                <FontAwesomeIcon icon={faTimes} />
                             </button>
                         </div>
                         <div className="space-y-1">
