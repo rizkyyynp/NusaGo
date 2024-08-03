@@ -13,7 +13,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
     const [showContent, setShowContent] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [loading, setLoading] = useState(false);
-    const itemsPerPage = 3;
+    const itemsPerPage = 4;
 
     useEffect(() => {
         async function loadCategories() {
