@@ -6,6 +6,7 @@ const nextConfig = {
       'travel-journal-api-bootcamp.do.dibimbing.id',
       'images.unsplash.com',
       'localhost',
+      'a.cdn-hotels.com',
     ],
   },
 };

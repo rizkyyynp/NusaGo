@@ -54,7 +54,7 @@ export default function CardPromo({ initialItems }) {
     };
 
     return (
-        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8`}>
+        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
                 <FontAwesomeIcon icon={faTags} className={`text-lg ${darkMode ? 'text-secondary' : 'text-zinc-100 mr-2'}`} />
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
@@ -75,12 +75,12 @@ export default function CardPromo({ initialItems }) {
                                             height={192}
                                             objectFit='cover'
                                             quality={100}
-                                            
+
                                         />
                                     </div>
                                     <div className="py-4 px-1 flex justify-between items-center">
                                         <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
-                                            <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
+                                        <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                                     </div>
                                 </div>
                             </Link>

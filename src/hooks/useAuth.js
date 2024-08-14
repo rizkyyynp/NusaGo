@@ -15,6 +15,7 @@ export default function useAuth() {
             );
             if (response.status === 200) {
                 Cookies.set('token', response.data.token);
+                return response.data;
             }
             return response;
         } catch (error) {

@@ -9,8 +9,8 @@ import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-sv
 export default function Footer() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     return (
-        <footer className={`${darkMode ? 'bg-dark1' : "bg-zinc-100"} pl-16 pr-2 lg:pl-0 lg:pr-0 py-2 shadow-BS4`}>
-            <div className="mx-auto w-full px-5">
+        <footer className={`${darkMode ? 'bg-dark1' : "bg-zinc-100"} pl-16 pr-2 lg:px-20 py-4 shadow-BS4`}>
+            <div className="mx-auto w-full">
                 <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
                     <div className="flex items-center space-x-2">
                         <Image src={NusaIcon} alt="NusaGo logo" width={40} height={40} />

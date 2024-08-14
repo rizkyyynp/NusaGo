@@ -1,14 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './app/**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
+      animation: {
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+      },
       screens: {
-        'max-md': { 'max': '768px' },
+        'max-md': { 'max': '767px' },
         sm: { 'min': '480px' },
         md: { 'min': '768px', },
         lg: { 'min': '1024px' },
@@ -34,6 +53,7 @@ module.exports = {
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(90deg, rgba(13,71,161,1) 0%, rgba(66,165,245,1) 99%)',
+        'secondary-gradient': 'linear-gradient(86deg, rgba(13,71,161,1) 60%, rgba(66,165,245,1) 85%)',
       },
       width: {
         '7.5': '30px',
@@ -81,5 +101,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [require("tailwindcss-animate")],
+}

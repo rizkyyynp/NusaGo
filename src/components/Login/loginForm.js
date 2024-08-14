@@ -12,38 +12,59 @@ export default function LoginForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const body = { email, password };
-        const response = await authenticate('login', body);
-
-        if (response.status === 200) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                customClass: {
-                timerProgressBar: 'custom-timer-progress-bar',
-                title: 'title-success',
-            },
-                
-            });
-            router.push('/');
-        } else {
+        try {
+            const response = await authenticate('login', body);
+    
+            if (response.code === '200') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar',
+                        title: 'title-success',
+                    },
+                });
+                const user = response.data;
+                if (user.role === 'admin') {
+                    router.push('/dashUser');
+                } else {
+                    router.push('/');
+                }
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: response.message || 'Invalid email or password',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    customClass: {
+                        timerProgressBar: 'custom-timer-progress-bar-failed',
+                        title: 'title-failed',
+                    },
+                });
+            }
+        } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Login Failed',
-                text: response.response.data.message || 'Invalid email or password',
+                title: 'Login Error',
+                text: 'An unexpected error occurred',
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
                 customClass: {
-                timerProgressBar: 'custom-timer-progress-bar-failed',
-                title: 'title-failed',
-            },
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
             });
         }
     };

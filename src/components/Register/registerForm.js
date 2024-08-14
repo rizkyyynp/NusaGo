@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import useImageUpload from '@/hooks/useImageUpload';
 import useRegister from '@/hooks/useRegist';
+import Image from 'next/image';
 
 export default function RegisterForm() {
     const [profilePictureUrl, setProfilePictureUrl] = useState(null);
@@ -131,6 +132,23 @@ export default function RegisterForm() {
             });
             return;
         }
+        if(userData.password.length < 6) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Register Failed',
+                text: 'Password must be at least 6 characters',
+                timer: 1500,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
+                timerProgressBar: true,
+                customClass: {
+                    timerProgressBar: 'custom-timer-progress-bar-failed',
+                    title: 'title-failed',
+                },
+            });
+            return;
+        }
         if (!profilePictureUrl) {
             Swal.fire({
                 icon: 'error',
@@ -152,29 +170,26 @@ export default function RegisterForm() {
     }
 
     return (
-        <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="name" name="name" placeholder="Your Name" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Name' />
-                <input type="email" id="email" name="email" placeholder="Your Email" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Email' />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="password" placeholder="Password" id="password" name="password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Your Password' />
-                <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Repeat Password' />
-            </div>
-            <input type="text" placeholder="Phone Number" id="phone" name="phoneNumber" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Phone Number' />
-            <select id="select-role" name="role" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder-text-primary font-nunito" aria-label='Select Role'>
+        <form className="space-y-2 h-full flex flex-col justify-center py-2 lg:px-4" onSubmit={handleSubmit}>
+                <input type="text" id="name" name="name" placeholder="Your Name" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Your Name' />
+                <input type="email" id="email" name="email" placeholder="Your Email" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Your Email' />
+                <input type="password" placeholder="Password" id="password" name="password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Your Password' />
+                <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Repeat Password' />
+            <input type="text" placeholder="Phone Number" id="phone" name="phoneNumber" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Phone Number' />
+            <select id="select-role" name="role" className="w-full p-2 border rounded-md focus:outline-none focus:ring-primary focus:border-primary text-primary placeholder:text-primary font-nunito" aria-label='Select Role'>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
             </select>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="w-full p-2 border rounded-md font-nunito" placeholder="Upload Profile Picture" aria-label='Upload Profile Picture' />
+            <div className="flex flex-row justify-start items-center">
+                <input type="file" name="profilePictureUrl" id="profilePictureUrl" onChange={handleUpload} className="w-1/2 p-2 border rounded-md font-nunito mr-4" placeholder="Upload Profile Picture" aria-label='Upload Profile Picture' />
                 {profilePictureUrl && (
-                    <div>
-                        <img
+                    <div className="flex justify-center items-center">
+                        <Image
                             src={profilePictureUrl}
                             alt="profilePictureUrl"
                             width={100}
                             height={100}
+                            className="rounded-md p-1"
                         />
                     </div>
                 )}

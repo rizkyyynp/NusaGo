@@ -10,13 +10,21 @@ const axiosInstance = axios.create({
     },
 });
 
+export async function fetchBanners() {
+    try {
+        const res = await axiosInstance.get('/banners');
+        return res.data.data;
+    } catch (error) {
+        console.error('Error fetching banner:', error);
+        return [];
+    }
+}
+
 export async function fetchPromos() {
     try {
         const res = await axiosInstance.get('/promos');
-        console.log('Fetch Promos Response:', res.data); // Tambahkan logging respons
         return res.data.data;
     } catch (error) {
-        console.error('Error fetching promos:', error);
         return [];
     }
 }
@@ -25,10 +33,8 @@ export async function fetchPromos() {
 export async function fetchCategories() {
     try {
         const res = await axiosInstance.get('/categories');
-        console.log('Fetch Categories Response:', res.data); // Logging respons
         return res.data.data;
     } catch (error) {
-        console.error('Error fetching categories:', error);
         return [];
     }
 }
@@ -37,7 +43,6 @@ export async function fetchCategories() {
 export async function fetchActivities() {
     try {
         const res = await axiosInstance.get('/activities');
-        console.log('Fetch Activities Response:', res.data); // Logging respons
         return res.data.data;
     } catch (error) {
         if (error.response) {

@@ -26,7 +26,7 @@ export default function CardActivity({ initialItems }) {
     };
 
     return (
-        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-fifth'} py-8 pl-16 pr-2 lg:px-8`}>
+        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
                 <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`} />
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>

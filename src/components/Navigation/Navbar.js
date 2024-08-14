@@ -17,7 +17,6 @@ export default function Navbar() {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [profile, setProfile] = useState({ name: "", profilePictureUrl: "" });
     const [isAdmin, setIsAdmin] = useState(false);
     const router = useRouter();
@@ -53,17 +52,17 @@ export default function Navbar() {
     };
 
     return (
-        <div>
+        <>
             {/* SideBar */}
-            <div className="lg:hidden flex z-100 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out`}>
+            <div className="lg:hidden flex z-50 fixed">
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} h-screen flex justify-between flex-col px-2 transition-all duration-300 ease-in-out py-4`}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
                                     <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Expand Sidebar">
-                                        <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
+                                        <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 p-2" />
                                     </button>
                                 </div>
                             )}
@@ -77,7 +76,7 @@ export default function Navbar() {
                                         <ToggleSwitch />
                                     </div>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Minimize Sidebar">
-                                        <FontAwesomeIcon icon={faMinimize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
+                                        <FontAwesomeIcon icon={faMinimize} className="text-lg text-zinc-100 p-2" />
                                     </button>
                                 </div>
                             )}
@@ -130,7 +129,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                     <div>
-                        <ul className="mb-2 space-y-2 font-hind">
+                        <ul className="space-y-2 font-hind">
                             {isLoggedIn ? (
                                 <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary" title="Logout">
                                     <button onClick={handleLogout} className="flex items-center w-full" aria-label=" Button Logout">
@@ -154,13 +153,13 @@ export default function Navbar() {
 
             {/* Navbar Desktop */}
             <div className="hidden lg:flex">
-                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-around h-15 fixed w-full shadow-md z-100 transition-all duration-300`}>
-                    <div className="flex items-center gap-1 cursor-pointer">
+                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-between h-16 fixed w-full shadow-md z-50 px-20`}>
+                    <Link href="/" className="flex items-center gap-1 cursor-pointer">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
-                    </div>
+                    </Link>
                     <div>
-                        <nav className="flex gap-5 font-nunito">
+                        <nav className="flex space-x-4 font-nunito">
                             <Link href="/" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Home</Link>
                             <Link href="/activity" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Activity</Link>
                             <Link href="/promo" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Promo</Link>
@@ -199,7 +198,7 @@ export default function Navbar() {
                                         />
                                     )}
                                     <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
-                                    <FontAwesomeIcon icon={faCarretDown} className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-2`}/>
+                                    <FontAwesomeIcon icon={faCarretDown} className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-2`} />
                                 </button>
                                 {isProfileOpen && (
                                     <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`} id="profile-menu">
@@ -226,7 +225,6 @@ export default function Navbar() {
                     </div>
                 </header>
             </div>
-        </div>
-
+        </>
     );
 }

@@ -1,79 +1,46 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import useGetData from '@/hooks/useGetData';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const Hero = () => {
-    const [slides, setSlides] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const { getData } = useGetData();
-    const carouselRef = useRef(null);
-    const [currentSlide, setCurrentSlide] = useState(0);
+export default function Hero({ initialItems }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
+    const [items, setItems] = useState(initialItems);
 
-    useEffect(() => {
-        const fetchSlides = async () => {
-            try {
-                const data = await getData('banners');
-                setSlides(data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchSlides();
-    }, [getData]);
-
-    useEffect(() => {
-        if (slides.length > 0) {
-            const intervalId = setInterval(() => {
-                setCurrentSlide((prev) => (prev + 1) % slides.length);
-            }, 3000);
-
-            return () => clearInterval(intervalId);
-        }
-    }, [slides.length]);
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 5000,
+        autoplaySpeed: 3000,
+        cssEase: "linear",
+    };
 
     return (
         <div className="relative h-2/4 lg:h-screen bg-black">
-            {loading && <p className="text-white text-center">Loading...</p>}
-            {error && <p className="text-white text-center">Error loading data</p>}
-            {!loading && !error && slides.length > 0 && (
-                <div className="carousel-wrapper mx-auto max-w-full h-2/4 lg:h-screen">
-                    <Carousel
-                        ref={carouselRef}
-                        showArrows={false}
-                        selectedItem={currentSlide}
-                        infiniteLoop={true}
-                        showThumbs={false}
-                        showStatus={false}
-                        dynamicHeight={true}
-                        stopOnHover={false}
-                        onChange={(index) => setCurrentSlide(index)}
-                    >
-                        {slides.map((slide) => (
-                            <div key={slide.id} className="relative h-3/4 lg:h-screen ">
-                                <Image src={slide.imageUrl} alt="Slide Image" layout="fill" objectFit="cover" />
-                                <div className={`absolute inset-0 ${darkMode ? 'bg-dark1 bg-opacity-60' : 'bg-primary'} bg-opacity-40 flex items-center justify-center`}>
-                                    <div className="text-center text-white  pl-16 pr-2 lg:px-16">
-                                        <h1 className="text-lg md:text-5xl font-bold mb-4 font-hind">Your Guide to Indonesian Treasures</h1>
-                                        <Link href={'/activity'}>
-                                            <button className="bg-primary text-zinc-100 hover:bg-primary/80 px-2 py-1 lg:px-6 lg:py-3 rounded-lg border-2 border-white font-nunito animate-bounce">Discover More</button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </Carousel>
+            <div className="absolute inset-0">
+                <Slider {...settings}>
+                    {items.map((item, index) => (
+                        <div key={index} className="relative h-2/4 lg:h-screen">
+                            <Image src={item.imageUrl} alt="Slide Image" layout="fill" objectFit="cover" />
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+            <div className={`absolute inset-0 flex items-center justify-center ${darkMode ? 'bg-dark1 bg-opacity-60' : 'bg-primary'} bg-opacity-40`}>
+                <div className="text-center text-white px-4 lg:px-16">
+                    <h1 className="text-lg md:text-5xl font-bold mb-4 font-hind">Your Guide to Indonesian Treasures</h1>
+                    <Link href={'/activity'}>
+                        <button className="bg-primary text-zinc-100 hover:bg-primary/80 px-2 py-1 lg:px-6 lg:py-3 rounded-lg border-2 border-white font-nunito animate-bounce">Discover More</button>
+                    </Link>
                 </div>
-            )}
+            </div>
         </div>
     );
-};
-
-export default Hero;
+}
