@@ -11,7 +11,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { disableDarkMode } from "@/redux/slices/darkModeSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMaximize, faMinimize, faUser, faHome, faTags, faPlaneDeparture, faFolderOpen, faDoorOpen, faLock, faCarretDown } from '@fortawesome/free-solid-svg-icons';
+import { faMaximize, faMinimize, faUser, faHome, faTags, faPlaneDeparture, faFolderOpen, faDoorOpen, faLock, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -198,7 +198,7 @@ export default function Navbar() {
                                         />
                                     )}
                                     <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
-                                    <FontAwesomeIcon icon={faCarretDown} className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-2`} />
+                                    <FontAwesomeIcon icon={faCaretDown} className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-2`} />
                                 </button>
                                 {isProfileOpen && (
                                     <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`} id="profile-menu">
