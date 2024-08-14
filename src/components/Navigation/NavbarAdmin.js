@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import defaultProfile from "../../assets/images/profile.png";
 import { disableDarkMode } from "@/redux/slices/darkModeSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMaximize, faMinimize, faUser, faHome, faTags, faPlaneDeparture, faList, faDoorOpen, faLock, faCaretDown  } from '@fortawesome/free-solid-svg-icons';
+import { faMaximize, faMinimize, faUser, faHome, faTags, faPlaneDeparture, faList, faDoorOpen, faLock, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 
 export default function NavbarAdmin() {
@@ -56,20 +56,20 @@ export default function NavbarAdmin() {
     };
 
     return (
-        <div>
+        <>
             {/* SideBar */}
-            <div className="lg:hidden flex z-100 fixed ">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out `}>
+            <div className="lg:hidden flex z-50 fixed ">
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'}  h-screen flex justify-between flex-col p-2 transition-all duration-300 ease-in-out py-4`}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {/* Bagian untuk tampilan minimize */}
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
-                                    <Link href="/" className="w-7.5 h-7.5" title="Homepage">
-                                        <Image src={NusaIcon} alt="NusaGo Logo" />
+                                    <Link href="/" className="w-8 h-8">
+                                        <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
                                     </Link>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="-,l-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
-                                        <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
+                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Expand Sidebar">
+                                        <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 p-2" />
                                     </button>
                                 </div>
                             )}
@@ -87,7 +87,7 @@ export default function NavbarAdmin() {
                                         <ToggleSwitch />
                                     </div>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center">
-                                        <FontAwesomeIcon icon={faMinimize} className="text-lg text-zinc-100 z-100 p-2 rounded-lg" />
+                                        <FontAwesomeIcon icon={faMinimize} className="text-lg text-zinc-100 p-2" />
                                     </button>
                                 </div>
                             )}
@@ -97,37 +97,49 @@ export default function NavbarAdmin() {
                             <li>
                                 <Link href={'/profile'} title="Profile" className="flex items-center  bg-secondary rounded hover:bg-primary">
                                     {profile.profilePictureUrl ? (
-                                        <img
-                                            src={profile.profilePictureUrl || "/default-profile.png"}
-                                            alt="Profile Picture"
-                                            className=" w-10 h-10"
-                                        />
+                                        <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
                                     ) : (
                                         <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
                                     )}
                                     <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
                                 </Link>
                             </li>
-                            <Link href={'/dashUser'} title="List User" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>User</span>
-                            </Link>
-                            <Link href={'/dashBanner'} title="List Banner" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <FontAwesomeIcon icon={faImage} className="text-2xl text-zinc-100" />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Banner</span>
-                            </Link>
-                            <Link href={'/dashCategory'} title="List Category" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                <FontAwesomeIcon icon={faList} className="text-2xl text-zinc-100" />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Category</span>
-                            </Link>
-                            <Link href={'/dashActivity'} title="List Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                <FontAwesomeIcon icon={faPlaneDeparture} className="text-2xl text-zinc-100" />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
-                            </Link>
-                            <Link href={'/dashPromo'} title="List Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <FontAwesomeIcon icon={faTags} className="text-2xl text-zinc-100" />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
-                            </Link>
+                            <li>
+                                <Link href="/" title="Home" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faHome} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/dashUser'} title="List User" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>User</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/dashBanner'} title="List Banner" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faImage} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Banner</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/dashCategory'} title="List Category" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faList} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Category</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/dashActivity'} title="List Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faPlaneDeparture} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/dashPromo'} title="List Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                    <FontAwesomeIcon icon={faTags} className="text-2xl text-zinc-100" />
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div>
@@ -142,15 +154,16 @@ export default function NavbarAdmin() {
                     </div>
                 </div>
             </div>
+
             {/* Navbar Desktop */}
             <div className="hidden lg:flex">
-                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-around h-15 fixed w-full shadow-md z-100 transition-all duration-300`}>
-                    <div className="flex items-center gap-1">
+                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-between h-16 fixed w-full shadow-md z-50 px-20`}>
+                    <Link href="/" className="flex items-center gap-1 cursor-pointer">
                         <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
                         <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
-                    </div>
+                    </Link>
                     <div>
-                        <nav className="flex gap-5 font-nunito">
+                        <nav className="flex space-x-4 font-nunito">
                             <Link href="/" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Home</Link>
                             <div className="relative">
                                 <button
@@ -160,7 +173,7 @@ export default function NavbarAdmin() {
                                     Dashboard <FontAwesomeIcon icon={faCaretDown} className="text-primary" />
                                 </button>
                                 {isDashboardOpen && (
-                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-zinc-100'} absolute left-0 mt-2 w-40 shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex`}>
+                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute left-0 mt-2 w-40 shadow-lg rounded-md overflow-hidden z-10 max-md:-left-32 max-md:w-96 max-md:flex`}>
                                         <li>
                                             <Link href="/dashUser" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>User</Link>
                                         </li>
@@ -184,23 +197,28 @@ export default function NavbarAdmin() {
 
                     <div className="flex items-center">
                         <ToggleSwitch />
-                        {isLoggedIn ? (
                             <div className="relative font-nunito">
                                 <button
                                     onClick={handleProfileToggle}
-                                    className="relative flex items-center text-primary font-bold"
+                                    className="relative flex items-center"
+                                    aria-controls="profile-menu"
                                 >
                                     {profile.profilePictureUrl ? (
-                                        <img
-                                            src={profile.profilePictureUrl || "/default-profile.png"}
+                                        <Image
+                                            src={profile.profilePictureUrl}
                                             alt="Profile Picture"
-                                            className="rounded-full w-8 h-8"
+                                            className="rounded-full"
+                                            width={40}
+                                            height={40}
                                         />
                                     ) : (
-                                        <img src={defaultProfile} alt="Profile Picture" className="rounded-full w-8 h-8" />
+                                        <Image src={defaultProfile} alt="Profile Picture" className="rounded-full"
+                                            width={40}
+                                            height={40}
+                                        />
                                     )}
                                     <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
-                                    <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-caret-down ml-2`}></i>
+                                    <FontAwesomeIcon icon={faCaretDown} className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-2`} />
                                 </button>
                                 {isProfileOpen && (
                                     <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`}>
@@ -213,6 +231,7 @@ export default function NavbarAdmin() {
                                             <button
                                                 onClick={handleLogout}
                                                 className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} w-full text-left block px-4 py-2 text-sm  font-bold`}
+                                                aria-label="Button Logout"
                                             >
                                                 Logout
                                             </button>
@@ -220,13 +239,10 @@ export default function NavbarAdmin() {
                                     </ul>
                                 )}
                             </div>
-                        ) : (
-                            <Link href="/login" className="text-zinc-100 font-bold bg-primary-gradient px-6 py-2 rounded-full">Login</Link>
-                        )}
                     </div>
                 </header>
             </div>
-        </div>
+        </>
 
     );
 }

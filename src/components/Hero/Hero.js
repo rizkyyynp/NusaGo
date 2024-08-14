@@ -23,12 +23,12 @@ export default function Hero({ initialItems }) {
     };
 
     return (
-        <div className="relative h-2/4 lg:h-screen bg-black">
+        <div className="relative h-[50vh] lg:pt-[180px] lg:min-h-[560px] bg-black pt-16">
             <div className="absolute inset-0">
                 <Slider {...settings}>
                     {items.map((item, index) => (
-                        <div key={index} className="relative h-2/4 lg:h-screen">
-                            <Image src={item.imageUrl} alt="Slide Image" layout="fill" objectFit="cover" />
+                        <div key={index} className="relative h-[50vh] lg:min-h-[560px]">
+                            <Image src={item.imageUrl} alt="Slide Image" layout="fill" objectFit="cover" quality={100} />
                         </div>
                     ))}
                 </Slider>

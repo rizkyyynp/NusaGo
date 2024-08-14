@@ -18,8 +18,6 @@ export default function CardPromo({ initialItems }) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
-
-
     const settings = {
         dots: true,
         arrows: false,
@@ -67,14 +65,10 @@ export default function CardPromo({ initialItems }) {
                             <Link href={`/promo/${item.id}`} key={index} className='px-2'>
                                 <div className={`bg-white rounded-lg overflow-hidden ${darkMode ? 'shadow-BS5' : 'shadow-lg'}`}>
                                     <div className="overflow-hidden h-48">
-                                        <Image
+                                        <img
                                             src={item.imageUrl}
                                             alt={item.title}
-                                            className="transition-transform duration-300 hover:scale-110"
-                                            width={500}
-                                            height={192}
-                                            objectFit='cover'
-                                            quality={100}
+                                            className="w-full h-52 transition-transform duration-300 hover:scale-110 object-cover object-center"
 
                                         />
                                     </div>

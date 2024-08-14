@@ -60,7 +60,9 @@ export default function Navbar() {
                         <div className="flex items-center justify-between p-2">
                             {!isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
-                                    <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
+                                    <Link href="/" className="w-8 h-8">
+                                        <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
+                                    </Link>
                                     <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Expand Sidebar">
                                         <FontAwesomeIcon icon={faMaximize} className="text-lg text-zinc-100 p-2" />
                                     </button>
@@ -68,10 +70,12 @@ export default function Navbar() {
                             )}
                             {isSidebarOpen && (
                                 <div className="text-lg font-bold flex items-center">
-                                    <Image src={NusaIcon} alt="NusaGo Logo" width={24} height={24} />
-                                    <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
-                                        NusaGo
-                                    </span>
+                                    <Link href="/" className="flex items-center mr-5" title="Homepage">
+                                        <Image src={NusaIcon} alt="NusaGo Logo" width={24} height={24} />
+                                        <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
+                                            NusaGo
+                                        </span>
+                                    </Link>
                                     <div className="ml-8">
                                         <ToggleSwitch />
                                     </div>

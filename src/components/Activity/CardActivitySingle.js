@@ -13,7 +13,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
     const [showContent, setShowContent] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [loading, setLoading] = useState(false);
-    const itemsPerPage = 4;
+    const itemsPerPage = 3;
 
     useEffect(() => {
         async function loadCategories() {
@@ -34,12 +34,10 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
             } else {
                 data = await fetchActivitiesByCategory(selectedCategory);
             }
-            console.log('Fetched Activities:', data); // Logging data fetched
             setItems(data);
             setPageCount(Math.ceil(data.length / itemsPerPage));
             setLoading(false);
 
-            // Delay showing content to reduce flicker
             setTimeout(() => setShowContent(true), 5000);
         }
 
@@ -57,7 +55,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
 
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
-        setCurrentPage(1); // Reset page when category changes
+        setCurrentPage(1);
     };
 
     const isValidImageUrl = (url) => {
@@ -65,7 +63,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
     };
 
     return (
-        <div>
+        <>
             <div className="flex justify-center lg:justify-start mb-4">
                 <select
                     className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 text-zinc-100`}
@@ -85,16 +83,16 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {paginateItems(items).length > 0 ? (
                         paginateItems(items).map((item, index) => (
                             <Link href={`/activity/${item.id}`} key={index}>
                                 <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
                                     <div className="relative">
-                                        <div className='overflow-hidden' style={{  width: '100%', height: '300px' }}>
+                                        <div className=' relative overflow-hidden' style={{  width: '100%', height: '300px' }}>
                                             {isValidImageUrl(item.imageUrls[0]) ? (
                                                 <Image
-                                                    src={item.imageUrls[0]} // Menggunakan URL gambar pertama dari array
+                                                    src={item.imageUrls[0]}
                                                     alt={item.title}
                                                     layout='fill'
                                                     className="transition-transform duration-300 hover:scale-110"
@@ -137,6 +135,6 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                     )}
                 </div>
             )}
-        </div>
+        </>
     );
 }

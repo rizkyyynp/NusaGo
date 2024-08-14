@@ -1,4 +1,4 @@
-import { fetchPromoById } from '@/lib/api';
+import { fetchPromoById, fetchBanners } from '@/lib/api';
 import Layout from '@/layouts/Layout';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import Hero from '@/components/Hero/Hero';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-export default function PromoDetail({ promo }) {
+export default function PromoDetail({ promo, initialBanners }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     const router = useRouter();
     const formatPrice = (price) => {
@@ -34,7 +34,7 @@ export default function PromoDetail({ promo }) {
 
     return (
         <Layout>
-            <Hero />
+            <Hero initialItems={initialBanners} />
             <section className={`${darkMode ? 'bg-dark1' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
                 <div>
                     <div className={`${darkMode ? 'bg-secondary' : 'bg-primary'} rounded-lg max-w-7xl mx-auto p-4`}>
@@ -65,11 +65,12 @@ export default function PromoDetail({ promo }) {
 
 export async function getServerSideProps({ params }) {
     const { id } = params;
-    const promo = await fetchPromoById(id);
+    const [initialBanners, promo] = await Promise.all([fetchBanners(),fetchPromoById(id) ]);
 
     return {
         props: {
             promo,
+            initialBanners,
         },
     };
 }

@@ -3,7 +3,8 @@ import Link from "next/link";
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneDeparture, faStar  } from '@fortawesome/free-solid-svg-icons';
+import { faPlaneDeparture, faStar } from '@fortawesome/free-solid-svg-icons';
+import Image from "next/image";
 
 export default function CardActivity({ initialItems }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -25,6 +26,10 @@ export default function CardActivity({ initialItems }) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
+    const isValidImageUrl = (url) => {
+        return typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'));
+    };
+
     return (
         <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
@@ -38,11 +43,23 @@ export default function CardActivity({ initialItems }) {
                         <Link href={`/activity/${item.id}`} key={index}>
                             <div className="bg-zinc-100 rounded-lg overflow-hidden  cursor-pointer shadow-lg">
                                 <div className="relative">
-                                    <img
-                                        src={item.imageUrls}
-                                        alt={item.title}
-                                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                    />
+                                    <div className='overflow-hidden' style={{ width: '100%', height: '200px' }}>
+                                        {isValidImageUrl(item.imageUrls[0]) ? (
+                                            <Image
+                                                src={item.imageUrls[0]}
+                                                alt={item.title}
+                                                layout='fill'
+                                                className="transition-transform duration-300 hover:scale-110 object-cover object-center"
+                                                objectFit='cover'
+                                                quality={100}
+                                                priority={true}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
+                                                <span className="text-gray-500">Image not available</span>
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                         <span className="text-yellow-500 text-xs"><FontAwesomeIcon icon={faStar} /></span>
                                         <span className="text-base font-semibold font-hind text-primary">{item.rating}</span>

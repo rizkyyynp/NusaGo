@@ -16,7 +16,7 @@ export default function CardCategories({ initialItems }) {
                 <FontAwesomeIcon icon={faLocationDot} className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-location-dot mr-2 text-lg`} />
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Our Categories</h2>
             </div>
-            <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'}`}>Find your perfect escape</p>
+            <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'} font-semibold`}>Find your perfect escape</p>
             <div className="relative">
                 <Marquee className="py-4">
                     {items.map((item, index) => (

@@ -1,11 +1,14 @@
 import Layout from '@/layouts/Layout';
 import Link from 'next/link';
-import { fetchActivityById } from '@/lib/api';
+import { fetchActivityById, fetchBanners } from '@/lib/api';
 import Hero from '@/components/Hero/Hero';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faLocationDot, faShower, faTags } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
-export default function ActivityDetail({ activity }) {
+export default function ActivityDetail({ activity, initialBanners }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     const formatPrice = (price) => {
         if (typeof price === 'number') {
@@ -17,6 +20,10 @@ export default function ActivityDetail({ activity }) {
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         return new Date(dateString).toLocaleDateString('en-GB', options);
+    };
+
+    const isValidImageUrl = (url) => {
+        return typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'));
     };
 
     if (!activity) {
@@ -31,20 +38,33 @@ export default function ActivityDetail({ activity }) {
     }
     return (
         <Layout>
-        <Hero />
+        <Hero initialItems={initialBanners} />
             <section className={`${darkMode ? 'bg-dark1' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
                 <div>
                     <div className="flex flex-col md:flex-row gap-4 p-4">
                         <div className={`${darkMode ? 'bg-secondary shadow-BS3 ' : 'bg-primary shadow-lg '} rounded-lg  overflow-hidden w-full md:w-1/2`}>
                             <div className="relative">
-                                <img
-                                    src={activity.imageUrls}
-                                    alt={activity.title}
-                                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110 lg:h-72"
-                                    aria-hidden="true"
-                                />
+                                <div className='overflow-hidden' style={{ width: '100%', height: '280px' }}>
+                                        {isValidImageUrl(activity.imageUrls[0]) ? (
+                                            <Image
+                                                src={activity.imageUrls[0]}
+                                                alt={activity.title}
+                                                layout='fill'
+                                                className="transition-transform duration-300 hover:scale-110 object-cover object-center"
+                                                objectFit='cover'
+                                                quality={100}
+                                                priority={true}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
+                                                <span className="text-gray-500">Image not available</span>
+                                            </div>
+                                        )}
+                                    </div>
                                 <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
-                                    <span className="text-yellow-500 text-xs"><i className="fa-solid fa-star"></i></span>
+                                    <span className="text-yellow-500 text-xs">
+                                    <FontAwesomeIcon icon={faStar} />
+                                    </span>
                                     <span className="text-base font-semibold text-primary">{activity.rating}</span>
                                 </div>
                             </div>
@@ -52,16 +72,17 @@ export default function ActivityDetail({ activity }) {
                                 <h2 className="text-2xl font-bold text-fourth mb-4 font-hind">{activity.title}</h2>
                                 <p className="text-fourth mb-4 font-nunito">{activity.description}</p>
                                 <div className='flex items-center mb-4'>
-                                    <i className="fas fa-location-dot text-zinc-100 mr-2 text-lg"></i>
+                                    <FontAwesomeIcon icon={faLocationDot} className='text-zinc-100 mr-2 text-lg' />
                                     <p className="text-zinc-100 font-nunito">{activity.city}, {activity.province}</p>
                                 </div>
                                 <div className='flex items-center mb-4 font-nunito'>
+                                    <FontAwesomeIcon icon={faTags} className='text-zinc-100 mr-2 text-lg' />
                                     <p className="line-through text-fourth font-bold">Rp {formatPrice(activity.price)}</p>
                                     <p className='text-fourth font-bold mx-2'>To</p>
                                     <p className="text-fourth font-bold">Rp {formatPrice(activity.price_discount)}</p>
                                 </div>
                                 <div className='flex items-center'>
-                                    <i className="fas fa-shower text-zinc-100 mr-2 text-lg"></i>
+                                    <FontAwesomeIcon icon={faShower} className='text-zinc-100 mr-2 text-lg' />
                                     <p className="text-zinc-100 font-nunito">{activity.facilities}</p>
                                 </div>
                             </div>
@@ -87,11 +108,12 @@ export default function ActivityDetail({ activity }) {
 
 export async function getServerSideProps({ params }) {
     const { id } = params;
-    const activity = await fetchActivityById(id);
+    const [initialBanners, activity] = await Promise.all([fetchBanners(),fetchActivityById(id) ]);
 
     return {
         props: {
             activity,
+            initialBanners,
         },
     };
 }

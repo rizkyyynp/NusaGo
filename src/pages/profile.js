@@ -8,6 +8,9 @@ import useProfileUpdate from "@/hooks/useProfileUpdate";
 import useImageUpload from "@/hooks/useImageUpload";
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faPen, faPenToSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Profile() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -141,7 +144,7 @@ export default function Profile() {
                 <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">
-                            <i className="far fa-user text-2xl font-bold text-center text-primary mr-2"></i>
+                            <FontAwesomeIcon icon={faUser} className="text-2xl font-bold text-center text-primary mr-2" />
                             <h2 className="text-2xl font-bold text-center text-primary font-podkova">Profile Information</h2>
                         </div>
                         <button
@@ -149,7 +152,7 @@ export default function Profile() {
                             className="text-zinc-100 bg-primary py-2 px-3 rounded-full focus:outline-none"
                             onClick={handleEditClick}
                         >
-                            <i className="fas fa-pen"></i>
+                            <FontAwesomeIcon icon={faPen}  />
                         </button>
                     </div>
                     <div className="flex flex-col items-center">
@@ -161,7 +164,7 @@ export default function Profile() {
                                     className="rounded-full w-24 h-24"
                                 />
                             ) : (
-                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
                             )}
                         </div>
                         <h3 className="mb-2 text-xl font-bold text-primary font-hind">{profile.name}</h3>
@@ -188,11 +191,11 @@ export default function Profile() {
                     <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                         <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center justify-center">
-                                <i className="fas fa-pen-to-square text-2xl font-bold text-center text-primary mr-2"></i>
+                                <FontAwesomeIcon icon={faPenToSquare} className="text-2xl font-bold text-center text-primary mr-2" />
                                 <h2 className="text-2xl font-bold text-center text-primary font-podkova">Profile Information</h2>
                             </div>
                             <button type="button" className="text-zinc-500 hover:text-zinc-800" onClick={handleCloseClick}>
-                                <i className="fas fa-times"></i>
+                                <FontAwesomeIcon icon={faTimes} />
                             </button>
                         </div>
                         <div className="space-y-1">
@@ -205,7 +208,7 @@ export default function Profile() {
                                             className="rounded-full w-24 h-24"
                                         />
                                     ) : (
-                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                        <FontAwesomeIcon icon={faUser} className="text-2xl text-zinc-100" />
                                     )}
                                 </div>
                             </div>
