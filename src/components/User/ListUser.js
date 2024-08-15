@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import useFetchUser from '@/hooks/useFetchUser';
-import userDefault from '@/assets/images/user.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUser, faPhone, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope, faCircleUser } from '@fortawesome/free-regular-svg-icons';
 
-export default function ListUser({ users, refetch }) { // Accept refetch as a prop
+export default function ListUser({ users, refetch }) {
     const [selectedUser, setSelectedUser] = useState(null);
     const { updateProfile } = useProfileUpdate();
 
@@ -91,25 +87,26 @@ export default function ListUser({ users, refetch }) { // Accept refetch as a pr
                             />
                         ) : (
                             <div className="rounded-full w-24 h-24 bg-gray-300 flex items-center justify-center">
-                                <FontAwesomeIcon icon={faUser} className="text-6xl text-primary" />
+                                <i className="fas fa-user text-6xl text-primary"></i>
                             </div>
                         )}
                     </div>
                     <div className="bg-primary text-primary-foreground p-4">
                         <h1 className="text-xl font-semibold text-zinc-100">{item.name}</h1>
                         <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
-                            <FontAwesomeIcon icon={faEnvelope} className='mr-2 text-xl' />
+                            <i className='mr-2 text-xl far fa-envelope'></i>
                             {item.email}
                         </p>
                         <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md my-2">
-                        <FontAwesomeIcon icon={faPhone} className='mr-2 text-xl' />{item.phoneNumber}
+                            <i className='mr-2 text-xl fas fa-phone'></i>{item.phoneNumber}
                         </p>
                         <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
-                        <FontAwesomeIcon icon={faCircleUser} className='mr-2 text-xl' />{item.role}
+                            <i className=' far fa-circle-user mr-2 text-xl'></i>{item.role}
                         </p>
                         <div className='flex items-center justify-center mt-4'>
                             <button className='text-zinc-100' onClick={() => setSelectedUser(item)}>
-                            <FontAwesomeIcon icon={faPenToSquare} className='mr-2 text-xl' />Update Role
+                                <i className="text-xl fas fa-pen-to-square"></i>
+                                Update Role
                             </button>
                         </div>
                     </div>

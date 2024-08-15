@@ -3,9 +3,7 @@ import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
-import useDeleteData from '@/hooks/useDeleteData'; // Import useDeleteData hook
-import {faUser, faPencil, faTrash, faTimes} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useDeleteData from '@/hooks/useDeleteData';
 
 export default function CardBanner({ banners, refetch }) {
     const [selectedBanner, setSelectedBanner] = useState(null);
@@ -193,14 +191,14 @@ export default function CardBanner({ banners, refetch }) {
                                 className="w-full aspect-video"
                             />
                         ) : (
-                            <FontAwesomeIcon icon={faUser} className="text-2xl text-gray-300" />
+                            <i className="fas fa-user text-2xl text-gray-300"></i>
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
                             <button className="bg-primary w-10 h-10 rounded-full" onClick={() => setSelectedBanner(item)}>
-                                <FontAwesomeIcon icon={faPencil} className="text-xl text-zinc-100" />
+                                <i className='fas fa-pencil-alt text-xl text-zinc-100'></i>
                             </button>
                             <button className="bg-primary w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                            <FontAwesomeIcon icon={faTrash} className="text-xl text-zinc-100" />
+                            <i className='fas fa-trash-alt text-xl text-zinc-100'></i>
                             </button>
                         </div>
                     </div>
@@ -231,7 +229,7 @@ export default function CardBanner({ banners, refetch }) {
                                 <h2 className="text-2xl font-bold text-center text-primary font-podkova">Edit Banner</h2>
                             </div>
                             <button type="button" className="text-zinc-500 hover:text-zinc-800" onClick={() => setSelectedBanner(null)}>
-                            <FontAwesomeIcon icon={faTimes} />
+                            <i className='fas fa-times'></i>
                             </button>
                         </div>
                         <div className="space-y-1">

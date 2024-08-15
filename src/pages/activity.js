@@ -3,8 +3,6 @@ import Layout from "@/layouts/Layout";
 import Hero from "@/components/Hero/Hero";
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { fetchBanners } from "@/lib/api";
 
 export default function Activity({ initialBanners }) {
@@ -32,7 +30,7 @@ export default function Activity({ initialBanners }) {
             <Hero initialItems={initialBanners} />
             <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8 min-h-[50vh]`}>
                 <div className="flex items-center mb-4">
-                    <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`} />
+                    <i className={`fas fa-plane-departure ${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}></i>
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
                 </div>
                 <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>

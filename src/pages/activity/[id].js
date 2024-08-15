@@ -4,8 +4,6 @@ import { fetchActivityById, fetchBanners } from '@/lib/api';
 import Hero from '@/components/Hero/Hero';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faLocationDot, faShower, faTags } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 export default function ActivityDetail({ activity, initialBanners }) {
@@ -63,7 +61,7 @@ export default function ActivityDetail({ activity, initialBanners }) {
                                     </div>
                                 <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
                                     <span className="text-yellow-500 text-xs">
-                                    <FontAwesomeIcon icon={faStar} />
+                                    <i className='fas fa-star'></i>
                                     </span>
                                     <span className="text-base font-semibold text-primary">{activity.rating}</span>
                                 </div>
@@ -72,17 +70,17 @@ export default function ActivityDetail({ activity, initialBanners }) {
                                 <h2 className="text-2xl font-bold text-fourth mb-4 font-hind">{activity.title}</h2>
                                 <p className="text-fourth mb-4 font-nunito">{activity.description}</p>
                                 <div className='flex items-center mb-4'>
-                                    <FontAwesomeIcon icon={faLocationDot} className='text-zinc-100 mr-2 text-lg' />
+                                    <i className='fas fa-location-dot text-zinc-100 mr-2 text-lg'></i>
                                     <p className="text-zinc-100 font-nunito">{activity.city}, {activity.province}</p>
                                 </div>
                                 <div className='flex items-center mb-4 font-nunito'>
-                                    <FontAwesomeIcon icon={faTags} className='text-zinc-100 mr-2 text-lg' />
+                                    <i className='fas fa-tags text-zinc-100 mr-2 text-lg'></i>
                                     <p className="line-through text-fourth font-bold">Rp {formatPrice(activity.price)}</p>
                                     <p className='text-fourth font-bold mx-2'>To</p>
                                     <p className="text-fourth font-bold">Rp {formatPrice(activity.price_discount)}</p>
                                 </div>
                                 <div className='flex items-center'>
-                                    <FontAwesomeIcon icon={faShower} className='text-zinc-100 mr-2 text-lg' />
+                                    <i className='fas fa-shower text-zinc-100 mr-2 text-lg'></i>
                                     <p className="text-zinc-100 font-nunito">{activity.facilities}</p>
                                 </div>
                             </div>

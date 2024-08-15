@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchPromos } from '@/lib/api';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 export default function CardPromoSingle({ currentPage, setPageCount }) {
@@ -47,7 +45,7 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
                         <div className="p-4 flex justify-between items-center">
                             <h3 className="lg:text-lg font-semibold text-primary font-hind text-md">{item.title}</h3>
                             <div className='flex items-center'>
-                                <FontAwesomeIcon icon={faTags} className="text-primary fas fa-tags  mr-1 text-lg" />
+                                <i className='text-primary fas fa-tags  mr-1 text-lg'></i>
                                 <p className="text-primary font-nunito">Rp {formatPrice(item.promo_discount_price)}</p>
                             </div>
                         </div>

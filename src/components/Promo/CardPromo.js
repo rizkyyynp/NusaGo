@@ -5,9 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function CardPromo({ initialItems }) {
@@ -54,8 +51,8 @@ export default function CardPromo({ initialItems }) {
     return (
         <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
-                <FontAwesomeIcon icon={faTags} className={`text-lg ${darkMode ? 'text-secondary' : 'text-zinc-100 mr-2'}`} />
-                <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
+                <i className={`fas fa-tags text-lg ${darkMode ? 'text-secondary' : 'text-zinc-100 mr-2'}`}></i>
+                <h2 className={`text-xs lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
             </div>
             <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'} font-semibold`}>Exclusive Offer Just for You! Don't Miss Out!</p>
             <div className='min-[601px]: mb-10'>

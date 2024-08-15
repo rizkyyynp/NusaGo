@@ -2,8 +2,6 @@ import { useState } from "react";
 import Link from "next/link";
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneDeparture, faStar } from '@fortawesome/free-solid-svg-icons';
 import Image from "next/image";
 
 export default function CardActivity({ initialItems }) {
@@ -33,7 +31,7 @@ export default function CardActivity({ initialItems }) {
     return (
         <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
-                <FontAwesomeIcon icon={faPlaneDeparture} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`} />
+                <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
             </div>
             <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'} font-semibold`}>Explore a Variety of Activities Waiting to Be Discovered</p>
@@ -61,7 +59,7 @@ export default function CardActivity({ initialItems }) {
                                         )}
                                     </div>
                                     <div className="absolute top-2 right-2 bg-white rounded-full p-1 flex items-center">
-                                        <span className="text-yellow-500 text-xs"><FontAwesomeIcon icon={faStar} /></span>
+                                        <span className="text-yellow-500 text-xs"><i className="fas fa-star"></i></span>
                                         <span className="text-base font-semibold font-hind text-primary">{item.rating}</span>
                                     </div>
                                 </div>

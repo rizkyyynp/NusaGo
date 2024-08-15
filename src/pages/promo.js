@@ -4,8 +4,6 @@ import Layout from "@/layouts/Layout";
 import { useState } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
 import {fetchBanners } from "@/lib/api";
 
 
@@ -31,7 +29,7 @@ export default function Promo({initialBanners}) {
             <Hero initialItems={initialBanners} />
             <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8 h-min-screen`}>
                 <div className="flex items-center mb-4">
-                    <FontAwesomeIcon icon={faTags} className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`} />
+                    <i className={`fas fa-tags ${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}></i>
                     <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
                 </div>
                 <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Exclusive Offer Just for You! Don't Miss Out!</p>

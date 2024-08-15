@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import Marquee from '../magicui/marquee';
 
 export default function CardCategories({ initialItems }) {
@@ -13,7 +11,7 @@ export default function CardCategories({ initialItems }) {
     return (
         <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} py-8 pl-16 pr-2 lg:px-8`}>
             <div className="flex items-center mb-4">
-                <FontAwesomeIcon icon={faLocationDot} className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-location-dot mr-2 text-lg`} />
+                <i className={`fas fa-location-dot ${darkMode ? 'text-secondary' : 'text-primary'} fas fa-list  mr-2 text-lg`}></i>
                 <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Our Categories</h2>
             </div>
             <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'} font-semibold`}>Find your perfect escape</p>

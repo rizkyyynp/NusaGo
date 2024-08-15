@@ -6,9 +6,7 @@ import useDeleteData from '@/hooks/useDeleteData';
 import Swal from 'sweetalert2';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { faStar, faPencil, faTrash, faMapMarkerAlt, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import Image from 'next/image';
 
 export default function CardActivity({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -294,9 +292,13 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
         setCurrentPage(1); // Reset page when category changes
     };
 
+    const isValidImageUrl = (url) => {
+        return typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'));
+    };
+
 
     return (
-        <div>
+        <>
             <div className="flex justify-center lg:justify-end mb-4">
                 <select
                     className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 font-podkova border-zinc-100  text-zinc-100`}
@@ -321,23 +323,34 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                         paginateItems(items).map((item, index) => (
                             <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer" key={index}>
                                 <div className="relative">
-                                    <img
-                                        src={item.imageUrls}
-                                        alt={item.title}
-                                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                                        aria-hidden="true"
-                                    />
+                                <div className='overflow-hidden' style={{ width: '100%', height: '200px' }}>
+                                        {isValidImageUrl(item.imageUrls[0]) ? (
+                                            <Image
+                                                src={item.imageUrls[0]}
+                                                alt={item.title}
+                                                layout='fill'
+                                                className="transition-transform duration-300 hover:scale-110 object-cover object-center"
+                                                objectFit='cover'
+                                                quality={100}
+                                                priority={true}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
+                                                <span className="text-gray-500">Image not available</span>
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="absolute top-2 flex items-center justify-between w-full px-2">
                                         <div className="flex space-x-2">
                                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
-                                            <FontAwesomeIcon icon={faPencil} className="text-xl text-zinc-100" />
+                                                <i className='fas fa-pencil-alt text-xl text-zinc-100'></i>
                                             </button>
                                             <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                            <FontAwesomeIcon icon={faTrash} className="text-xl text-zinc-100" />
+                                                <i className='fas fa-trash-alt text-xl text-zinc-100'></i>
                                             </button>
                                         </div>
                                         <div className="flex items-center space-x-1 bg-white rounded-full p-1">
-                                            <span className="text-yellow-500 text-xs"><FontAwesomeIcon icon={faStar} /></span>
+                                            <span className="text-yellow-500 text-xs"><i className="fas fa-star"></i></span>
                                             <span className="text-base font-semibold text-primary font-hind">{item.rating}</span>
                                         </div>
                                     </div>
@@ -345,8 +358,10 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                 <div className="p-1 flex justify-between items-end">
                                     <div>
                                         <h3 className="text-lg font-semibold text-primary font-hind">{item.title}</h3>
-                                        <p className="text-primary font-nunito"><FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-1" />{item.city}</p>
-                                        <p className="text-primary font-nunito"><FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-1" />{item.province}</p>
+                                        <p className="text-primary font-nunito">
+                                            <i className="fas fa-map-marker-alt text-primary mr-1"></i>
+                                            {item.city}</p>
+                                        <p className="text-primary font-nunito"><i className="fas fa-map-marker-alt text-primary mr-1"></i>{item.province}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="line-through text-primary font-nunito">Rp {formatPrice(item.price)}</p>
@@ -374,7 +389,7 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                 className="text-zinc-100 bg-primary py-2 px-3 rounded-full focus:outline-none"
                                 onClick={handleCloseModal}
                             >
-                                <FontAwesomeIcon icon={faXmark}/>
+                                <i className='fas fa-times'></i>
                             </button>
                         </div>
                         <form onSubmit={handleSubmit}>
@@ -588,6 +603,6 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }

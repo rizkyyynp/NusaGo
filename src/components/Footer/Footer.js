@@ -3,8 +3,6 @@ import Link from "next/link";
 import NusaIcon from "../../assets/images/nusago.png";
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -23,13 +21,13 @@ export default function Footer() {
                     </nav>
                     <div className="flex space-x-4">
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="instagram">
-                            <FontAwesomeIcon icon={faInstagram} className="text-xl" />
+                            <i className="fab fa-instagram text-xl"></i>
                         </Link>
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="linkedin">
-                            <FontAwesomeIcon icon={faLinkedin} className="text-lg" />
+                            <i className="fab fa-linkedin text-lg"></i>
                         </Link>
                         <Link href="#" className={`${darkMode ? 'bg-secondary' : 'bg-primary'} text-zinc-100 hover:scale-105 transition-all duration-300  w-8 h-8 rounded-lg items-center justify-center flex`} rel="ugc" aria-label="facebook">
-                        <FontAwesomeIcon icon={faFacebook} className="text-lg" />
+                        <i className="fab fa-facebook text-lg"></i>
                         </Link>
                     </div>
                 </div>

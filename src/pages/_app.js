@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Provider, useSelector } from 'react-redux';
 import store from '../redux/store/store';
 import React, { useEffect } from "react";
