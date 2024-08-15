@@ -20,6 +20,7 @@ export default function NavbarAdmin() {
     const router = useRouter();
     const { userLog } = useAuth();
     const dispatch = useDispatch();
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -50,6 +51,11 @@ export default function NavbarAdmin() {
             router.push('/login');
         });
     };
+
+    const handleProfileDropdownToggle = () => {
+        setIsProfileDropdownOpen(!isProfileDropdownOpen);
+    };
+
 
     return (
         <>
@@ -91,14 +97,44 @@ export default function NavbarAdmin() {
 
                         <ul className="mt-2 space-y-1 font-hind">
                             <li>
-                                <Link href={'/profile'} title="Profile" className="flex items-center  bg-secondary rounded hover:bg-primary">
+                                <button
+                                    onClick={handleProfileDropdownToggle}
+                                    title="Profile"
+                                    className="flex items-center bg-secondary rounded hover:bg-primary w-full"
+                                >
                                     {profile.profilePictureUrl ? (
                                         <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
                                     ) : (
                                         <i className="fas fa-user text-2xl text-zinc-100"></i>
                                     )}
-                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
-                                </Link>
+                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>
+                                    {profile.name}
+                                    <i className="fas fa-caret-down text-lg text-zinc-100 ml-1 justify-center items-center"></i>
+                                    </span>
+                                </button>
+                                {isProfileDropdownOpen && (
+                                    <ul className={`${isSidebarOpen ? 'ml-1' : 'hidden'} space-y-1 mt-1 `}>
+                                        <li>
+                                            <Link href="/profile" title="Profile" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>
+                                                    Profile
+                                                </span>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <button
+                                                onClick={handleLogout}
+                                                className="flex items-center w-full p-2 bg-secondary rounded hover:bg-primary"
+                                                aria-label="Button Logout"
+                                                title="Button Logout"
+                                            >
+                                                <i className="fas fa-sign-out-alt text-2xl text-zinc-100"></i>
+                                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                )}
                             </li>
                             <li>
                                 <Link href="/" title="Home" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
@@ -135,16 +171,6 @@ export default function NavbarAdmin() {
                                     <i className="fas fa-tags text-2xl text-zinc-100"></i>
                                     <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
                                 </Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul className="mb-2 space-y-2 font-hind">
-                            <li title="Logout" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                <button onClick={handleLogout} className="flex items-center w-full">
-                                    <i className="fas fa-sign-out-alt text-2xl text-zinc-100"></i>
-                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
-                                </button>
                             </li>
                         </ul>
                     </div>

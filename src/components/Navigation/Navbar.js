@@ -15,6 +15,7 @@ export default function Navbar() {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const [profile, setProfile] = useState({ name: "", profilePictureUrl: "" });
     const [isAdmin, setIsAdmin] = useState(false);
     const router = useRouter();
@@ -47,6 +48,10 @@ export default function Navbar() {
             dispatch(disableDarkMode());
             router.push('/login');
         });
+    };
+
+    const handleProfileDropdownToggle = () => {
+        setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle the profile dropdown menu
     };
 
     return (
@@ -85,23 +90,55 @@ export default function Navbar() {
                         </div>
 
                         <ul className="mt-2 space-y-1 font-hind">
-                            <li>
-                                {isLoggedIn ? (
-                                    <Link href="/profile" title="Profile" className="flex items-center bg-secondary rounded hover:bg-primary">
-                                        {profile.profilePictureUrl ? (
-                                            <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
-                                        ) : (
-                                            <i className="fas fa-user text-2xl text-zinc-100"></i>
+                            {isLoggedIn ? (
+                                <>
+                                    <li>
+                                        <button
+                                            onClick={handleProfileDropdownToggle}
+                                            title="Profile"
+                                            className="flex items-center bg-secondary rounded hover:bg-primary w-full"
+                                        >
+                                            {profile.profilePictureUrl ? (
+                                                <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
+                                            ) : (
+                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                            )}
+                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>
+                                            {profile.name}
+                                            <i className="fas fa-caret-down text-lg text-zinc-100 ml-1 justify-center items-center"></i>
+                                            </span>
+                                        </button>
+                                        {isProfileDropdownOpen && (
+                                            <ul className={`${isSidebarOpen ? 'ml-1' : 'hidden'} space-y-1 mt-1 `}>
+                                                <li>
+                                                    <Link href="/profile" title="Button Profile" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
+                                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Profile</span>
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        onClick={handleLogout}
+                                                        className="flex items-center w-full p-2 bg-secondary rounded hover:bg-primary"
+                                                        aria-label="Button Logout"
+                                                        title="Button Logout"
+                                                    >
+                                                        <i className="fas fa-sign-out-alt text-2xl text-zinc-100"></i>
+                                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         )}
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>{profile.name}</span>
-                                    </Link>
-                                ) : (
+                                    </li>
+                                </>
+                            ) : (
+                                <li>
                                     <Link href="/login" title="Login" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <i className="fas fa-user text-2xl text-zinc-100"></i>
+                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
                                     </Link>
-                                )}
-                            </li>
+                                </li>
+                            )}
                             <li>
                                 <Link href="/" title="Home" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
                                     <i className="fas fa-home text-2xl text-zinc-100"></i>
@@ -125,25 +162,6 @@ export default function Navbar() {
                                     <Link href="/dashUser" title="Dashboard" className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
                                         <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
                                         <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
-                                    </Link>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                    <div className="mt-auto">
-                        <ul className="space-y-2 font-hind">
-                            {isLoggedIn ? (
-                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary" title="Logout">
-                                    <button onClick={handleLogout} className="flex items-center w-full" aria-label=" Button Logout">
-                                        <i className="fas fa-sign-out-alt text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
-                                    </button>
-                                </li>
-                            ) : (
-                                <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <Link href="/login" title="Login" className="flex items-center w-full">
-                                        <i className="fas fa-lock text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login</span>
                                     </Link>
                                 </li>
                             )}
