@@ -53,7 +53,7 @@ export default function Navbar() {
         <>
             {/* SideBar */}
             <div className="lg:hidden flex z-50 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} h-screen flex justify-between flex-col px-2 transition-all duration-300 ease-in-out py-4`}>
+                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} relative h-screen flex justify-between flex-col px-2 transition-all duration-300 ease-in-out py-4`}>
                     <div>
                         <div className="flex items-center justify-between p-2">
                             {!isSidebarOpen && (
@@ -130,7 +130,7 @@ export default function Navbar() {
                             )}
                         </ul>
                     </div>
-                    <div>
+                    <div className="mt-auto">
                         <ul className="space-y-2 font-hind">
                             {isLoggedIn ? (
                                 <li className="flex items-center p-2 bg-secondary rounded hover:bg-primary" title="Logout">

@@ -34,7 +34,7 @@ export default function Hero({ initialItems }) {
                 </Slider>
             </div>
             <div className={`absolute inset-0 flex items-center justify-center ${darkMode ? 'bg-dark1 bg-opacity-60' : 'bg-primary'} bg-opacity-40`}>
-                <div className="text-center text-white px-4 lg:px-16">
+                <div className="text-center text-white pl-10 lg:px-16">
                     <h1 className="text-lg md:text-5xl font-bold mb-4 font-hind">Your Guide to Indonesian Treasures</h1>
                     <Link href={'/activity'}>
                         <button className="bg-primary text-zinc-100 hover:bg-primary/80 px-2 py-1 lg:px-6 lg:py-3 rounded-lg border-2 border-white font-nunito animate-bounce">Discover More</button>
