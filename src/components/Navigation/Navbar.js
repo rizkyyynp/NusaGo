@@ -110,7 +110,7 @@ export const Logo = () => {
     return (
         <div className="flex items-center space-x-2">
             <Link
-                href="#"
+                href="/"
                 className="font-normal flex space-x-2 relative z-20"
             >
                 <Image src={NusaIcon} alt="NusaGo Logo" width={32} height={32} />
@@ -132,7 +132,7 @@ export const Logo = () => {
 export const LogoIcon = () => {
     return (
         <Link
-            href="#"
+            href="/"
             className="flex items-center py-1"
         >
             <Image src={NusaIcon} alt="NusaGo Logo" width={32} height={32} />
