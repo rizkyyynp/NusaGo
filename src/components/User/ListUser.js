@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import Swal from "sweetalert2";
 import useProfileUpdate from "@/hooks/useProfileUpdate";
 import useFetchUser from '@/hooks/useFetchUser';
+import { useSelector, useDispatch } from 'react-redux';
+import { disableDarkMode } from "@/redux/slices/darkModeSlice";
 
 export default function ListUser({ users, refetch }) {
     const [selectedUser, setSelectedUser] = useState(null);
     const { updateProfile } = useProfileUpdate();
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -75,15 +79,15 @@ export default function ListUser({ users, refetch }) {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {users.map((item, index) => (
-                <div className="bg-white rounded-lg shadow-BS4 overflow-hidden relative" key={index}>
-                    <div className="p-4 flex justify-center items-center">
+                <div className={`bg-white rounded-lg  overflow-hidden relative ${darkMode ? 'shadow-BS7' : 'shadow-BS6'}`} key={index}>
+                    <div className="p-4 flex justify-center items-center ">
                         {item.profilePictureUrl ? (
                             <img
                                 src={item.profilePictureUrl}
                                 alt="Profile Picture"
-                                className="rounded-full w-24 h-24"
+                                className="rounded-full w-24 h-24 object-cover"
                             />
                         ) : (
                             <div className="rounded-full w-24 h-24 bg-gray-300 flex items-center justify-center">
@@ -91,7 +95,7 @@ export default function ListUser({ users, refetch }) {
                             </div>
                         )}
                     </div>
-                    <div className="bg-primary text-primary-foreground p-4">
+                    <div className={`p-4 ${item.role === 'admin' ? 'bg-primary' : 'bg-dark1'} space-y-3`}>
                         <h1 className="text-xl font-semibold text-zinc-100">{item.name}</h1>
                         <p className="flex items-center text-zinc-100 font-nunito text-sm lg:text-md">
                             <i className='mr-2 text-xl far fa-envelope'></i>
@@ -105,7 +109,7 @@ export default function ListUser({ users, refetch }) {
                         </p>
                         <div className='flex items-center justify-center mt-4'>
                             <button className='text-zinc-100' onClick={() => setSelectedUser(item)}>
-                                <i className="text-xl fas fa-pen-to-square"></i>
+                                <i className="text-xl fas fa-pen-to-square pr-1"></i>
                                 Update Role
                             </button>
                         </div>

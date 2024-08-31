@@ -32,11 +32,11 @@ export default function dashActivity() {
     const areButtonsDisabled = items.length === 0;
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
-                <div className="flex flex-col items-center mb-2 lg:flex-row lg:justify-between">
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'} p-8 lg:min-h-screen`}>
+                <div className="flex flex-col items-start md:items-center mb-2 lg:flex-row lg:justify-between mt-16 md:mt-0">
                     <div className="flex items-center space-x-2">
-                        <i className={`${darkMode ? 'text-secondary' : 'text-zinc-100'} fas fa-plane-departure  mr-2 text-lg`}></i>
-                        <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>List Activity</h2>
+                        <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-plane-departure  mr-2 text-lg`}></i>
+                        <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Activity</h2>
                     </div>
                     <Link href="/createActivity">
                         <button className={`flex items-center space-x-2 px-4 py-2  rounded  transition-all duration-100 ease-in-out  border-2 border-primary  hover:border-third hover:text-zinc-100 group ${darkMode ? 'hover:bg-dark1 text-zinc-100' : 'bg-zinc-100 text-primary hover:bg-secondary'}`}>
@@ -63,7 +63,7 @@ export default function dashActivity() {
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-zinc-100">{currentPage}</p>
+                    <p className={`${darkMode ? 'text-zinc-100' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage || areButtonsDisabled}

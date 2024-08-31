@@ -138,7 +138,7 @@ export default function Profile() {
 
     return (
         <Layout>
-            <div className={`flex flex-col items-center justify-center min-h-screen  pt-20 pb-20 pl-16 pr-2 lg:px-0 lg:pt-28 ${darkMode ? 'bg-dark1' : 'bg-zinc-100'}`}>
+            <div className={`flex flex-col items-center justify-center min-h-screen  p-8 ${darkMode ? 'bg-dark1' : 'bg-white'}`}>
                 <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">
@@ -185,7 +185,7 @@ export default function Profile() {
             </div>
 
             {isEditing && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 pt-1 lg:pt-20 pl-16 pr-2 lg:px-0">
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-8">
                     <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                         <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center justify-center">

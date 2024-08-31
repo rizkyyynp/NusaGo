@@ -62,7 +62,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
 
     return (
         <>
-            <div className="flex justify-center lg:justify-start mb-4">
+            <div className="justify-start mb-4">
                 <select
                     className={`${darkMode ? 'bg-primary' : 'bg-secondary'} border-2 border-input rounded p-2 mr-2 font-podkova border-zinc-100 text-zinc-100`}
                     value={selectedCategory}
@@ -85,7 +85,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                     {paginateItems(items).length > 0 ? (
                         paginateItems(items).map((item, index) => (
                             <Link href={`/activity/${item.id}`} key={index}>
-                                <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer">
+                            <div className={`bg-white rounded-lg overflow-hidden ${darkMode ? 'shadow-BS7' : 'shadow-BS6'} cursor-pointer`} >
                                     <div className="relative">
                                         <div className=' relative overflow-hidden' style={{  width: '100%', height: '300px' }}>
                                             {isValidImageUrl(item.imageUrls[0]) ? (
@@ -129,7 +129,7 @@ export default function CardActivitySingle({ currentPage, setCurrentPage, setPag
                             </Link>
                         ))
                     ) : (
-                        <p className="text-center text-zinc-100">No activities found for the selected category.</p>
+                        <p className="text-start text-secondary">No activities found for the selected category.</p>
                     )}
                 </div>
             )}

@@ -1,7 +1,6 @@
 import Layout from '@/layouts/Layout';
 import Link from 'next/link';
 import { fetchActivityById, fetchBanners } from '@/lib/api';
-import Hero from '@/components/Hero/Hero';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
@@ -36,11 +35,9 @@ export default function ActivityDetail({ activity, initialBanners }) {
     }
     return (
         <Layout>
-        <Hero initialItems={initialBanners} />
-            <section className={`${darkMode ? 'bg-dark1' : 'bg-secondary'} py-8 pl-16 pr-2 lg:px-8`}>
-                <div>
-                    <div className="flex flex-col md:flex-row gap-4 p-4">
-                        <div className={`${darkMode ? 'bg-secondary shadow-BS3 ' : 'bg-primary shadow-lg '} rounded-lg  overflow-hidden w-full md:w-1/2`}>
+            <section className={`${darkMode ? 'bg-dark1' : 'bg-white'} p-8`}>
+                    <div className="flex flex-col md:flex-row gap-6 mt-16 md:mt-0">
+                        <div className={`${darkMode ? 'bg-secondary shadow-BS7 ' : 'bg-primary shadow-BS6 '} rounded-lg  overflow-hidden w-full md:w-1/2`}>
                             <div className="relative">
                                 <div className='overflow-hidden' style={{ width: '100%', height: '280px' }}>
                                         {isValidImageUrl(activity.imageUrls[0]) ? (
@@ -86,16 +83,10 @@ export default function ActivityDetail({ activity, initialBanners }) {
                             </div>
                         </div>
 
-                        <div className={`${darkMode ? 'bg-secondary shadow-BS3' : 'bg-primary shadow-lg'} rounded-lg overflow-hidden w-full md:w-1/2`}>
-                            <div className="p-4 flex justify-center">
-                                <h2 className="text-2xl font-bold text-fourth font-podkova">Map</h2>
+                        <div className={`${darkMode ? 'bg-secondary shadow-BS6' : 'bg-primary shadow-BS7'} rounded-lg overflow-hidden w-full md:w-1/2`}>
+                                <div dangerouslySetInnerHTML={{ __html: activity.location_maps }} className="rounded-b-xl object-cover w-full h-full"  />
                             </div>
-                            <div className="w-full h-full mt-2 overflow-hidden rounded-b-xl">
-                                <div dangerouslySetInnerHTML={{ __html: activity.location_maps }} className="rounded-b-xl object-cover" />
-                            </div>
-                        </div>
                     </div>
-                </div>
                 <Link href="/activity" className="flex justify-center">
                     <button className={`${darkMode ? 'bg-secondary/80 hover:bg-secondary' : 'bg-primary hover:bg-primary/80'}  mt-4 py-2 px-4 rounded-lg text-fourth font-semibold font-nunito}`}>Back</button>
                 </Link>

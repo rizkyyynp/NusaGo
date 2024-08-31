@@ -48,6 +48,7 @@ module.exports = {
         "fifth": '#0D3D6E',
         "dark1": '#0f172a',
         "dark2": '#B9D6F2',
+        "dark3": '#2C2C2E',
         grad1: 'rgb(13,71,161)',
         grad2: 'rgb(66,165,245)',
       },
@@ -58,6 +59,7 @@ module.exports = {
       width: {
         '7.5': '30px',
         '11.25': '45px',
+        '20': '80px',
         '37.5': '150px',
         '100': '400px',
         '150': '600px',
@@ -78,6 +80,8 @@ module.exports = {
         'BS3': '7px 7px 5px #125393,7px -7px 5px #2199ff;',
         'BS4': '-5px 5px 10px #176bbf,5px -5px 10px #1b81e5;',
         'BS5': ' 20px -20px 40px #0b111e,-20px 20px 40px #131d36;',
+        'BS6': 'rgba(0, 0, 0, 0.35) 0px 5px 15px;',
+        'BS7': '0px 1px 1px rgba(23, 107, 191, 0.35), 1px 3px 3px rgba(23, 107, 191, 0.35), 3px 6px 6px rgba(23, 107, 191, 0.35), 5px 10px 10px rgba(23, 107, 191, 0.35), 8px 16px 16px rgba(23, 107, 191, 0.35);',
       },
       zIndex: {
         '100': '100',

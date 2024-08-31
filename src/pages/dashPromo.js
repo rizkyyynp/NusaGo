@@ -27,9 +27,9 @@ export default function PromoList() {
 
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
-                <div class="flex flex-col justify-center items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4">
-                    <div class="flex items-center space-x-2">
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'} p-8 lg:min-h-screen`}>
+                <div class="flex flex-row items-center justify-between mb-6 mt-16 md:mt-0">
+                    <div class="flex justify-center items-center space-x-2">
                         <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-tags  mr-2 text-lg`}></i>
                         <h2  className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Promo</h2>
                     </div>
@@ -41,7 +41,7 @@ export default function PromoList() {
                     </Link>
                 </div>
                 <CardPromo promos={promos.slice(startIndex, endIndex)} refetch={refetch} />
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex justify-center items-center mt-10">
                 <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
@@ -52,7 +52,7 @@ export default function PromoList() {
                     >
                         Previous
                     </button>
-                    <p className={`${darkMode ? 'text-secondary' : 'text-primary'} mx-4`}>{currentPage}</p>
+                    <p className={`${darkMode ? 'text-zinc-100' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === maxPage}

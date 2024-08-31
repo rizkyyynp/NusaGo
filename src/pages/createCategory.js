@@ -144,7 +144,7 @@ export default function CreateCategory() {
 
     return (
         <LayoutAdmin>
-            <div className={`flex items-center justify-center  z-50 py-10 lg:pt-24 pl-16 pr-2 lg:px-0 min-h-screen ${darkMode ? 'bg-dark1 bg-opacity-80' : 'bg-black bg-opacity-50'} `}>
+            <div className={`flex items-center justify-center  z-50 p-8 min-h-screen ${darkMode ? 'bg-dark1 bg-opacity-80' : 'bg-black bg-opacity-50'} `}>
                 <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center justify-center">

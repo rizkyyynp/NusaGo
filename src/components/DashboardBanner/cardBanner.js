@@ -4,13 +4,24 @@ import useProfileUpdate from "@/hooks/useProfileUpdate";
 import { useRouter } from 'next/router';
 import useImageUpload from "@/hooks/useImageUpload";
 import useDeleteData from '@/hooks/useDeleteData';
+import { useSelector, useDispatch } from 'react-redux';
+import { disableDarkMode } from "@/redux/slices/darkModeSlice";
+import {
+    IconCalendarPlus,
+    IconCalendarTime,
+    IconEditCircle,
+    IconTrash,
+} from '@tabler/icons-react';
+
 
 export default function CardBanner({ banners, refetch }) {
     const [selectedBanner, setSelectedBanner] = useState(null);
     const { updateProfile } = useProfileUpdate();
     const router = useRouter();
     const { uploadImage } = useImageUpload();
-    const { deleteData } = useDeleteData(); // Destructure deleteData from useDeleteData hook
+    const { deleteData } = useDeleteData();
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
+    const dispatch = useDispatch();
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -180,9 +191,9 @@ export default function CardBanner({ banners, refetch }) {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {banners.map((item, index) => (
-                <div className="bg-white rounded-lg shadow-BS3 overflow-hidden" key={index}>
+                <div className={`bg-white rounded-lg overflow-hidden ${darkMode ? 'shadow-BS7' : 'shadow-BS6'}`} key={index}>
                     <div className="relative">
                         {item.imageUrl ? (
                             <img
@@ -194,25 +205,25 @@ export default function CardBanner({ banners, refetch }) {
                             <i className="fas fa-user text-2xl text-gray-300"></i>
                         )}
                         <div className="absolute top-2 right-2 flex space-x-2">
-                            <button className="bg-primary w-10 h-10 rounded-full" onClick={() => setSelectedBanner(item)}>
-                                <i className='fas fa-pencil-alt text-xl text-zinc-100'></i>
+                            <button className="bg-primary w-10 h-10 rounded-full flex items-center justify-center" onClick={() => setSelectedBanner(item)}>
+                                <IconEditCircle className="text-xl text-zinc-100" />
                             </button>
-                            <button className="bg-primary w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                            <i className='fas fa-trash-alt text-xl text-zinc-100'></i>
+                            <button className="bg-primary w-10 h-10 rounded-full flex items-center justify-center" onClick={() => handleDelete(item.id)}>
+                                <IconTrash className="text-xl text-zinc-100" />
                             </button>
                         </div>
                     </div>
 
-                    <div className="bg-primary text-primary-foreground p-4">
-                    <h3 className="text-lg font-semibold text-zinc-100">{item.name}</h3>
+                    <div className="bg-primary p-4 h-full">
+                        <h3 className="text-lg font-semibold text-zinc-100">{item.name}</h3>
                         <div className="mt-2">
                             <div className="flex items-center space-x-2">
-                                <i class="far fa-calendar text-lg text-zinc-100"></i>
-                                <span className='text-zinc-100'>Created at: {formatDate(item.createdAt)}</span>
+                                <IconCalendarPlus className="text-lg text-zinc-100" />
+                                <span className='text-zinc-100'>Created: {formatDate(item.createdAt)}</span>
                             </div>
                             <div className="flex items-center space-x-2 mt-1">
-                                <i class="far fa-calendar text-lg text-zinc-100"></i>
-                                <span className='text-zinc-100'>Updated at: {formatDate(item.updatedAt)}</span>
+                                <IconCalendarTime className="text-lg text-zinc-100" />
+                                <span className='text-zinc-100'>Updated: {formatDate(item.updatedAt)}</span>
                             </div>
                         </div>
                     </div>
@@ -229,7 +240,7 @@ export default function CardBanner({ banners, refetch }) {
                                 <h2 className="text-2xl font-bold text-center text-primary font-podkova">Edit Banner</h2>
                             </div>
                             <button type="button" className="text-zinc-500 hover:text-zinc-800" onClick={() => setSelectedBanner(null)}>
-                            <i className='fas fa-times'></i>
+                                <i className='fas fa-times'></i>
                             </button>
                         </div>
                         <div className="space-y-1">

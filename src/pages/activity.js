@@ -1,6 +1,5 @@
 import CardActivitySingle from "@/components/Activity/CardActivitySingle";
 import Layout from "@/layouts/Layout";
-import Hero from "@/components/Hero/Hero";
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchBanners } from "@/lib/api";
@@ -27,13 +26,12 @@ export default function Activity({ initialBanners }) {
 
     return (
         <Layout>
-            <Hero initialItems={initialBanners} />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8 min-h-[50vh]`}>
-                <div className="flex items-center mb-4">
-                    <i className={`fas fa-plane-departure ${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}></i>
-                    <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Discover Diverse Activities</h2>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'} p-8 min-h-screen`}>
+                <div className="flex items-center mb-4 mt-16 md:mt-0">
+                    <i className={`fas fa-plane-departure ${darkMode ? 'text-secondary' : 'text-primary'} mr-2 text-lg`}></i>
+                    <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Discover Diverse Activities</h2>
                 </div>
-                <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
+                <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'}`}>Explore a Variety of Activities Waiting to Be Discovered</p>
                     <CardActivitySingle
                         currentPage={currentPage}
                         setPageCount={setMaxPage}
@@ -41,7 +39,7 @@ export default function Activity({ initialBanners }) {
                         setItems={setItems}
                         items={items}
                     />
-                <div className="mt-6 mx-auto flex justify-center items-center font-nunito">
+                <div className="flex justify-center items-center mt-8 font-nunito">
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1 || areButtonsDisabled}
@@ -51,7 +49,7 @@ export default function Activity({ initialBanners }) {
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-zinc-100">{currentPage}</p>
+                    <p className={`${darkMode ? 'text-zinc-100' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage || areButtonsDisabled}

@@ -9,10 +9,10 @@ export default function CardCategories({ initialItems }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     return (
-        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} py-8 pl-16 pr-2 lg:px-8`}>
+        <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} p-8`}>
             <div className="flex items-center mb-4">
                 <i className={`fas fa-location-dot ${darkMode ? 'text-secondary' : 'text-primary'} fas fa-list  mr-2 text-lg`}></i>
-                <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Our Categories</h2>
+                <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Our Categories</h2>
             </div>
             <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'} font-semibold`}>Find your perfect escape</p>
             <div className="relative">

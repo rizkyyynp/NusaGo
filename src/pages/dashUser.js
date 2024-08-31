@@ -44,9 +44,9 @@ export default function UserList() {
 
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
-                <div className="flex flex-col items-end md:items-center md:flex-row md:justify-between mb-6">
-                    <div className='flex items-center mb-2 md:mb-0'>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'}   p-8  lg:min-h-screen`}>
+                <div className="flex flex-row items-center justify-between mb-6 mt-16 md:mt-0">
+                    <div className='flex justify-center items-center'>
                         <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-user-tie mr-2 text-lg`}></i>
                         <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Users</h2>
                     </div>
@@ -55,8 +55,8 @@ export default function UserList() {
                             type="text"
                             value={search}
                             onChange={handleSearch}
-                            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-primary focus:border-primary text-primary"
-                            placeholder="Search users by name..."
+                            className={`w-full p-2 border-2  rounded focus:outline-none focus:ring-primary focus:border-secondary text-primary ${darkMode ? 'border-secondary bg-dark1 placeholder:text-secondary text-secondary' : 'border-gray-300'}`}
+                            placeholder="Search by name"
                         />
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default function UserList() {
                     >
                         Previous
                     </button>
-                    <p className={`${darkMode ? 'text-secondary' : 'text-primary'} mx-4`}>{currentPage}</p>
+                    <p className={`${darkMode ? 'text-zinc-100' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === maxPage || isNextDisabled}

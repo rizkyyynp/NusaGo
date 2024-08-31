@@ -7,6 +7,12 @@ import Swal from 'sweetalert2';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
+import {
+    IconCalendarPlus,
+    IconCalendarTime,
+    IconEditCircle,
+    IconTrash,
+} from '@tabler/icons-react';
 
 export default function CardActivity({ currentPage, setCurrentPage, setPageCount, setItems, items }) {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -35,7 +41,7 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
         address: '',
         location_maps: '',
     });
-    const itemsPerPage = 3;
+    const itemsPerPage = 6;
 
     useEffect(() => {
         async function loadCategories() {
@@ -318,10 +324,10 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <div className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {paginateItems(items).length > 0 ? (
                         paginateItems(items).map((item, index) => (
-                            <div className="bg-zinc-100 rounded-lg overflow-hidden shadow-BS3 cursor-pointer" key={index}>
+                            <div className={`bg-white rounded-lg overflow-hidden ${darkMode ? 'shadow-BS7' : 'shadow-BS6'} cursor-pointer`} key={index}>
                                 <div className="relative">
                                 <div className='overflow-hidden' style={{ width: '100%', height: '200px' }}>
                                         {isValidImageUrl(item.imageUrls[0]) ? (
@@ -342,11 +348,11 @@ export default function CardActivity({ currentPage, setCurrentPage, setPageCount
                                     </div>
                                     <div className="absolute top-2 flex items-center justify-between w-full px-2">
                                         <div className="flex space-x-2">
-                                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
-                                                <i className='fas fa-pencil-alt text-xl text-zinc-100'></i>
+                                            <button className="bg-primary flex items-center justify-center w-10 h-10 rounded-full" onClick={() => handleEditClick(item)}>
+                                            <IconEditCircle className="text-xl text-zinc-100" />
                                             </button>
-                                            <button className="bg-primary text-primary-foreground w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
-                                                <i className='fas fa-trash-alt text-xl text-zinc-100'></i>
+                                            <button className="bg-primary flex items-center justify-center w-10 h-10 rounded-full" onClick={() => handleDelete(item.id)}>
+                                            <IconTrash className="text-xl text-zinc-100" />
                                             </button>
                                         </div>
                                         <div className="flex items-center space-x-1 bg-white rounded-full p-1">

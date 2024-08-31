@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 export default function Footer() {
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     return (
-        <footer className={`${darkMode ? 'bg-dark1' : "bg-zinc-100"} pl-16 pr-2 lg:px-20 py-4 shadow-BS4`}>
+        <footer className={`${darkMode ? 'bg-dark1' : "bg-white"} p-8 shadow-BS4`}>
             <div className="mx-auto w-full">
                 <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
                     <div className="flex items-center space-x-2">

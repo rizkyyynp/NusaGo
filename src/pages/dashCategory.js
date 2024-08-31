@@ -21,16 +21,15 @@ export default function CategoryList() {
         setCurrentPage(page);
     };
 
-    // Calculate which users to display based on pagination
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
     return (
         <LayoutAdmin>
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-zinc-100'} lg:pt-24 lg:pb-10 lg:px-10 pl-16 pr-2 py-6 lg:min-h-screen`}>
-                <div className="flex flex-col justify-center items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4">
-                    <div className="flex items-center space-x-2">
-                        <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-list  mr-2 text-lg`}></i>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'} p-8 lg:min-h-screen`}>
+                <div className="flex flex-row items-center justify-between mb-6 mt-16 md:mt-0">
+                    <div className="flex justify-center items-center space-x-2">
+                        <i className={`${darkMode ? 'text-secondary' : 'text-primary'} fas fa-list text-lg`}></i>
                         <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>List Category</h2>
                     </div>
                     <Link href="/createCategory">
@@ -42,7 +41,7 @@ export default function CategoryList() {
 
                 </div>
                 <CardCategory category={category.slice(startIndex, endIndex)} refetch={refetch} />
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex justify-center items-center mt-10">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}

@@ -7,6 +7,7 @@ const nextConfig = {
       'images.unsplash.com',
       'localhost',
       'a.cdn-hotels.com',
+      'assets.aceternity.com',
     ],
   },
 };

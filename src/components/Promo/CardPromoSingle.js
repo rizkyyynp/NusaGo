@@ -27,7 +27,7 @@ export default function CardPromoSingle({ currentPage, setPageCount }) {
     };
 
     return (
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6  lg:grid-cols-3">
             {paginateItems(items).map((item, index) => (
                 <Link href={`/promo/${item.id}`} key={index}>
                     <div className="bg-white rounded-lg overflow-hidden shadow-BS3 cursor-pointer">

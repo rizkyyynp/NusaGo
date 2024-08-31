@@ -1,27 +1,31 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Sidebar, SidebarBody, SidebarLink, SidebarLogout, SidebarProfile } from "@/components/ui/sidebar";
+import {
+    IconHome,
+    IconPlaneTilt,
+    IconReceipt2,
+} from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 import NusaIcon from "../../assets/images/nusago.png";
-import useAuth from "@/hooks/useAuth";
-import defaultProfile from "../../assets/images/profile.png";
 import ToggleSwitch from "../Toggle/ToggleSwitch";
-import React from 'react';
+import useAuth from "@/hooks/useAuth";
+import Cookies from "js-cookie";
 import { useSelector, useDispatch } from 'react-redux';
 import { disableDarkMode } from "@/redux/slices/darkModeSlice";
+import { useRouter } from 'next/router';
 
-export default function Navbar() {
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
+export default function Navbar2({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+    const { userLog } = useAuth();
     const [profile, setProfile] = useState({ name: "", profilePictureUrl: "" });
     const [isAdmin, setIsAdmin] = useState(false);
-    const router = useRouter();
-    const { userLog } = useAuth();
     const darkMode = useSelector((state) => state.darkMode.darkMode);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -37,11 +41,6 @@ export default function Navbar() {
         }
     }, []);
 
-
-    const handleProfileToggle = () => {
-        setIsProfileOpen(!isProfileOpen);
-    };
-
     const handleLogout = () => {
         userLog('logout', () => {
             setIsLoggedIn(false);
@@ -50,201 +49,93 @@ export default function Navbar() {
         });
     };
 
-    const handleProfileDropdownToggle = () => {
-        setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle the profile dropdown menu
-    };
+    const links = [
+        {
+            label: "Home",
+            href: "/",
+            icon: (
+                <IconHome className="text-primary dark:text-secondary h-5 w-5 flex-shrink-0" />
+            ),
+        },
+        {
+            label: "Activity",
+            href: "/activity",
+            icon: (
+                <IconPlaneTilt className="text-primary h-5 w-5 flex-shrink-0 dark:text-secondary" />
+            ),
+        },
+        {
+            label: "Promo",
+            href: "/promo",
+            icon: (
+                <IconReceipt2 className="text-primary h-5 w-5 flex-shrink-0 dark:text-secondary" />
+            ),
+        },
+    ];
+    const [open, setOpen] = useState(false);
 
     return (
         <>
-            {/* SideBar */}
-            <div className="lg:hidden flex z-50 fixed">
-                <div className={`${isSidebarOpen ? 'w-64' : 'w-14'} ${darkMode ? 'blurSidebar2' : 'blurSidebar'} relative h-screen flex justify-between flex-col px-2 transition-all duration-300 ease-in-out py-4`}>
-                    <div>
-                        <div className="flex items-center justify-between p-2">
-                            {!isSidebarOpen && (
-                                <div className="text-lg font-bold flex items-center">
-                                    <Link href="/" className="w-8 h-8">
-                                        <Image src={NusaIcon} alt="NusaGo Logo" width={30} height={30} />
-                                    </Link>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-1 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Expand Sidebar">
-                                        <i className="fas fa-maximize text-lg text-zinc-100 p-2"></i>
-                                    </button>
-                                </div>
-                            )}
-                            {isSidebarOpen && (
-                                <div className="text-lg font-bold flex items-center">
-                                    <Link href="/" className="flex items-center mr-5" title="Homepage">
-                                        <Image src={NusaIcon} alt="NusaGo Logo" width={24} height={24} />
-                                        <span className="text-xl font-extrabold text-transparent bg-clip-text bg-primary-gradient font-podkova ml-2">
-                                            NusaGo
-                                        </span>
-                                    </Link>
-                                    <div className="ml-8">
-                                        <ToggleSwitch />
-                                    </div>
-                                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="ml-6 bg-secondary rounded-full h-10 w-10 flex items-center justify-center" aria-label="Button to Minimize Sidebar">
-                                        <i className="fas fa-minimize text-lg text-zinc-100 p-2"></i>
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-
-                        <ul className="mt-2 space-y-1 font-hind">
-                            {isLoggedIn ? (
-                                <>
-                                    <li>
-                                        <button
-                                            onClick={handleProfileDropdownToggle}
-                                            title="Profile"
-                                            className="flex items-center bg-secondary rounded hover:bg-primary w-full"
-                                        >
-                                            {profile.profilePictureUrl ? (
-                                                <Image src={profile.profilePictureUrl} alt="Profile Picture" width={40} height={40} />
-                                            ) : (
-                                                <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                            )}
-                                            <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>
-                                            {profile.name}
-                                            <i className="fas fa-caret-down text-lg text-zinc-100 ml-1 justify-center items-center"></i>
-                                            </span>
-                                        </button>
-                                        {isProfileDropdownOpen && (
-                                            <ul className={`${isSidebarOpen ? 'ml-1' : 'hidden'} space-y-1 mt-1 `}>
-                                                <li>
-                                                    <Link href="/profile" title="Button Profile" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Profile</span>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <button
-                                                        onClick={handleLogout}
-                                                        className="flex items-center w-full p-2 bg-secondary rounded hover:bg-primary"
-                                                        aria-label="Button Logout"
-                                                        title="Button Logout"
-                                                    >
-                                                        <i className="fas fa-sign-out-alt text-2xl text-zinc-100"></i>
-                                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Logout</span>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        )}
-                                    </li>
-                                </>
-                            ) : (
-                                <li>
-                                    <Link href="/login" title="Login" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                        <i className="fas fa-user text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Login Now!</span>
-                                    </Link>
-                                </li>
-                            )}
-                            <li>
-                                <Link href="/" title="Home" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <i className="fas fa-home text-2xl text-zinc-100"></i>
-                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Home</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/promo" title="Promo" className="flex items-center p-2 bg-secondary rounded hover:bg-primary">
-                                    <i className="fas fa-tags text-2xl text-zinc-100"></i>
-                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Promo</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/activity" title="Activity" className="flex items-center p-1 bg-secondary rounded hover:bg-primary">
-                                    <i className="fas fa-plane-departure text-2xl text-zinc-100"></i>
-                                    <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Activity</span>
-                                </Link>
-                            </li>
-                            {isAdmin && (
-                                <li className="relative">
-                                    <Link href="/dashUser" title="Dashboard" className="flex items-center p-2 w-full bg-secondary rounded hover:bg-primary">
-                                        <i className="fas fa-folder-open text-2xl text-zinc-100"></i>
-                                        <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-2 font-bold text-zinc-100`}>Dashboard</span>
-                                    </Link>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-            {/* Navbar Desktop */}
-            <div className="hidden lg:flex">
-                <header className={`${darkMode ? 'bg-dark1 shadow-BS5' : 'bg-zinc-100 shadow-lg'} flex items-center justify-between h-16 fixed w-full shadow-md z-50 px-20`}>
-                    <Link href="/" className="flex items-center gap-1 cursor-pointer">
-                        <Image src={NusaIcon} alt="NusaGo Logo" width={40} height={40} />
-                        <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-primary-gradient font-podkova">NusaGo</h1>
-                    </Link>
-                    <div>
-                        <nav className="flex space-x-4 font-nunito">
-                            <Link href="/" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Home</Link>
-                            <Link href="/activity" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Activity</Link>
-                            <Link href="/promo" className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>Promo</Link>
-                            {isAdmin && (
-                                <div className="relative">
-                                    <Link href={'/dashUser'} className={`${darkMode ? 'text-secondary after:bg-secondary' : 'text-primary after:bg-primary'} relative inline-block font-bold text-lg transition-all duration-300  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-5px] after:left-1/2  after:transition-all after:duration-300 hover:after:w-full hover:after:left-0`}>
-                                        Dashboard
-                                    </Link>
-
-                                </div>
-                            )}
-                        </nav>
-                    </div>
-
-                    <div className="flex items-center">
-                        <ToggleSwitch />
-                        {isLoggedIn ? (
-                            <div className="relative font-nunito">
-                                <button
-                                    onClick={handleProfileToggle}
-                                    className="relative flex items-center"
-                                    aria-controls="profile-menu"
-                                >
-                                    {profile.profilePictureUrl ? (
-                                        <Image
-                                            src={profile.profilePictureUrl}
-                                            alt="Profile Picture"
-                                            className="rounded-full"
-                                            width={40}
-                                            height={40}
-                                        />
-                                    ) : (
-                                        <Image src={defaultProfile} alt="Profile Picture" className="rounded-full"
-                                            width={40}
-                                            height={40}
-                                        />
-                                    )}
-                                    <span className={`${darkMode ? 'text-secondary' : 'text-primary'} ml-1 font-bold`}>{profile.name}</span>
-                                    <i className={`fas fa-caret-down  ${darkMode ? 'text-secondary' : 'text-primary'} ml-2`}></i>
-                                </button>
-                                {isProfileOpen && (
-                                    <ul className={`${darkMode ? 'bg-dark1' : 'bg-white'} absolute -right-4 mt-2 w-48  shadow-lg rounded-md overflow-hidden z-10`} id="profile-menu">
-                                        <li>
-                                            <Link href="/profile" className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} block px-4 py-2 text-sm  font-bold`}>
-                                                <p>Profile</p>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <button
-                                                onClick={handleLogout}
-                                                className={`${darkMode ? 'text-secondary hover:bg-secondary hover:text-zinc-100' : 'text-primary hover:bg-gray-100'} w-full text-left block px-4 py-2 text-sm  font-bold`}
-                                                aria-label="Button Logout"
-                                            >
-                                                Logout
-                                            </button>
-                                        </li>
-                                    </ul>
-                                )}
+            <div
+                className={cn(
+                    " flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1  mx-auto border border-neutral-200 dark:border-neutral-700 overflow-y-auto",
+                    "h-screen overflow-hidden"
+                )}
+            >
+                <Sidebar open={open} setOpen={setOpen} className="md:flex-shrink-0">
+                    <SidebarBody className="justify-between gap-10 md:flex md:flex-col">
+                        <div className="flex flex-col flex-1  md:justify-start md:overflow-hidden">
+                            {open ? <Logo /> : <LogoIcon />}
+                            <div className="mt-8 flex flex-col gap-2 md:overflow-hidden">
+                                {links.map((link, idx) => (
+                                    <SidebarLink key={idx} link={link} />
+                                ))}
+                                <SidebarLogout onClick={handleLogout} />
                             </div>
-                        ) : (
-                            <Link href="/login" className="text-zinc-100 font-bold bg-primary-gradient px-6 py-2 rounded-full">Login</Link>
-                        )}
-                    </div>
-                </header>
+                        </div>
+                        <div className="md:flex md:items-center md:justify-start md:mt-auto">
+                            <SidebarProfile />
+                        </div>
+                    </SidebarBody>
+                </Sidebar>
+                <div className="flex-1 min-h-screen overflow-y-auto bg-white dark:bg-dark1">
+                    {children}
+                </div>
             </div>
         </>
     );
-}
+};
+
+export const Logo = () => {
+    return (
+        <div className="flex items-center space-x-2">
+            <Link
+                href="#"
+                className="font-normal flex space-x-2 relative z-20"
+            >
+                <Image src={NusaIcon} alt="NusaGo Logo" width={32} height={32} />
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-transparent bg-clip-text bg-primary-gradient font-podkova
+            text-2xl font-bold"
+                >
+                    NusaGo
+                </motion.span>
+            </Link>
+            <ToggleSwitch />
+        </div>
+
+    );
+};
+
+export const LogoIcon = () => {
+    return (
+        <Link
+            href="#"
+            className="flex items-center py-1"
+        >
+            <Image src={NusaIcon} alt="NusaGo Logo" width={32} height={32} />
+        </Link>
+    );
+};

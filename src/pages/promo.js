@@ -1,4 +1,3 @@
-import Hero from "@/components/Hero/Hero";
 import CardPromoSingle from "@/components/Promo/CardPromoSingle";
 import Layout from "@/layouts/Layout";
 import { useState } from 'react';
@@ -26,18 +25,17 @@ export default function Promo({initialBanners}) {
 
     return (
         <Layout>
-            <Hero initialItems={initialBanners} />
-            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-secondary-gradient'} py-8 pl-16 pr-2 lg:px-8 h-min-screen`}>
-                <div className="flex items-center mb-4">
-                    <i className={`fas fa-tags ${darkMode ? 'text-secondary' : 'text-zinc-100'} mr-2 text-lg`}></i>
-                    <h2 className={`text-xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Special Promo For You!</h2>
+            <section className={`${darkMode ? 'bg-dark1 shadow-BS4' : 'bg-white'} p-8 h-min-screen`}>
+                <div className="flex items-center mb-4 mt-16 md:mt-0">
+                    <i className={`fas fa-tags ${darkMode ? 'text-secondary' : 'text-primary'} mr-2 text-lg`}></i>
+                    <h2 className={`text-2xl lg:text-3xl font-bold font-podkova ${darkMode ? 'text-secondary' : 'text-primary'}`}>Special Promo For You!</h2>
                 </div>
-                <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-zinc-100'}`}>Exclusive Offer Just for You! Don't Miss Out!</p>
+                <p className={`mb-6 font-hind ${darkMode ? 'text-secondary' : 'text-primary'}`}>Exclusive Offer Just for You! Don't Miss Out!</p>
                 <CardPromoSingle
                     currentPage={currentPage}
                     setPageCount={setMaxPage}
                 />
-                <div className="mt-6 mx-auto flex justify-center items-center font-nunito">
+                <div className="flex justify-center items-center mt-8 font-nunito">
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1}
@@ -48,7 +46,7 @@ export default function Promo({initialBanners}) {
                     >
                         Previous
                     </button>
-                    <p className="mx-4 text-zinc-100">{currentPage}</p>
+                    <p className={`${darkMode ? 'text-zinc-100' : 'text-primary'} mx-4`}>{currentPage}</p>
                     <button
                         onClick={nextPage}
                         disabled={currentPage === maxPage}
