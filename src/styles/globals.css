@@ -123,5 +123,5 @@ ul.slick-dots {
 }
 
 .slick-list.dragging {
-    cursor: pointer;
+    cursor: pointer !important;
 }
