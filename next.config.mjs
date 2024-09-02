@@ -10,8 +10,6 @@ const nextConfig = {
       'assets.aceternity.com',
     ],
   },
-  sassOptions: {
-  },
 };
 
 export default nextConfig;
