@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import LayoutAdmin from "@/layout/LayoutAdmin";
-import CardBanner from '@/components/Admin/cardBanner';
+import CardBanner from '@/components/Admin/CardBanner';
 import { checkAuthAdmin } from '../utils/adminAuth';
 import useFetchBanner from '@/hooks/useFetchBanner';
 import Link from 'next/link';

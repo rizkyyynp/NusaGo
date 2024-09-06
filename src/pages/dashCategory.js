@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import LayoutAdmin from "@/layout/LayoutAdmin";
-import CardCategory from '@/components/Admin/cardCategory';
+import CardCategory from '@/components/Admin/CardCategory';
 import { checkAuthAdmin } from '../utils/adminAuth';
 import useFetchCategory from '@/hooks/useFetchCategory';
 import Link from 'next/link';
